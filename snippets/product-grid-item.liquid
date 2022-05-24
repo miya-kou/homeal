@@ -133,11 +133,19 @@
           <div class="grid-product__vendor">{{ product.vendor }}</div>
         {% endif %}
         <div class="grid-product__price">
+          <div class="grid-product__price_child">
           {% if on_sale %}
             <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
             <span class="grid-product__price--original">{{ product.compare_at_price | money }}</span>
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
           {% endif %}
+          {% if on_sale %}
+            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            <span class="grid-product__price--original">(税込{{ product.compare_at_price| divided_by : 1.08 | money }})</span>
+            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+          {% endif %}
+          </div>
+          <div class="grid-product__price_child">
           {% if product.price_varies %}
             {% assign price = product.price_min | money %}
             <span {% if on_sale %}class="sale-price"{% endif %}>
@@ -145,10 +153,13 @@
             </span>
           {% else %}
             <span {% if on_sale %}class="sale-price"{% endif %}>
-              {{ product.price  | money }}
+              {{ product.price| divided_by : 1.08  | money }}
+            </span>
+            <span {% if on_sale %}class="sale-price"{% endif %}>
+              (税込{{ product.price | money }})
             </span>
           {% endif %}
-
+          </div>
           {%- assign product_variant = product.selected_or_first_available_variant -%}
           {%- if product_variant.unit_price_measurement -%}
             <div class="product__unit-price">
