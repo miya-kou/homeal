@@ -136,12 +136,12 @@
           <div class="grid-product__price_child">
           {% if on_sale %}
             <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-            <span class="grid-product__price--original">{{ product.compare_at_price | money }}</span>
+            <span class="grid-product__price--original">{{ product.compare_at_price| divided_by : 1.08  | money }}</span>
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
           {% endif %}
           {% if on_sale %}
             <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-            <span class="grid-product__price--original">(税込{{ product.compare_at_price| divided_by : 1.08 | money }})</span>
+            <span class="grid-product__price--original">(税込{{ product.compare_at_price| money }})</span>
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
           {% endif %}
           </div>
