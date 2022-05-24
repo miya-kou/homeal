@@ -1,0 +1,370 @@
+{% assign shopify_hash = customer.id | hmac_sha256: "f15b268d6af5440fa430c748faf33c05266e4fdef391471684847ffdf0146fd3" %}
+{% assign metafields = customer.metafields.global %}
+  <input id="shopify_id" type="hidden" value={{ customer.id }} />
+  <input id="shopify_hash" type="hidden" value={{ shopify_hash }} />
+
+<div id="page-result">
+  <section id="l-result__top">
+    <div class="c-container">
+      <div class="p-result__top__headercontainer">
+        <div class="p-result__top__headerbox">
+          <h1 class="p-result__top__header">診断結果</h1>
+          <p class="p-result__top__header--english">diagnostics result</p>
+        </div>
+        <button class="p-result__top__change_btn" value="edit">
+          <figure class="p-result__top__change_btn__icon">{{ 'icn-pen@2x.png' | asset_url | img_tag }}</figure>登録内容の変更 
+        </button>
+      </div>
+      <div class="p-result__top__search_info_container">
+        <div class="p-result__top__search_info_box">
+<!--           <h2 class="p-result__top__search_info__name"><span class="name p-result__top__search_info__name">ひな</span><span class="small">ちゃん</span></h2> -->
+          <h2 class="name p-result__top__search_info__name">{{metafields.name}}<!--             ひな --></h2>
+          <div style="display:none;" class="p-result__top__search_info__gender">{{metafields.gender}}</div>
+          <div class="p-result__top__search_info__birthinfobox">
+            <div class="p-result__top__search_info__old">
+              <span class="label1">年齢</span>
+              <span class="input age"><!--                 5 --></span >
+              <span class="label2">才</span>
+            </div>
+            <div class="p-result__top__search_info__birthinfo">
+              {% assign birthday = metafields.birthday | split: '/' %}
+              <span class="label1">誕生日</span >
+              <span class="input birthyear">{{ birthday[0] }}<!--                 2015 --></span>
+              <span class="label2">年</span >
+              <span class="input birthmonth">{{ birthday[1] }}<!--                 5 --></span>
+              <span class="label2">月</span >
+              <span class="input birthday">{{ birthday[2] }}<!--                 14 --></span>
+              <span class="label3">日</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="p-result__top__search_info__alergiesbox"> --><!-- TODO アレルギーなし　修正済（なし時にjsでnoemptyを削除）-->
+        <div class="p-result__top__search_info__alergiesbox noempty"><!-- TODO アレルギーあり（noemptyをつける）-->
+          <h2 class="p-result__top__search_info__alergiesbox__header">
+            <figure class="p-result__top__search_info__alergiesbox__icon">{{ 'icn-alergy@2x.png' | asset_url | img_tag }}</figure>アレルギー 
+          </h2>
+          
+            <div class="allergies-select-box" style="display:none;">
+               <select id="form-allergies" class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width:100%;"> 
+                 <option value="えび">えび</option>
+                  <option value="かに">かに</option>
+                  <option value="小麦">小麦</option>
+                  <option value="そば">そば</option>
+                  <option value="卵">卵</option>
+                  <option value="乳">乳</option>
+                  <option value="落花生">落花生</option>
+                  <option value="アーモンド">アーモンド</option>
+                  <option value="あわび">あわび</option>
+                  <option value="いか">いか</option>
+                  <option value="いくら">いくら</option>
+                  <option value="オレンジ">オレンジ</option>
+                  <option value="カシューナッツ">カシューナッツ</option>
+                  <option value="キウイフルーツ">キウイフルーツ</option>
+                  <option value="牛肉">牛肉</option>
+                  <option value="くるみ">くるみ</option>
+                  <option value="ごま">ごま</option>
+                  <option value="さけ">さけ</option>
+                  <option value="さば">さば</option>
+                  <option value="大豆">大豆</option>
+                  <option value="鶏肉">鶏肉</option>
+                  <option value="バナナ">バナナ</option>
+                  <option value="豚肉">豚肉</option>
+                  <option value="まつたけ">まつたけ</option>
+                  <option value="もも">もも</option>
+                  <option value="やまいも">やまいも</option>
+                  <option value="りんご">りんご</option>
+                  <option value="ゼラチン">ゼラチン</option>
+                </select>
+            </div>
+          
+          <ul class="p-result__top__search_info__alergiesbox__lists">
+            {% assign allergies = metafields.allergies  | split: ', '%}
+            {% for allergy in allergies %}
+            <li class="p-result__top__search_info__alergiesbox__list">{{ allergy }}</li>
+            {% endfor %}
+<!--             <li class="p-result__top__search_info__alergiesbox__list">なし</li> -->
+<!--             <li class="p-result__top__search_info__alergiesbox__list">小麦</li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="p-result__top__status_info_container">
+<!--         <h2 class="p-result__top__status_info_container__header"><span class="colored"><span class="name colored p-result__top__status_info_container__header">ひな</span>ちゃん</span>の現在の状態</h2> -->
+        <h2 class="p-result__top__status_info_container__header"><span class="name colored">{{metafields.name}}<!--           ひな --></span>の現在の状態</h2>
+        <div class="p-result__top__status_info_container__flexbox">
+          <div class="p-result__top__status_info_box">
+            <h3 class="p-result__top__status_info_box__header">
+              <figure class="p-result__top__status_info_box__icon--eiyo">{{ 'icn-eiyo@2x.png' | asset_url | img_tag }}</figure>栄養バランス 
+            </h3>
+            <div class="p-result__top__status_scorebox">
+              <div class="p-result__top__status_scorebox__textarea">
+                <div class="p-result__top__status_scorebox__textarea__headerbox">
+                  <p class="p-result__top__status_scorebox__textarea__header">スコア</p>
+                  <p class="p-result__top__status_scorebox__textarea__average">（標準2.8）</p>
+                </div>
+                <p class="p-result__top__status_scorebox__textarea__score nutrition__score"><!-- 2.7 --></p>
+              </div>
+            </div>
+            <h4 class="p-result__top__status_info_box__smallheader nutrition__title">
+              <figure class="icon">{{ 'icn-alart@2x.png' | asset_url | img_tag }}</figure>
+<!--               すこし栄養が足りていないようです  -->
+            </h4>
+            <p class="p-result__top__status_info_box__text nutrition__text">診断結果に基づき、お子さんの成長や発育に必要な栄養素が含まれた管理栄養士監修のメニューが提案されます。診断結果に基づき、お子さんの成長や発育に必要な栄養素が含まれた管理栄養士監修のメニューが提案されます。 </p>
+          </div>
+          <div class="p-result__top__status_info_box">
+            <h3 class="p-result__top__status_info_box__header">
+              <figure class="p-result__top__status_info_box__icon--syukan">{{ 'icn-syukan@2x.png' | asset_url | img_tag }}</figure>生活習慣 
+            </h3>
+            <div class="p-result__top__status_scorebox">
+              <div class="p-result__top__status_scorebox__textarea">
+                <div class="p-result__top__status_scorebox__textarea__headerbox">
+                  <p class="p-result__top__status_scorebox__textarea__header">スコア</p>
+                  <p class="p-result__top__status_scorebox__textarea__average">（標準3.2）</p>
+                </div>
+                <p class="p-result__top__status_scorebox__textarea__score lifestyle__score"><!--   4.8 --></p>
+              </div>
+            </div>
+            <h4 class="p-result__top__status_info_box__smallheader lifestyle__title">
+              <figure class="icon">{{ 'icn-alart@2x.png' | asset_url | img_tag }}</figure>
+<!--               すこし栄養が足りていないようです  -->
+            </h4>
+            <p class="p-result__top__status_info_box__text lifestyle__text">診断結果に基づき、お子さんの成長や発育に必要な栄養素が含まれた管理栄養士監修のメニューが提案されます。診断結果に基づき、お子さんの成長や発育に必要な栄養素が含まれた管理栄養士監修のメニューが提案されます。 </p>
+          </div>
+        </div>
+<!--         <h2 class="p-result__top__status_info_container__header"><span class="colored"><span class="name colored p-result__top__status_info_container__header">ひな</span>ちゃん</span>の栄養強化ポイント</h2> -->
+        <h2 class="p-result__top__status_info_container__header"><span class="name colored">{{metafields.name}}<!-- ひな --></span>の栄養強化ポイント</h2>
+        <div class="p-result__top__status_point_box">
+          <h3 class="p-result__top__status_point_box__header">鉄分補給</h3>
+          <p class="p-result__top__status_point_box__text">鉄は酸素を全身に運ぶ働きがあるとされます。不足すると細胞に酸素が運べず、細胞が正常に機能しにくくなり、疲れやすくなると考えられるため、積極的にとりたい栄養素と言えます。ビタミンCと同時に取ることで吸収率が上がるとされます。</p>
+        </div>
+      </div>
+      <div class="p-result__top__advice_container">
+        <h2 class="p-result__top__advice_container__header">
+          <figure class="image">{{ 'ico_advice.png' | asset_url | img_tag }}</figure>
+          <span class="colored">管理栄養士</span>からの食卓アドバイス
+        </h2>
+        <p class="p-result__top__advice_container__text">鉄は酸素を全身に運ぶ働きがあるとされます。不足すると細胞に酸素が運べず、細胞が正常に機能しにくくなり、疲れやすくなると考えられるため、積極的にとりたい栄養素と言えます。ビタミンCと同時に取ることで吸収率が上がるとされます。</p>
+      </div>
+      <div class="p-result__top__banner_container">
+      	<a href="https://liff.line.me/1656084305-aRXVRmGj" target="_blank" class="line js-no-transition">{{ 'bnr_line_account.png' | asset_url | img_tag }}</a>
+      </div>
+      <a href="/pages/homeal-diagnosis" class="p-result__top__btn_repeat">もう一度診断する</a>
+      {% assign diagnosisDate = metafields.diagnosis_date | split: '/' %}
+      <p class="p-result__top__diagnostics_date">最後に診断した日：{{ diagnosisDate[0] }}年{{ diagnosisDate[1] }}月{{ diagnosisDate[2] }}日</p>
+    </div>
+  </section>
+  <section id="l-result__recommend">
+    <div class="c-container">
+      <figure class="p-result__recommend__header_icon">{{ 'icn-recommend@2x.png' | asset_url | img_tag }}</figure>
+<!--       <h1 class="p-result__recommend__header"><span class="colored"><span class="name colored">ひな</span>ちゃん</span>に<br class="c-sp_only">おすすめのhomeal</h1> -->
+      <h1 class="p-result__recommend__header"><span class="name colored">{{metafields.name}}<!-- ひな --></span>に<br class="c-sp_only">おすすめのhomeal</h1>
+      <section class="p-menu_detail_area">
+        <h2 class="p-menu_header" data-bg="orange">もっともおすすめ！ </h2>
+        <div class="p-menu_detail__flexbox">
+          <div id="js-menuDetail" class="p-menu_detail__imagebox">
+            <ul class="p-menu_detail__imgs">
+              <li class="p-menu_detail__img active" style="display:none"><a href="" class="p-menu_detail__link"><figure>{{ 'img-dummy.png' | asset_url | img_tag: '', 'detail_img' }}</figure></a></li>
+              <li class="p-menu_detail__img" style="display:none"><a href="" class="p-menu_detail__link"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'detail_img' }}</figure></a></li>
+              <li class="p-menu_detail__img" style="display:none"><a href="" class="p-menu_detail__link"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'detail_img'  }}</figure></a></li>
+              <li class="p-menu_detail__img" style="display:none"><a href="" class="p-menu_detail__link"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'detail_img'  }}</figure></a></li>
+              <li class="p-menu_detail__img" style="display:none"><a href="" class="p-menu_detail__link"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'detail_img'  }}</figure></a></li>
+<!--               <li class="p-menu_detail__img" style="display:none"><figure><img src="//cdn.shopify.com/s/files/1/0412/4347/6136/products/1280x1280.png?v=1596696413" alt="" class="detail_img"></figure></li> -->
+            </ul>
+            <ul class="p-menu_detail__thumbnailbox">
+              <li class="p-menu_detail__thumbnail active" style="display:none"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'thumbnail_img' }}</figure></li>
+              <li class="p-menu_detail__thumbnail" style="display:none"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'thumbnail_img'  }}</figure></li>
+              <li class="p-menu_detail__thumbnail" style="display:none"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'thumbnail_img'  }}</figure></li>
+              <li class="p-menu_detail__thumbnail" style="display:none"><figure>{{ 'img-dummy.png' | asset_url | img_tag  : '', 'thumbnail_img' }}</figure></li>
+              <li class="p-menu_detail__thumbnail" style="display:none"><figure>{{ 'img-dummy.png' | asset_url | img_tag : '', 'thumbnail_img'  }}</figure></li>
+<!--               <li class="p-menu_detail__thumbnail" style="display:none"><figure><img src="//cdn.shopify.com/s/files/1/0412/4347/6136/products/1280x1280.png?v=1596696413" alt="" class="thumbnail_img"></figure></li> -->
+            </ul>
+          </div>
+          <div class="p-menu_detail__infobox">
+            <h3 class="p-menu_detail__name">鶏肉と国産ひじきの和風豆腐ハンバーグ<br>1パック （子ども3食分）</h3>
+            <figure class="p-menu_detail__partition">{{ 'line-recommend_dots@2x.png' | asset_url | img_tag }}</figure>
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="balance">栄養バランス</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_balance_tags">
+<!--                   <li class="p-menu_detail__tag" data-type="balance">身体の基礎をつくる</li>
+                  <li class="p-menu_detail__tag" data-type="balance">鉄分補給</li>
+                  <li class="p-menu_detail__tag" data-type="balance">身体の調子を整える</li> -->
+                </ul>
+              </dd>
+            </dl>
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="lifestyle">生活習慣</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_lifestyle_tags">
+<!--                   <li class="p-menu_detail__tag" data-type="lifestyle">身体の基礎をつくる</li>
+                  <li class="p-menu_detail__tag" data-type="lifestyle">鉄分補給</li>
+                  <li class="p-menu_detail__tag" data-type="lifestyle">集中力アップ</li> -->
+                </ul>
+              </dd>
+            </dl>
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="ingredients">アレルゲン</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_ingredients_tags">
+<!--                   <li class="p-menu_detail__tag" data-type="ingredients">乳</li>
+                  <li class="p-menu_detail__tag" data-type="ingredients">大豆</li>
+                  <li class="p-menu_detail__tag" data-type="ingredients">豚肉</li>
+                  <li class="p-menu_detail__tag" data-type="ingredients">鶏肉</li> -->
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="p-menu_area">
+        <h2 class="p-menu_header sub_recommend_menu_header" data-bg="yellow">おすすめメニュー</h2>
+        <ul class="p-menu_list sub_recommend_list">
+<!--           <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+                <li class="p-menu_list__tag" data-type="lifestyle">免疫力UP</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li> -->
+<!--           <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+                <li class="p-menu_list__tag" data-type="lifestyle">免疫力UP</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li> -->
+        </ul>
+      </section>
+      <section class="p-menu_area togglecontent">
+        <h2 class="p-menu_header other_menu_header" data-bg="gray">その他のメニュー </h2>
+        <ul class="p-menu_list other_list">
+<!--           <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+                <li class="p-menu_list__tag" data-type="lifestyle">免疫力UP</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+                <li class="p-menu_list__tag" data-type="lifestyle">免疫力UP</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li>
+          <li class="p-menu_list__item">
+            <a href="#" class="p-menu_list__link">
+              <figure class="p-menu_list__image">{{ 'img-dummy.png' | asset_url | img_tag }}</figure>
+              <ul class="p-menu_list__tags">
+                <li class="p-menu_list__tag" data-type="balance">消化に良い</li>
+              </ul>
+              <h3 class="p-menu_list__name">骨なし白糸鱈とたっぷり野菜の中華風あんかけ 1パック（子ども3食分）</h3>
+            </a>
+          </li> -->
+        </ul>
+      </section>
+      <button type="button" class="p-result__recommend__togglebtn js-toggleswitch" id="show_others_button"></button>
+    </div>
+  </section>
+  <section id="l-result__selected_item" class="js-resultFixed">
+    <div class="c-container">
+      <div class="p-result__selected_item__infobox">
+        <div class="p-result__selected_item__infobox__textarea">
+          <h1 class="p-result__selected_item__name">homeal BOX 定期便 6品セット(幼児18食分〜相当入り) </h1>
+          <p class="p-result__selected_item__price">
+            <span class="price">5,680</span>
+            <span class="label">円（税込）</span>
+            <span>通常価格 </span>
+            <span style="text-decoration: line-through;">5,982円</span>
+            <span class="supplement"></span>
+          </p>
+          <p class="p-result__selected_item__tag">単品購入より５%OFF</p> <p class="p-result__selected_item__tag">メニューは毎回変更可能</p>
+        </div>
+      </div>
+      <div class="p-result__selected_item__btnbox">
+        <a href="https://homeal-store.myshopify.com/products/product-6-set">
+          <button type="button" class="p-result__selected_item__select_btn">購入する商品を選択する</button>
+        </a>
+        <p class="p-result__selected_item__btnbox__supplement">※すべての商品の中から個数を選択できます</p>
+        <a href="/tools/checkout/api/manage/subscription/app" class="p-result__selected_item__purchased_btn">すでに購入済の方の商品選択はこちら</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- <script type="text/javascript" src="{{ 'result.js' | asset_url }}"></script> -->
+<script src="{{ 'result.js' | asset_url }}" defer></script>

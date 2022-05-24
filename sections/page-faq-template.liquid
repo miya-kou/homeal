@@ -1,0 +1,177 @@
+
+<div class="faq_search_wrapper">
+<div class="c-container">
+  <div class="faq_search_inner">
+    <div class="faq_search_logo"><a href="https://homeal.co.jp/pages/faq"><img src="{{'title_faq.png' | file_url }}"></a></div>
+    <form action="" method="get" class="input-group new-search-bar" role="search">
+      <input type="hidden" name="search">
+      <input type="text" name="q" value="" id="search-box" placeholder="キーワードで検索" class="faq_search_inputBox new-search-bar__text-field" style="box-shadow: 0 1.25rem 1.25rem rgb(0 0 0 / 7%);" aria-label="キーワードで検索">
+      <span class="new-search-bar__icon">
+        <label>
+        <input type="button" onclick="searchFaq()" style="display: none;" />
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+        </label>
+      </span>
+    </form>
+  </div>
+</div>
+</div>
+<div class="c-container">
+  <div class="page-width page-content" id="result">
+    <div class="grid">
+      <div class="grid__item">
+        <div class="page-blocks page-blocks--flush" id="faq">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ 'homeal-faq.js' | asset_url | script_tag }}
+<script>
+
+const faqContent = document.getElementById('faq');
+const cateHtml = `<div id="cateWrapper">
+            <div class="index-section">
+              <div class="page-width text-left">
+                <div class="grid">
+                  <div class="grid__item">
+                      <p class="faq_category" id="category"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+const queAndAnsHtml = `<div class="accordion-single js-acc-single">
+          <div class="page-width faq_question_wrapper accordion-single-item js-acc-item">
+            <div class="faq_question_box accordion-single-title js-acc-single-trigger collapsible-trigger--inline collapsible--auto-height text-left">
+              <img src="{{'icn_q.png'|asset_url}}" class="faq_q_icon">
+              <p class="faq_question_text" name="question" id="question"></p>
+              <div class="accordion-single-content faq_answer_box">
+              <div class="faq_answer_img"><img src="{{'icn_a.png'|asset_url}}" class="faq_a_icon"></div>
+              <p class="collapsible-content__inner" id="answer"></p>
+            </div>
+            </div>
+          </div>
+        </div>`;
+const resultCount = `<div class="faq_result_text">
+      検索結果：<span id="resultCount"></span>件
+    </div>`;
+
+const urlParams = new URLSearchParams(window.location.search);
+const searchParams = urlParams.get('q');
+  
+if (!searchParams) {
+  faq.reverse().forEach((item, idx) => {
+  faqContent.insertAdjacentHTML('afterbegin', cateHtml);  
+  const category = document.getElementById('category');
+  const categoryValue = item.category;
+  category.insertAdjacentHTML('beforeend', categoryValue);
+  const content = item.content.reverse().forEach(content => {
+    const cateWrapper = document.getElementById('cateWrapper');
+    cateWrapper.insertAdjacentHTML('afterend', queAndAnsHtml);
+    const question = document.getElementById('question');
+    const answer = document.getElementById('answer');
+    const queValue = content.question;
+    const ansValue = content.answer;
+    question.insertAdjacentHTML('beforeend', queValue);
+    answer.insertAdjacentHTML('beforeend', ansValue);
+    });
+  });
+}
+
+function searchFaq() {
+  if (searchParams) {
+    const searchedFaq = []　
+    searchParams.split(' ')[0].split(/(\s+)/).filter(text => text.trim().length).forEach(text => {
+      faq.forEach(item => {
+        const contents = item.content.map(content => {
+          if (content.question.includes(text) || content.answer.includes(text)) {
+            return content
+          }
+        })
+        if (contents.filter(content => content != null).length) {
+          const idx = searchedFaq.findIndex(faq => faq.category === item.category)
+          if (idx >= 0) {
+            contents.filter(content => content != null).forEach(content => {
+              searchedFaq[idx].content.push(content)
+            })
+          } else {
+            searchedFaq.push({
+              category: item.category,
+              content: contents.filter(content => content != null)
+            })            
+          }          
+        }
+     })
+   })
+   document.getElementById('search-box').setAttribute('value', searchParams);
+   return searchedFaq;
+  }
+}
+
+
+
+const faqItems = searchFaq();
+if (faqItems) {
+  faqItems.reverse().filter(item => item != null).flat().forEach((item, idx) => {
+    faqContent.insertAdjacentHTML('afterbegin', cateHtml);  
+    const category = document.getElementById('category');
+    const categoryValue = item.category;
+    category.insertAdjacentHTML('beforeend', categoryValue);
+    const content = item.content.reverse().forEach(content => {
+      const cateWrapper = document.getElementById('cateWrapper');
+      cateWrapper.insertAdjacentHTML('afterend', queAndAnsHtml);
+      const question = document.getElementById('question');
+      const answer = document.getElementById('answer');
+      const queValue = content.question;
+      const ansValue = content.answer;
+      question.insertAdjacentHTML('beforeend', queValue);
+      answer.insertAdjacentHTML('beforeend', ansValue);
+    });
+  });
+  const resultBox = document.getElementById('result');
+  resultBox.insertAdjacentHTML('afterbegin', resultCount);
+  const result = document.getElementById('resultCount');
+  const resultNum = document.getElementsByName('question').length;
+  result.insertAdjacentHTML('beforeend', resultNum);
+}
+
+const accSingleTriggers = document.querySelectorAll('.js-acc-single-trigger');
+
+accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
+
+function toggleAccordion() {
+  const items = document.querySelectorAll('.js-acc-item');
+  const thisItem = this.parentNode;
+
+  items.forEach(item => {
+    if (thisItem == item) {
+      thisItem.classList.toggle('is-open');
+      return;
+    }
+    item.classList.remove('is-open');
+  });
+}  
+  
+  
+</script>
+{% schema %}
+  {
+    "name": "Page.faq page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "page_title_enable",
+        "label": "Show page title"
+      },
+      {
+        "type": "checkbox",
+        "id": "page_content_enable",
+        "label": "Show page content"
+      }
+    ],
+    "default": {
+    }
+  }
+{% endschema %}

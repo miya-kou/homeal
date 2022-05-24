@@ -1,0 +1,1956 @@
+{
+  "current": {
+    "color_body_bg": "#ffffff",
+    "color_body_text": "#000000",
+    "color_borders": "#e8e8e1",
+    "color_button": "#111111",
+    "color_button_text": "#ffffff",
+    "color_sale_price": "#1c1d1d",
+    "color_sale_tag": "#1c1d1d",
+    "color_sale_tag_text": "#ffffff",
+    "color_cart_dot": "#ff4f33",
+    "color_header": "#ffffff",
+    "color_header_text": "#1c1d1d",
+    "color_announcement": "#a39029",
+    "color_announcement_text": "#ffffff",
+    "color_footer": "#111111",
+    "color_footer_text": "#ffffff",
+    "color_drawer_background": "#ffffff",
+    "color_drawer_text": "#000000",
+    "color_drawer_border": "#e5e5e5",
+    "color_drawer_button": "#111111",
+    "color_drawer_button_text": "#ffffff",
+    "color_modal_overlays": "#000000",
+    "color_image_text": "#ffffff",
+    "color_image_2": "#000000",
+    "color_image_2_opacity": 0,
+    "color_image_1": "#000000",
+    "color_image_1_opacity": 62,
+    "color_small_image_bg": "#ffffff",
+    "color_large_image_bg": "#111111",
+    "type_header_font_family": "itc_avant_garde_gothic_n7",
+    "type_header_spacing": "0",
+    "type_header_base_size": 30,
+    "type_header_line_height": 1.2,
+    "type_header_accent_transform": true,
+    "type_headers_align_text": true,
+    "type_base_font_family": "futura_n4",
+    "type_base_spacing": "25",
+    "type_base_size": 14,
+    "type_base_line_height": 1.6,
+    "type_base_accent_transform": true,
+    "icon_weight": "4px",
+    "icon_linecaps": "miter",
+    "animate_page_transitions": true,
+    "animate_page_transition_style": "page-slow-fade",
+    "animate_sections": true,
+    "animate_sections_background_style": "zoom-fade",
+    "animate_sections_text_style": "rise-up",
+    "animate_images": false,
+    "animate_images_style": "zoom-fade",
+    "animate_buttons": true,
+    "animate_underlines": true,
+    "vendor_enable": false,
+    "sku_enable": false,
+    "quantity_enable": true,
+    "variant_labels_enable": true,
+    "variant_type": "button",
+    "enable_payment_button": true,
+    "inventory_enable": false,
+    "inventory_threshold": 10,
+    "inventory_transfers_enable": false,
+    "product_save_amount": true,
+    "product_save_type": "dollar",
+    "product_zoom_enable": true,
+    "quick_shop_enable": false,
+    "quick_shop_text": "Quick view",
+    "product_hover_image": false,
+    "product_grid_image_size": "natural",
+    "product_color_swatches": false,
+    "collection_color_swatches": false,
+    "product_content_1": "",
+    "product_content_2": "",
+    "product_content_3": "",
+    "product_contact": false,
+    "product_contact_title": "Ask a question",
+    "product_contact_show_phone": false,
+    "enable_product_reviews": false,
+    "reviews_layout": "full",
+    "cart_type": "page",
+    "cart_icon": "cart",
+    "cart_additional_buttons": false,
+    "cart_notes_enable": false,
+    "cart_terms_conditions_enable": false,
+    "cart_terms_conditions_link": "",
+    "social_facebook_link": "fb",
+    "social_twitter_link": "tw",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_snapchat_link": "",
+    "social_tiktok_link": "",
+    "social_tumblr_link": "",
+    "social_linkedin_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "favicon": "shopify:\/\/shop_images\/favicon_144_45a5ffe6-2eca-4922-843b-d374177e0613.png",
+    "search_enable": false,
+    "search_type": "product,article,page",
+    "predictive_search_enabled": false,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": false,
+    "show_breadcrumbs": false,
+    "checkout_logo_image": "shopify:\/\/shop_images\/homeal_logo_yoko_b5ca5ef4-a4db-4764-96b6-f2adacf2064e.jpg",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#ffffff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#111111",
+    "checkout_button_color": "#111111",
+    "checkout_error_color": "#ff6d6d",
+    "color_image_bg": "#000000",
+    "breadcrumb": true,
+    "color_input": "#ffffff",
+    "checkout_banner_background_color": "#ffffff",
+    "checkout_call_to_action_color": "#a26b25",
+    "checkout_use_header_image": false,
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "1595725701054": {
+            "type": "logo",
+            "settings": {
+              "logo": "shopify:\/\/shop_images\/logo.png"
+            }
+          }
+        },
+        "block_order": [
+          "1595725701054"
+        ],
+        "settings": {
+          "main_menu_link_list": "main-menu",
+          "show_announcement": true,
+          "announcement_text": "【数量限定：送料無料】お出かけぴったり7品セット⛺",
+          "announcement_link": "https:\/\/homeal.co.jp\/collections\/online-shop\/products\/2205cp_ourdoor",
+          "announcement_closable": false
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1494292487693": {
+            "type": "newsletter",
+            "settings": {
+              "show_footer_title": true,
+              "title": "メールマガジンで新商品やイベントの<br class=\"c-sp_only\">ご案内などいち早くお届けします",
+              "richtext": "",
+              "container_width": 95
+            }
+          },
+          "1494301487049": {
+            "type": "menu",
+            "settings": {
+              "show_footer_title": true,
+              "menu": "footer",
+              "container_width": 20
+            }
+          },
+          "1595704330445": {
+            "type": "menu",
+            "settings": {
+              "show_footer_title": true,
+              "menu": "link-list",
+              "container_width": 20
+            }
+          }
+        },
+        "block_order": [
+          "1494292487693",
+          "1494301487049",
+          "1595704330445"
+        ],
+        "settings": {
+          "show_locale_selector": false,
+          "show_currency_selector": false,
+          "show_currency_flags": false,
+          "show_payment_icons": false,
+          "show_copyright": true,
+          "copyright_text": "homeal Inc. All rights reserved."
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "per_row": 3,
+          "collection_image_enable": false,
+          "parallax": false,
+          "description_position": "top",
+          "collection_subnav_style": "inline",
+          "collection_tags_style": "none",
+          "collection_sort_enable": false
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "description_style": "full",
+          "social_enable": true,
+          "image_size": "medium",
+          "thumbnail_position": "below",
+          "thumbnail_arrows": false,
+          "enable_video_looping": false,
+          "product_video_style": "muted"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "blog_show_image": false,
+          "blog_show_tags": true,
+          "blog_show_date": true,
+          "blog_show_comments": true,
+          "blog_show_author": false,
+          "social_sharing_blog": true
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "blog_show_tag_filter": true,
+          "blog_show_rss": false,
+          "blog_show_tags": true,
+          "blog_show_date": true,
+          "blog_show_comments": true,
+          "blog_show_author": false
+        }
+      },
+      "product-sections-template": {
+        "type": "product-sections-template",
+        "blocks": {
+          "product-image-row": {
+            "type": "image-row",
+            "settings": {
+              "image_1": "",
+              "image_1_link": "",
+              "image_2": "",
+              "image_2_link": "",
+              "image_3": "",
+              "image_3_link": "",
+              "image_4": "",
+              "image_4_link": "",
+              "enable_gutter": false,
+              "enable_zoom": true
+            }
+          },
+          "product-text-and-image": {
+            "type": "text-and-image",
+            "settings": {
+              "image": "",
+              "image_width": 500,
+              "subtitle": "Improved",
+              "title": "Image with text",
+              "text": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.<\/p>",
+              "button_label": "Optional button",
+              "button_link": "",
+              "layout": "left"
+            }
+          },
+          "product-background-image-text": {
+            "type": "background-image-text",
+            "settings": {
+              "subtitle": "Impressive",
+              "title": "Large image with text box",
+              "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+              "button_label": "",
+              "button_link": "",
+              "image": "",
+              "alignment": "center",
+              "color_border": "#f4f4f4",
+              "layout": "right",
+              "height": 550,
+              "parallax": true
+            }
+          },
+          "product-text-columns": {
+            "type": "text-columns",
+            "settings": {
+              "title": "",
+              "align_text": "left",
+              "enable_image_1": true,
+              "image_1": "",
+              "title_1": "Example title",
+              "text_1": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_1": "",
+              "button_link_1": "",
+              "enable_image_2": true,
+              "image_2": "",
+              "title_2": "Example title",
+              "text_2": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_2": "",
+              "button_link_2": "",
+              "enable_image_3": true,
+              "image_3": "",
+              "title_3": "Example title",
+              "text_3": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_3": "",
+              "button_link_3": ""
+            }
+          },
+          "product-hero-video": {
+            "type": "hero-video",
+            "settings": {
+              "title": "Bring your\nbrand to life.",
+              "title_size": 80,
+              "subheading": "Seamless hero videos",
+              "link_text": "Optional button",
+              "link": "",
+              "text_align": "vertical-bottom horizontal-left",
+              "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+              "section_height": "650px",
+              "mobile_height": "auto"
+            }
+          }
+        },
+        "block_order": [
+          "product-image-row",
+          "product-text-and-image",
+          "product-background-image-text",
+          "product-text-columns",
+          "product-hero-video"
+        ],
+        "settings": {
+          "description_style": "default",
+          "social_enable": true,
+          "image_size": "medium",
+          "thumbnail_position": "beside",
+          "thumbnail_arrows": false,
+          "enable_video_looping": true,
+          "product_video_style": "muted"
+        }
+      },
+      "page-sections-template": {
+        "type": "page-sections-template",
+        "blocks": {
+          "page-fading-images": {
+            "type": "fading-images",
+            "settings": {
+              "title_lines": "2",
+              "title_font": "body",
+              "title_size": 45,
+              "title_color": "#ffffff",
+              "title_bg_color": "rgba(0,0,0,0)",
+              "text_align": "vertical-center horizontal-center",
+              "link": "",
+              "slide_speed": 5,
+              "color_overlay": "#000",
+              "color_overlay_opacity": 30,
+              "desktop_height": "650px",
+              "mobile_height": "auto",
+              "enable_image_1": true,
+              "image_1": "",
+              "focal_point_1": "center center",
+              "slide_title_1a": "Beautifully animated",
+              "slide_title_1b": "titles and images",
+              "enable_image_2": true,
+              "image_2": "",
+              "focal_point_2": "center center",
+              "slide_title_2a": "Use this section",
+              "slide_title_2b": "to impress customers",
+              "enable_image_3": false,
+              "image_3": "",
+              "focal_point_3": "center center",
+              "slide_title_3a": "",
+              "slide_title_3b": ""
+            }
+          },
+          "page-rich-text": {
+            "type": "rich-text",
+            "settings": {
+              "title": "",
+              "text": "<p>Use this section for any descriptive text you need to fill out your pages or to add introductory headings between other blocks.<\/p>",
+              "align_text": "left",
+              "narrow_column": true,
+              "enlarge_text": true
+            }
+          },
+          "page-text-columns": {
+            "type": "text-columns",
+            "settings": {
+              "title": "",
+              "align_text": "left",
+              "enable_image_1": true,
+              "image_1": "",
+              "title_1": "Example title",
+              "text_1": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_1": "",
+              "button_link_1": "",
+              "enable_image_2": true,
+              "image_2": "",
+              "title_2": "Example title",
+              "text_2": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_2": "",
+              "button_link_2": "",
+              "enable_image_3": true,
+              "image_3": "",
+              "title_3": "Example title",
+              "text_3": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+              "button_label_3": "",
+              "button_link_3": ""
+            }
+          },
+          "page-background-image-text": {
+            "type": "background-image-text",
+            "settings": {
+              "subtitle": "Impressive",
+              "title": "Large image with text box",
+              "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+              "button_label": "",
+              "button_link": "",
+              "image": "",
+              "alignment": "center",
+              "color_border": "#f4f4f4",
+              "layout": "right",
+              "height": 550,
+              "parallax": true
+            }
+          },
+          "page-featured-collection": {
+            "type": "featured-collection",
+            "settings": {
+              "title": "Featured collection",
+              "collection": "",
+              "per_row": 4,
+              "rows": 1,
+              "view_all": true
+            }
+          }
+        },
+        "block_order": [
+          "page-fading-images",
+          "page-rich-text",
+          "page-text-columns",
+          "page-background-image-text",
+          "page-featured-collection"
+        ],
+        "settings": {
+          "page_title_enable": false,
+          "page_content_enable": false
+        }
+      },
+      "newsletter-popup": {
+        "type": "newsletter-popup",
+        "settings": {
+          "mode": "disabled",
+          "popup_seconds": 5,
+          "popup_days": 30,
+          "popup_title": "Sign up and save",
+          "popup_text": "<p>Entice customers to sign up for your mailing list with discounts or exclusive offers. Include an image for extra impact.<\/p>",
+          "close_text": "No thanks",
+          "enable_newsletter": true,
+          "button_label": "Optional button",
+          "button_link": "",
+          "enable_button": false
+        }
+      },
+      "1595707565126": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595707565126-1": {
+            "type": "html",
+            "settings": {
+              "code": "<div id=\"introduction\" class=\"c-anchor\"><\/div> \n\n<div id=\"l-introduction\">\n<a href=\"#introduction\" class=\"p-fv__scroll\">\n    <div class=\"p-fv__scroll_inner\"><\/div>\n  <\/a>\n  <div class=\"c-container\">\n\n    <ul class=\"p-introduction__flows c-slideup\">\n      <li class=\"p-introduction__flow\">\n<a href=\"#mission1\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero1.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero1.png?v=1634540196\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero1_catch.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero1_catch.png?v=1634540196\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\">\n       <\/a>\n      <\/li>\n      <li class=\"p-introduction__flow\">\n       <a href=\"#mission2\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero4.png?v=1634713139\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero4.png?v=1634713139\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero4_catch.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero4_catch.png?v=1634540196\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\">\n\n<\/a>\n      <\/li>\n      <li class=\"p-introduction__flow\">\n        <a href=\"#mission3\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero3.png?v=1634713139\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero3.png?v=1634713139\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero3_catch.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero3_catch.png?v=1634540196\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\">\n<\/a>\n      <\/li>\n<li class=\"p-introduction__flow\">\n<a href=\"#mission4\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero2.png?v=1634540197\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero2.png?v=1634540197\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero2_catch.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_zero2_catch.png?v=1634540196\" class=\"lazyload\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/abouthomeal_arrow.png?v=1634540196\">   \n      <\/a>\n<\/li>\n    <\/ul>\n    \n  <\/div>\n<\/div>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595707565126-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708720365": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595708720365-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-about\">\n  <div class=\"c-container\">\n    <div class=\"p-titlebox c-slideup\">\n      <figure class=\"p-about__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_title.png?v=1634107368\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_ourmission_sp.png?v=1634107368\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_ourmission_sp.png?v=1634107368\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n    <\/div>\n    <ul class=\"p-about__content_containers\">\n      <li class=\"p-about__content_container c-slideup\" id=\"mission1\">\n        <figure class=\"p-about__image\">\n <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img1.png?v=1634125738\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img1.png?v=1634125738\" class=\"lazyload\" alt=\"\">\n <\/figure>\n        <div class=\"p-about__textbox\">\n          <h2 class=\"p-about__smallheader\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy1.png?v=1634107446\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy1.png?v=1634107446\" class=\"lazyload\" alt=\"子どもの食事は手を抜きたくない。\nでも、毎食つくるのは大変。\"><\/h2>\n          <p class=\"p-about__text\">子どもが食べるものは、食材も調理法もこだわりたいのが親心。しかし、予期せぬ仕事や育児は、どうしても生まれてしまうものです。温めるだけで用意できるhomealのメニューはすべて手づくり。独自の冷凍技術で一定期間の保存もできます。<\/p>\n        <\/div>\n      <\/li>\n      <li class=\"p-about__content_container c-slideup\" id=\"mission2\">\n       <figure class=\"p-about__image\">\n <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img2.png?v=1634125738\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img2.png?v=1634125738\" class=\"lazyload\" alt=\"\">\n <\/figure>\n        <div class=\"p-about__textbox\">\n          <h2 class=\"p-about__smallheader\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy2.png?v=1634107445\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy2.png?v=1634107445\" class=\"lazyload\" alt=\"子どもの食欲はいつも気まぐれ。\nなかなか思い通りには食べてくれない。\"><\/h2>\n          <p class=\"p-about__text\">体調や気分で食欲が変化したり、初めての食べ物を拒否したり、好き嫌いをしたり。子どもが用意したものを食べてくれないことは日常茶飯事。食のプロが、子どもが食べたくなるように工夫をこらしたhomealのメニューは、そんなときの強い味方です。<\/p>\n        <\/div>\n      <\/li>\n      <li class=\"p-about__content_container c-slideup\" id=\"mission3\">\n       <figure class=\"p-about__image\">\n <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img3.png?v=1634125738\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img3.png?v=1634125738\" class=\"lazyload\" alt=\"\">\n <\/figure>\n        <div class=\"p-about__textbox\">\n          <h2 class=\"p-about__smallheader\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy3.png?v=1634107445\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy3.png?v=1634107445\" class=\"lazyload\" alt=\"子どもの栄養バランスに不安がある。 でも、周りに相談できる人がいない。\"><\/h2>\n          <p class=\"p-about__text\">ウェブサイトや本から情報を集めて、栄養のバランスを考えても、本当に自分のやり方が正しいか、不安は残ってしまうもの。homealなら、管理栄養士にLINEで気軽に相談可能。不足する栄養を、プロのアドバイスと多彩なメニューでサポートします。<\/p>\n        <\/div>\n      <\/li>\n<li class=\"p-about__content_container c-slideup\" id=\"mission4\">\n       <figure class=\"p-about__image\">\n <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img4.png?v=1634125738\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_img4.png?v=1634125738\" class=\"lazyload\" alt=\"\">\n <\/figure>\n        <div class=\"p-about__textbox\">\n          <h2 class=\"p-about__smallheader\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy4.png?v=1634107446\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/ourmission_copy4.png?v=1634107446\" class=\"lazyload\" alt=\"子どもとの時間を大事にしたいけど、 ワンオペ育児で一緒に食事ができない。\"><\/h2>\n          <p class=\"p-about__text\">時には分刻みでスケジュールをこなすワンオペ育児では、自分の食事は後回し。子どもと食卓を囲むこともままなりません。homealのメニューはどれも、大人も楽しめる本格派。温めるだけの調理で時短して、子どもとの食事を楽しみましょう。<\/p>\n        <\/div>\n      <\/li>\n\n    <\/ul>\n\n  <\/div>\n<div class=\"p-about__chart_container c-slideup\">\n      <div class=\"p-about__chart__textbox\">\n        <h2 class=\"p-about__chart__header\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_tips_midasi.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_tips_midasi.png\" class=\"lazyload\" alt=\"なぜ幼児食が大切なのか？\"><\/h2>\n        <p class=\"p-about__chart__text\"><span class=\"strong\">「幼児期の6歳までに、子どもの脳は90％が完成する」<\/span>と言われています。記憶力、集中力、自律神経などの一生に及ぶ知能や感情に影響を与えるこの時期だからこそ、お子さんの栄養バランスと生活習慣を整えてあげましょう。<\/p>\n      <\/div>\n      <p class=\"p-about__chart\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_tips_infograph.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_tips_infograph.png\" class=\"lazyload\" alt=\"誕生から成熟期での発育量を100%とした割合図 6歳で脳は90%が完成する。\"><\/p>\n    <\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708720365-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708774680": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595708774680-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-media\">\n  <div class=\"c-container\">\n    <div class=\"p-titlebox c-slideup\">\n    <figure class=\"p-media__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media_title.png?v=1634108210\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_media_sp.png?v=1634108210\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_media_sp.png?v=1634108210\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n    <\/div>\n    <ul class=\"p-media__lists c-slideup\">\n      <li class=\"p-media__list\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media1.png?v=1632813809\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media1.png?v=1632813809\" class=\"lazyload\" alt=\"たまひよ\">\n      <\/li>\n      <li class=\"p-media__list\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media2.png?v=1632813809\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media2.png?v=1632813809\" class=\"lazyload\" alt=\"AMP\">\n      <\/li>\n      <li class=\"p-media__list\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media3.png?v=1632813810\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media3.png?v=1632813810\" class=\"lazyload\" alt=\"kodomoe\">\n<\/li>\n      <li class=\"p-media__list\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media4.png?v=1632813809\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media4.png?v=1632813809\" class=\"lazyload\" alt=\"Monthly Pitch\">\n      <\/li>\n      <li class=\"p-media__list\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media5.png?v=1632813811\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/media5.png?v=1632813811\" class=\"lazyload\" alt=\"ICC\">\n      <\/li>\n    <\/ul>\n  <\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708774680-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708826078": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595708826078-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-box\">\n\n<div class=\"p-menu__homealbox c-slideup\">\n<h2 class=\"p-menu__homealbox__header\">\n      <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homealbox.png?v=1632790765\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homealbox.png?v=1632790765\" alt=\"homeal box定期便\">\n    <\/h2>\n<div class=\"p-menu__homealbox_wrap\">\n\n  <div class=\"c-container\">\n    \n    <div class=\"p-menu__homealbox__flexbox c-slideup\">\n      <figure class=\"p-menu__homealbox__image\">\n        <picture>\n          <source media=\"(min-width: 769px)\" srcset=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-top_homealbox.png?v=1602598397\">\n          <img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-top_homealbox.png?v=1602598397\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-top_homealbox.png?v=1602598397\" class=\"lazyload\" alt=\"homealboxイメージ\">\n        <\/source><\/picture>\n      <\/figure>\n      <div class=\"p-menu__homealbox__textbox\">\n    \n        <p class=\"p-menu__homealbox__pricebox\" id=\"return_btn\">\n          <span class=\"small\">幼児1食分あたり約 <\/span>315<span class=\"small\">円〜（税込）<\/span>\n        <\/p>\n        \n<ul class=\"p-menu_list__tags\">\n <li class=\"p-menu_list__tag h-box\">通常価格より5%OFF<\/li>\n<li class=\"p-menu_list__tag h-box\">前回の注文の手間を解消<\/li>\n<li class=\"p-menu_list__tag h-box\">いつでも商品カスタマイズ可能<\/li>\n<li class=\"p-menu_list__tag h-box\">いつでも配送日時変更可能<\/li>\n<li class=\"p-menu_list__tag h-box\">いつでも専門家がサポート<\/li>\n<\/ul>\n<p class=\"p-menu__homealbox__text\">幼児食診断で導き出された結果を参考にしながら、自由に好きなメニューを組み合わせて継続してお届けします。メニューは毎回カスタマイズでき、お届け頻度は1〜9週間までの9パターン。次回注文日の変更やスキップもいつでも可能です。毎回、選んで注文する手間も省けるためいつでも幼児食のストックができ、忙しいママパパに人気です。 <\/p>\n      <\/div>\n    <\/div>\n    <a href=\"\/pages\/homeal-diagnosis\" class=\"c-linkbtn white c-slideup diagnosis-link-of-homeal-box-contents\">まずは無料で幼児食診断<\/a>\n    <a href=\"\/products\/product-6-set\" class=\"c-linkbtn white c-slideup subscription-link-of-homeal-box-contents\">継続コースを購入<\/a>\n  <\/div>\n<\/div>\n<div class=\"p-menu__menuwrap\">\n<ul class=\"p-menu__menuboxes c-slideup\">\n<li class=\"p-menu__menubox\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/review1.png?v=1634726948\">\n\n<\/li>\n<li class=\"p-menu__menubox p-pc_only\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/review2.png?v=1634726948\">\n\n<\/li>\n<li class=\"p-menu__menubox p-pc_only\">\n<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/review3.png?v=1634726948\">\n<\/li>\n<\/ul>\n<\/div>\n<\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708826078-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708906064": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595708906064-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-howto\">\n  <div class=\"c-container\">\n    <div class=\"p-titlebox c-slideup\">\n      <figure class=\"p-howto__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/enjoyhomeal_title.png?v=1634106313\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_enjoyhomeal_sp.png?v=1634106313\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_enjoyhomeal_sp.png?v=1634106313\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n    <\/div>\n    <ul class=\"p-howto__lists\">\n      <li class=\"p-howto__list c-slideup\">\n        <p class=\"p-howto__list__image\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow1.png?v=1633567174\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow1.png?v=1633567174\" class=\"lazyload\" alt=\"診断\"><\/p>\n      \n        <p class=\"p-howto__list__text\">かんたんな質問に回答すると、子どもの生活習慣や不足しがちな栄養を踏まえ、管理栄養士がおすすめメニューをご提案します。\n<\/p>\n      <\/li>\n      <li class=\"p-howto__list c-slideup\">\n        <p class=\"p-howto__list__image\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow2.png?v=1632789636\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow2.png?v=1632789636\" class=\"lazyload\" alt=\"ご注文\"><\/p>\n        \n        <p class=\"p-howto__list__text\">提案メニューをベースに、一人ひとりに合ったhomeal box 定期便をお届けします。もちろん、メニューのカスタマイズや単品でのご購入も可能です。<\/p>\n      <\/li>\n      <li class=\"p-howto__list c-slideup\">\n        <p class=\"p-howto__list__image\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow3.png?v=1632789636\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow3.png?v=1632789636\" class=\"lazyload\" alt=\"温める\"><\/p>\n        \n        <p class=\"p-howto__list__text\">料理はすべてシェフが一品ずつ手作りし、瞬間冷凍。電子レンジや湯せんで温めるだけで手づくりの味が出来上がる、包丁いらずの手軽さです。<\/p>\n      <\/li>\n      <li class=\"p-howto__list c-slideup\">\n        <p class=\"p-howto__list__image\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow4.png?v=1632789636\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homeal_flow4.png?v=1632789636\" class=\"lazyload\" alt=\"食べる\"><\/p>\n      \n        <p class=\"p-howto__list__text\">子どもがよろこぶ味をシェフと共同開発したメニューはどれも、大人も納得の本格的な味。調理にかかる時間が、子どもとの食事の時間に変わります。<\/p>\n      <\/li>\n    <\/ul>\n<div class=\"c-slideup\">\n<a href=\"\/pages\/homeal-diagnosis\" class=\"c-linkbtn\">まずは無料で幼児食診断<\/a>\n    <\/div>\n  <\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708906064-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708943424": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595708943424-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-sns\">\n  <div class=\"c-container\">\n    <div class=\"p-titlebox c-slideup\">\n      <figure class=\"p-sns__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/instagram_title.png?v=1634108061\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_instagram_sp.png?v=1634108061\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_instagram_sp.png?v=1634108061\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n    <\/div>\n    <div class=\"p-sns__instagram c-slideup\">\n      <div class=\"covet-pics-gallery\" data-id=\"135086\"><\/div>\n    <\/div>\n  <\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708943424-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595708978969": {
+        "type": "advanced-content",
+        "disabled": true,
+        "blocks": {
+          "1595708978969-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-banners\">\n  <div class=\"c-container\">\n    <a href=\"\/blogs\/blog\" class=\"p-banners c-slideup\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/bnr_homeal_magazine.png?v=1626272730\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/bnr_homeal_magazine.png?v=1626272730\" class=\"lazyload\" alt=\"homeal blog 幼児食を中心に、子供の食・栄養・健康に関する情報を発信しています。 ブログはこちら\"><\/a>\n    <a href=\"\/pages\/homeal-diagnosis\" class=\"p-banners c-slideup\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/bnr_diagnosis.png?v=1602598391\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/bnr_diagnosis.png?v=1602598391\" class=\"lazyload\" alt=\"親子で食べるあたたかい幼児食をいつでも家で。 まずは無料で幼児食診断\"><\/a>\n  <\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595708978969-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1595710771328": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595710771328-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-fv\">\n\n  \n<div class=\"p-fv__btn\">\n    \n      <a href=\"\/pages\/homeal-diagnosis\" class=\"c-linkbtn\">まずは無料で幼児食診断<\/a>\n    \n  <\/div>\n\n  <div class=\"p-fv__bg3\"><\/div>\n\n<p class=\"p-fv__catch--after\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/mv_title.png?v=1634108323\" alt=\"幼児食の悩みをゼロに。\">\n<span>\n子どもがぐんぐん成長する幼児期は、<br>\n食事にいちばん気をつかう時期。<br>\n好き嫌いせず、バランスよく食べてほしい。<br>\n食事の時間は、少しでも一緒に過ごしたい。<br>\nママとパパの当たり前の想いに、<br>\nhomealは幼児食で応えます。<\/span>\n<\/p>\n\n\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595710771328-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "title_enable": true,
+          "display_type": "all",
+          "sort": "alphabetical",
+          "grid": "3"
+        }
+      },
+      "1595724752289": {
+        "type": "blog-posts",
+        "settings": {
+          "title_en": "",
+          "title_jp": "",
+          "blog": "topic",
+          "post_limit": 4,
+          "blog_show_tags": false,
+          "blog_show_date": true,
+          "blog_show_comments": false,
+          "blog_show_author": false,
+          "view_all": true,
+          "divider": false
+        }
+      },
+      "1595758818992": {
+        "type": "advanced-content",
+        "blocks": {
+          "1595758818992-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-menu\">\n<div class=\"c-container\">\n  <div class=\"p-titlebox c-slideup\">\n<figure class=\"p-menu__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/menu_title.png?v=1634106422\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_menu_sp.png?v=1634106422\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_menu_sp.png?v=1634106422\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n  <\/div>\n  <ul class=\"p-menu__menuboxes c-slideup\">\n<li class=\"p-menu__menubox\" id=\"change_btn\">\n      <a href=\"\/products\/not-spicy-keema-curry-with-lots-of-hidden-vegetables\">\n        <figure class=\"p-menu__menubox__image\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/menu1.png?v=1632790640\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/menu1.png?v=1632790640\" class=\"lazyload\" alt=\"\"><\/figure>\n        <ul class=\"p-menu_list__tags\">\n        <li class=\"p-menu_list__tag single\">単品<\/li>\n   \n        <\/ul>\n        <h2 class=\"p-menu__menubox__name\">隠れ野菜たっぷりの辛くないキーマカレー1パック280g（幼児3食分相当入り）<\/h2>\n<p class=\"p-menu__menubox__per\">※1食あたり330円<\/p>\n        <p class=\"p-menu__menubox__supplement\"><\/p>\n        <figure class=\"p-menu__menubox__partition\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" class=\"lazyload\" alt=\"\"><\/figure>\n        <p class=\"p-menu__menubox__price\">997<span class=\"small\">円（税込）<\/span><\/p>\n      <\/a>\n    <\/li>\n    <li class=\"p-menu__menubox c-pc_only\">\n      <a href=\"\/products\/beef-and-chickpea-hashed-beef\">\n        <figure class=\"p-menu__menubox__image\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-menu001.jpg\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-menu001.jpg\" class=\"lazyload\" alt=\"\"><\/figure>\n        <ul class=\"p-menu_list__tags\">\n<li class=\"p-menu_list__tag single\">単品<\/li>\n        <\/ul>\n        <h2 class=\"p-menu__menubox__name\">牛肉とひよこ豆のハッシュドビーフ 1パック280g（幼児3食分相当入り）< 無添加 ><\/h2>\n<p class=\"p-menu__menubox__per\">※1食あたり330円<\/p>\n        <p class=\"p-menu__menubox__supplement\"><\/p>\n        <figure class=\"p-menu__menubox__partition\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" class=\"lazyload\" alt=\"\"><\/figure>\n        <p class=\"p-menu__menubox__price\">997<span class=\"small\">円（税込）<\/span><\/p>\n      <\/a>\n    <\/li>\n    <li class=\"p-menu__menubox c-pc_only\">\n      <a href=\"\/products\/baby-scallops-and-clams-chowder\">\n        <figure class=\"p-menu__menubox__image\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-menu002.jpg\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/img-menu002.jpg\" class=\"lazyload\" alt=\"\"><\/figure>\n        <ul class=\"p-menu_list__tags\">\n      <li class=\"p-menu_list__tag single\">単品<\/li>    \n        <\/ul>\n        <h2 class=\"p-menu__menubox__name\">ベビーほたてとアサリのチャウダー 1パック280g（幼児3食分相当入り）< 無添加 ><\/h2>\n<p class=\"p-menu__menubox__per\">※1食あたり330円<\/p>\n        <p class=\"p-menu__menubox__supplement\"><\/p>\n        <figure class=\"p-menu__menubox__partition\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/line-menu_dots@2x.png\" class=\"lazyload\" alt=\"\"><\/figure>\n        <p class=\"p-menu__menubox__price\">997<span class=\"small\">円（税込）<\/span><\/p>\n      <\/a>\n    <\/li>\n    \n  <\/ul>\n  <a href=\"\/collections\/online-shop\" class=\"c-linkbtn p-menu__linkbtn c-slideup\">すべてのメニューを見る<\/a>\n<\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1595758818992-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "product_recommendations_heading": "よく一緒に購入されている商品",
+          "related_count": 5
+        }
+      },
+      "product-collection-links": {
+        "type": "product-collection-links",
+        "settings": {
+          "collection_links_enable": true
+        }
+      },
+      "page-contact-template": {
+        "type": "page-contact-template",
+        "blocks": {
+          "page-contact-template-0": {
+            "type": "contact-form",
+            "settings": {
+              "title": "",
+              "show_phone": true,
+              "narrow_column": true
+            }
+          }
+        },
+        "block_order": [
+          "page-contact-template-0"
+        ],
+        "settings": {
+          "page_title_enable": false,
+          "page_content_enable": true
+        }
+      },
+      "password-header": {
+        "type": "password-header",
+        "settings": {
+          "logo": "",
+          "desktop_logo_height": 100,
+          "mobile_logo_height": 60
+        }
+      },
+      "password-content": {
+        "type": "password-content",
+        "settings": {
+          "title": "間も無くオープンします",
+          "newsletter_enable": true,
+          "newsletter_heading": "<p>メールを登録いただくと、オープン時にご連絡差し上げます。<\/p>",
+          "newsletter_placeholder": "Emailアドレス",
+          "newsletter_button_text": "送信",
+          "show_share_buttons": true,
+          "show_image": true,
+          "image": "shopify:\/\/shop_images\/homeal_main_1.png"
+        }
+      },
+      "163254643511d052a0": {
+        "type": "blog-posts",
+        "settings": {
+          "title_en": "",
+          "title_jp": "",
+          "blog": "magazine",
+          "post_limit": 4,
+          "blog_show_tags": true,
+          "blog_show_date": true,
+          "blog_show_comments": false,
+          "blog_show_author": false,
+          "view_all": true,
+          "divider": false
+        }
+      },
+      "1632548626c128663f": {
+        "type": "advanced-content",
+        "blocks": {
+          "1632548626c128663f-1": {
+            "type": "html",
+            "settings": {
+              "code": "<section id=\"l-comment\">\n  <div class=\"c-container\">\n    <div class=\"p-titlebox c-slideup\">\n      <figure class=\"p-comment__titleImage\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homealcomment_title.png?v=1634107686\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_homealcomment_sp.png?v=1634106578\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/title_homealcomment_sp.png?v=1634106578\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n    <\/div>\n    <ul class=\"p-comment__content_containers\">\n<li class=\"p-comment__content_container c-slideup\">\n<figure class=\"p-about__image\">\n          <picture>\n            <source media=\"(min-width: 769px)\" srcset=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_img04.png\">\n            <img src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_img_003_sp.png\" data-src=\"\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/t\/2\/assets\/about_homeal_img04.png\" class=\"lazyload\" alt=\"\">\n          <\/source><\/picture>\n        <\/figure>\n        <div class=\"p-about__textbox\">\n           <h2 class=\"p-about__smallheader\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homealcomment_copy1.png?v=1634106830\" data-src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0412\/4347\/6136\/files\/homealcomment_copy1.png?v=1634106830\" class=\"lazyload\" alt=\"おいしさと栄養はそのままに手間抜きを実現する冷凍技術\"><\/h2>\n          <p class=\"p-about__text\">homealは「味」「栄養」「時短」の三拍子がそろった商品です。シェフが一品一品こだわって手づくりする料理を急速凍結。常温やチルド、通常の冷凍技術では維持しにくいおいしさと栄養を保つことができます。忙しいときや疲れたときは、無理せず調理の手間を省き、おいしくてヘルシーなhomealで、家族の楽しいひとときをお過ごしください。\n<\/p>\n<\/div>\n <\/li>\n<\/ul>\n<\/div>\n<\/section>",
+              "width": "100%",
+              "alignment": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1632548626c128663f-1"
+        ],
+        "settings": {
+          "full_width": true,
+          "space_around": false
+        }
+      },
+      "1643008514aab48600": {
+        "type": "blog-posts",
+        "settings": {
+          "title_en": "",
+          "title_jp": "",
+          "blog": "news",
+          "post_limit": 3,
+          "blog_show_tags": false,
+          "blog_show_date": true,
+          "blog_show_comments": false,
+          "blog_show_author": false,
+          "view_all": true,
+          "divider": false
+        }
+      }
+    },
+    "content_for_index": [
+      "1595710771328",
+      "1595707565126",
+      "1595758818992",
+      "1595708826078",
+      "1595708906064",
+      "1632548626c128663f",
+      "1595708720365",
+      "163254643511d052a0",
+      "1595724752289",
+      "1595708943424",
+      "1595708774680",
+      "1595708978969",
+      "1643008514aab48600"
+    ],
+    "blocks": {
+      "9084553730241698359": {
+        "type": "shopify:\/\/apps\/anygift-e\/blocks\/app-embed\/3155ad86-5ab9-4640-9764-ae5500262016",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
+  },
+  "presets": {
+    "Classic": {
+      "color_borders": "#e8e8e1",
+      "color_button": "#111111",
+      "color_button_text": "#ffffff",
+      "color_drawer_background": "#ffffff",
+      "color_drawer_text": "#000000",
+      "color_drawer_border": "#e8e8e1",
+      "color_drawer_button": "#111111",
+      "color_drawer_button_text": "#ffffff",
+      "color_footer": "#111111",
+      "color_footer_text": "#ffffff",
+      "color_image_1": "#000000",
+      "color_image_1_opacity": 62,
+      "color_image_2": "#000000",
+      "color_image_2_opacity": 0,
+      "color_small_image_bg": "#ffffff",
+      "color_large_image_bg": "#111111",
+      "type_header_spacing": "0",
+      "type_header_font_family": "itc_avant_garde_gothic_n7",
+      "type_header_base_size": 35,
+      "type_header_line_height": 1.2,
+      "type_header_accent_transform": true,
+      "type_base_font_family": "futura_n4",
+      "type_base_spacing": "25",
+      "type_base_size": 17,
+      "type_base_line_height": 1.6,
+      "type_base_accent_transform": true,
+      "icon_weight": "4px",
+      "icon_linecaps": "miter",
+      "animate_page_transitions": true,
+      "animate_page_transition_style": "page-slow-fade",
+      "animate_sections": true,
+      "animate_sections_background_style": "zoom-fade",
+      "animate_sections_text_style": "rise-up",
+      "animate_images": true,
+      "animate_images_style": "zoom-fade",
+      "animate_buttons": true,
+      "animate_underlines": true,
+      "quick_shop_text": "Quick view",
+      "cart_type": "drawer",
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_body_font": "Helvetica Neue",
+      "checkout_accent_color": "#111111",
+      "checkout_button_color": "#111111",
+      "checkout_error_color": "#ff6d6d",
+      "color_image_bg": "#000000",
+      "breadcrumb": true,
+      "color_input": "#ffffff",
+      "checkout_banner_background_color": "#ffffff",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "main_menu_link_list": "main-menu",
+            "show_announcement": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "1494292481350": {
+              "type": "logo_social",
+              "settings": {
+                "container_width": 20
+              }
+            },
+            "1494292485313": {
+              "type": "menu",
+              "settings": {
+                "menu": "main-menu",
+                "container_width": 20
+              }
+            },
+            "1494292487693": {
+              "type": "newsletter",
+              "settings": {
+                "container_width": 33
+              }
+            },
+            "1494301487049": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer",
+                "container_width": 20
+              }
+            }
+          },
+          "block_order": [
+            "1494292481350",
+            "1494301487049",
+            "1494292485313",
+            "1494292487693"
+          ],
+          "settings": {
+            "show_payment_icons": false
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "per_row": 4,
+            "collection_image_enable": true,
+            "collection_sort_enable": false
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "social_enable": true,
+            "image_size": "medium"
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false,
+            "social_sharing_blog": true
+          }
+        },
+        "1498163293234": {
+          "type": "featured-content",
+          "settings": {
+            "divider": false
+          }
+        },
+        "1498501481980": {
+          "type": "fading-images",
+          "blocks": {
+            "1498501481980-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Beautifully animated",
+                "slide_title2": "titles and images"
+              }
+            },
+            "1498501481980-1": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Use this section",
+                "slide_title2": "to impress"
+              }
+            },
+            "1498501481980-2": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "And highlight",
+                "slide_title2": "important details"
+              }
+            }
+          },
+          "block_order": [
+            "1498501481980-0",
+            "1498501481980-1",
+            "1498501481980-2"
+          ],
+          "settings": {
+            "slide_speed": 5,
+            "color_overlay": "#000000",
+            "color_overlay_opacity": 30
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "blog_show_tag_filter": true,
+            "blog_show_rss": false,
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false
+          }
+        },
+        "1566999869051": {
+          "type": "featured-collection-switcher",
+          "settings": {
+          }
+        },
+        "1499789718857": {
+          "type": "featured-collections",
+          "blocks": {
+            "1499789718857-0": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            },
+            "1499789718857-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-3": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-4": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-5": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            }
+          },
+          "block_order": [
+            "1499789718857-0",
+            "1499789718857-1",
+            "1499789718857-2",
+            "1499789718857-3",
+            "1499789718857-4",
+            "1499789718857-5"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        },
+        "1499790529450": {
+          "type": "hero-video",
+          "settings": {
+            "title": "Bring your\nbrand to life.",
+            "title_size": 80,
+            "subheading": "Seamless hero videos",
+            "link_text": "",
+            "link": "",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "section_height": "650px"
+          }
+        },
+        "1499790633921": {
+          "type": "background-image-text",
+          "settings": {
+            "subtitle": "Impressive",
+            "title": "Large image and text",
+            "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+            "button_label": "",
+            "button_link": "",
+            "image": "",
+            "color_border": "#f4f4f4",
+            "layout": "left",
+            "height": 650
+          }
+        },
+        "1499790731541": {
+          "type": "collection-callout",
+          "settings": {
+            "collection": "",
+            "subtitle": "Brand new",
+            "title": "Collection callout",
+            "text": "Use this section to easily call attention to one of your collections. We'll show photos of the first 5 products.",
+            "cta_text1": "Shop Jackets",
+            "cta_link1": "",
+            "cta_text2": "Shop All",
+            "cta_link2": "",
+            "divider": false
+          }
+        },
+        "1499790782828": {
+          "type": "text-columns",
+          "blocks": {
+            "1499790782828-0": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-1": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-2": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            }
+          },
+          "block_order": [
+            "1499790782828-0",
+            "1499790782828-1",
+            "1499790782828-2"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        },
+        "product-sections-template": {
+          "type": "product-sections-template",
+          "blocks": {
+            "product-image-row": {
+              "type": "image-row",
+              "settings": {
+              }
+            },
+            "product-text-and-image": {
+              "type": "text-and-image",
+              "settings": {
+              }
+            },
+            "product-background-image-text": {
+              "type": "background-image-text",
+              "settings": {
+                "layout": "right"
+              }
+            },
+            "product-text-columns": {
+              "type": "text-columns",
+              "settings": {
+              }
+            },
+            "product-hero-video": {
+              "type": "hero-video",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "product-image-row",
+            "product-text-and-image",
+            "product-background-image-text",
+            "product-text-columns",
+            "product-hero-video"
+          ],
+          "settings": {
+          }
+        },
+        "page-sections-template": {
+          "type": "page-sections-template",
+          "blocks": {
+            "page-fading-images": {
+              "type": "fading-images",
+              "settings": {
+              }
+            },
+            "page-rich-text": {
+              "type": "rich-text",
+              "settings": {
+                "title": "",
+                "enlarge_text": true
+              }
+            },
+            "page-text-columns": {
+              "type": "text-columns",
+              "settings": {
+              }
+            },
+            "page-background-image-text": {
+              "type": "background-image-text",
+              "settings": {
+                "layout": "right"
+              }
+            },
+            "page-featured-collection": {
+              "type": "featured-collection",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "page-fading-images",
+            "page-rich-text",
+            "page-text-columns",
+            "page-background-image-text",
+            "page-featured-collection"
+          ],
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "1499790529450",
+        "1566999869051",
+        "1498163293234",
+        "1499789718857",
+        "1498501481980",
+        "1499790731541",
+        "1499790633921",
+        "1499790782828"
+      ]
+    },
+    "Elegant": {
+      "color_borders": "#e8e8e1",
+      "color_button": "#353956",
+      "color_button_text": "#ffffff",
+      "color_footer": "#17172c",
+      "color_footer_text": "#ffffff",
+      "color_drawer_background": "#ffffff",
+      "color_drawer_text": "#17172c",
+      "color_drawer_border": "#e8e8e1",
+      "color_drawer_button": "#353956",
+      "color_drawer_button_text": "#ffffff",
+      "color_modal_overlays": "#17172c",
+      "color_image_2": "#17172c",
+      "color_image_2_opacity": 0,
+      "color_image_1": "#17172c",
+      "color_image_1_opacity": 32,
+      "color_small_image_bg": "#f4f4f4",
+      "color_large_image_bg": "#17172c",
+      "type_header_spacing": "0",
+      "type_header_font_family": "bauer_bodoni_n7",
+      "type_header_base_size": 42,
+      "type_header_line_height": 1.3,
+      "type_base_font_family": "futura_n4",
+      "type_base_spacing": "25",
+      "type_base_size": 17,
+      "type_base_line_height": 1.6,
+      "icon_weight": "3px",
+      "icon_linecaps": "miter",
+      "animate_page_transitions": true,
+      "animate_page_transition_style": "page-slow-fade",
+      "animate_sections": true,
+      "animate_sections_background_style": "zoom-fade",
+      "animate_sections_text_style": "rise-up",
+      "animate_images": true,
+      "animate_images_style": "zoom-fade",
+      "animate_buttons": true,
+      "animate_underlines": true,
+      "quick_shop_text": "Quick view",
+      "cart_type": "drawer",
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_body_font": "Helvetica Neue",
+      "checkout_accent_color": "#111111",
+      "checkout_button_color": "#111111",
+      "checkout_error_color": "#ff6d6d",
+      "color_image_bg": "#000000",
+      "breadcrumb": true,
+      "color_input": "#ffffff",
+      "checkout_banner_background_color": "#ffffff",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "main_menu_link_list": "main-menu",
+            "show_announcement": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "1494292481350": {
+              "type": "logo_social",
+              "settings": {
+                "container_width": 20
+              }
+            },
+            "1494292485313": {
+              "type": "menu",
+              "settings": {
+                "menu": "main-menu",
+                "container_width": 20
+              }
+            },
+            "1494292487693": {
+              "type": "newsletter",
+              "settings": {
+                "container_width": 33
+              }
+            },
+            "1494301487049": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer",
+                "container_width": 20
+              }
+            }
+          },
+          "block_order": [
+            "1494292481350",
+            "1494301487049",
+            "1494292485313",
+            "1494292487693"
+          ],
+          "settings": {
+            "show_payment_icons": false
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "per_row": 4,
+            "collection_image_enable": true,
+            "collection_sort_enable": false
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "social_enable": true,
+            "image_size": "medium"
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false,
+            "social_sharing_blog": true
+          }
+        },
+        "1498163293234": {
+          "type": "featured-content",
+          "settings": {
+            "divider": false
+          }
+        },
+        "1498501481980": {
+          "type": "fading-images",
+          "blocks": {
+            "1498501481980-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Beautifully animated",
+                "slide_title2": "titles and images"
+              }
+            },
+            "1498501481980-1": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Use this section",
+                "slide_title2": "to impress"
+              }
+            },
+            "1498501481980-2": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "And highlight",
+                "slide_title2": "important details"
+              }
+            }
+          },
+          "block_order": [
+            "1498501481980-0",
+            "1498501481980-1",
+            "1498501481980-2"
+          ],
+          "settings": {
+            "slide_speed": 5,
+            "color_overlay": "#000000",
+            "color_overlay_opacity": 30
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "blog_show_tag_filter": true,
+            "blog_show_rss": false,
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false
+          }
+        },
+        "1566999869051": {
+          "type": "featured-collection-switcher",
+          "settings": {
+          }
+        },
+        "1499789718857": {
+          "type": "featured-collections",
+          "blocks": {
+            "1499789718857-0": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            },
+            "1499789718857-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-3": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-4": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-5": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            }
+          },
+          "block_order": [
+            "1499789718857-0",
+            "1499789718857-1",
+            "1499789718857-2",
+            "1499789718857-3",
+            "1499789718857-4",
+            "1499789718857-5"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        },
+        "1499790529450": {
+          "type": "hero-video",
+          "settings": {
+            "title": "Bring your\nbrand to life.",
+            "title_size": 80,
+            "subheading": "Seamless hero videos",
+            "link_text": "",
+            "link": "",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "section_height": "650px"
+          }
+        },
+        "1499790633921": {
+          "type": "background-image-text",
+          "settings": {
+            "subtitle": "Impressive",
+            "title": "Large image and text",
+            "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+            "button_label": "",
+            "button_link": "",
+            "image": "",
+            "color_border": "#f4f4f4",
+            "layout": "left",
+            "height": 650
+          }
+        },
+        "1499790731541": {
+          "type": "collection-callout",
+          "settings": {
+            "collection": "",
+            "subtitle": "Brand new",
+            "title": "Collection callout",
+            "text": "Use this section to easily call attention to one of your collections. We'll show photos of the first 5 products.",
+            "cta_text1": "Shop Jackets",
+            "cta_link1": "",
+            "cta_text2": "Shop All",
+            "cta_link2": "",
+            "divider": false
+          }
+        },
+        "1499790782828": {
+          "type": "text-columns",
+          "blocks": {
+            "1499790782828-0": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-1": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-2": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            }
+          },
+          "block_order": [
+            "1499790782828-0",
+            "1499790782828-1",
+            "1499790782828-2"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        }
+      },
+      "content_for_index": [
+        "1499790529450",
+        "1566999869051",
+        "1498163293234",
+        "1499789718857",
+        "1498501481980",
+        "1499790731541",
+        "1499790633921",
+        "1499790782828"
+      ]
+    },
+    "Minimal": {
+      "color_borders": "#f0f1f3",
+      "color_button": "#111111",
+      "color_button_text": "#ffffff",
+      "color_footer": "#f0f1f3",
+      "color_footer_text": "#2c2c2c",
+      "color_drawer_background": "#ffffff",
+      "color_drawer_text": "#000000",
+      "color_drawer_border": "#f0f1f3",
+      "color_drawer_button": "#111111",
+      "color_drawer_button_text": "#ffffff",
+      "color_modal_overlays": "#aeb1b8",
+      "color_image_2": "#000000",
+      "color_image_2_opacity": 0,
+      "color_image_1": "#000000",
+      "color_image_1_opacity": 26,
+      "color_small_image_bg": "#ffffff",
+      "color_large_image_bg": "#dedfe1",
+      "type_header_spacing": "50",
+      "type_header_font_family": "chivo_n7",
+      "type_header_base_size": 34,
+      "type_header_line_height": 1.2,
+      "type_header_accent_transform": true,
+      "type_base_font_family": "neuzeit_office_n4",
+      "type_base_spacing": "25",
+      "type_base_size": 16,
+      "type_base_line_height": 1.6,
+      "type_base_accent_transform": true,
+      "icon_weight": "2px",
+      "icon_linecaps": "round",
+      "animate_page_transitions": true,
+      "animate_page_transition_style": "page-slide-reveal-down",
+      "animate_sections": true,
+      "animate_sections_background_style": "zoom-fade",
+      "animate_sections_text_style": "rise-up",
+      "animate_images": true,
+      "animate_images_style": "fade-in",
+      "animate_buttons": true,
+      "animate_underlines": true,
+      "quick_shop_text": "Quick view",
+      "cart_type": "drawer",
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "Helvetica Neue",
+      "checkout_body_font": "Helvetica Neue",
+      "checkout_accent_color": "#111111",
+      "checkout_button_color": "#111111",
+      "checkout_error_color": "#ff6d6d",
+      "color_image_bg": "#000000",
+      "breadcrumb": true,
+      "color_input": "#ffffff",
+      "checkout_banner_background_color": "#ffffff",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "main_menu_link_list": "main-menu",
+            "show_announcement": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "1494292481350": {
+              "type": "logo_social",
+              "settings": {
+                "container_width": 20
+              }
+            },
+            "1494292485313": {
+              "type": "menu",
+              "settings": {
+                "menu": "main-menu",
+                "container_width": 20
+              }
+            },
+            "1494292487693": {
+              "type": "newsletter",
+              "settings": {
+                "container_width": 33
+              }
+            },
+            "1494301487049": {
+              "type": "menu",
+              "settings": {
+                "menu": "footer",
+                "container_width": 20
+              }
+            }
+          },
+          "block_order": [
+            "1494292481350",
+            "1494301487049",
+            "1494292485313",
+            "1494292487693"
+          ],
+          "settings": {
+            "show_payment_icons": false
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "per_row": 4,
+            "collection_image_enable": true,
+            "collection_sort_enable": false
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "social_enable": true,
+            "image_size": "medium"
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false,
+            "social_sharing_blog": true
+          }
+        },
+        "1498163293234": {
+          "type": "featured-content",
+          "settings": {
+            "divider": false
+          }
+        },
+        "1498501481980": {
+          "type": "fading-images",
+          "blocks": {
+            "1498501481980-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Beautifully animated",
+                "slide_title2": "titles and images"
+              }
+            },
+            "1498501481980-1": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "Use this section",
+                "slide_title2": "to impress"
+              }
+            },
+            "1498501481980-2": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "focal_point": "center center",
+                "slide_title1": "And highlight",
+                "slide_title2": "important details"
+              }
+            }
+          },
+          "block_order": [
+            "1498501481980-0",
+            "1498501481980-1",
+            "1498501481980-2"
+          ],
+          "settings": {
+            "slide_speed": 5,
+            "color_overlay": "#000000",
+            "color_overlay_opacity": 30
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "blog_show_tag_filter": true,
+            "blog_show_rss": false,
+            "blog_show_tags": true,
+            "blog_show_date": true,
+            "blog_show_comments": true,
+            "blog_show_author": false
+          }
+        },
+        "1566999869051": {
+          "type": "featured-collection-switcher",
+          "settings": {
+          }
+        },
+        "1499789718857": {
+          "type": "featured-collections",
+          "blocks": {
+            "1499789718857-0": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            },
+            "1499789718857-1": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-2": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-3": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-4": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "square-small"
+              }
+            },
+            "1499789718857-5": {
+              "type": "collection",
+              "settings": {
+                "collection": "",
+                "size": "wide"
+              }
+            }
+          },
+          "block_order": [
+            "1499789718857-0",
+            "1499789718857-1",
+            "1499789718857-2",
+            "1499789718857-3",
+            "1499789718857-4",
+            "1499789718857-5"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        },
+        "1499790529450": {
+          "type": "hero-video",
+          "settings": {
+            "title": "Bring your\nbrand to life.",
+            "title_size": 80,
+            "subheading": "Seamless hero videos",
+            "link_text": "",
+            "link": "",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "section_height": "650px"
+          }
+        },
+        "1499790633921": {
+          "type": "background-image-text",
+          "settings": {
+            "subtitle": "Impressive",
+            "title": "Large image and text",
+            "text": "<p>Pair large text with a full-width image to draw attention to an important detail of your brand or product line.<\/p>",
+            "button_label": "",
+            "button_link": "",
+            "image": "",
+            "color_border": "#f4f4f4",
+            "layout": "left",
+            "height": 650
+          }
+        },
+        "1499790731541": {
+          "type": "collection-callout",
+          "settings": {
+            "collection": "",
+            "subtitle": "Brand new",
+            "title": "Collection callout",
+            "text": "Use this section to easily call attention to one of your collections. We'll show photos of the first 5 products.",
+            "cta_text1": "Shop Jackets",
+            "cta_link1": "",
+            "cta_text2": "Shop All",
+            "cta_link2": "",
+            "divider": false
+          }
+        },
+        "1499790782828": {
+          "type": "text-columns",
+          "blocks": {
+            "1499790782828-0": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-1": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            },
+            "1499790782828-2": {
+              "type": "text_block",
+              "settings": {
+                "enable_image": true,
+                "image": "",
+                "title": "Example title",
+                "text": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions about your products. Add images for emphasis.<\/p>",
+                "button_label": "",
+                "button_link": ""
+              }
+            }
+          },
+          "block_order": [
+            "1499790782828-0",
+            "1499790782828-1",
+            "1499790782828-2"
+          ],
+          "settings": {
+            "title": "",
+            "divider": false
+          }
+        }
+      },
+      "content_for_index": [
+        "1499790529450",
+        "1566999869051",
+        "1498163293234",
+        "1499789718857",
+        "1498501481980",
+        "1499790731541",
+        "1499790633921",
+        "1499790782828"
+      ]
+    }
+  }
+}

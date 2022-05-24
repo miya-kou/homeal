@@ -1,0 +1,27 @@
+{% assign exitst = false %}
+
+{% for _variant in customer.metafields.prime_review.favorite_product_variants.variants %}
+  {% if _variant.handle == product.handle %}
+    {% assign exist = true %}
+  {% endif %}
+{% endfor %}
+
+<button class="mxpr-favorites-button {{ button_class }}" style="{{ additional_style }}" data-customer-id="{{ customer.id }}" data-handle="{{ product.handle }}" data-default-variant-id="{{ product.variants[0].id }}" data-alert="{{ 'sections.favorites.alert' | t }}" data-sending="{{ 'sections.favorites.sending' | t }}">
+  {{ heading }}
+</button>
+<div id="mxpr-complete-message" style="display: none;">
+  {{ add_message }}
+  &nbsp;
+  <a href="/tools/jreview/reviews.html">{{ view_favorites }}</a>
+</div>
+
+<div id="mxpr-already-exists" style="{% unless exist %}display: none;{% endunless %}">
+  {{ exist_message }}
+  &nbsp;
+  <a href="/tools/jreview/reviews.html">{{ view_favorites }}</a>
+</div>
+<img src="/tools/jreview/images/loading.gif" style="display: none;" class="mxpr-no-image-preload" width="1" height="1" />
+
+{% comment %}theme-check-disable ParserBlockingScriptTag{% endcomment %}
+{{ 'mxpr-favorites.js' | asset_url | script_tag }}
+{% comment %}theme-check-enable ParserBlockingScriptTag{% endcomment %}

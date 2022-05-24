@@ -1,0 +1,51 @@
+{% if block.settings.show_footer_title %}
+  <p class="c-footer__message">{{ block.settings.title }}</p>
+{% endif %}
+
+{% if block.settings.richtext != blank %}
+  <p>{{ block.settings.richtext }}</p>
+{% endif %}
+
+{% form 'customer', id: 'newsletter-footer' %}
+  {% if form.posted_successfully? %}
+<!--     <div class="note note--success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div> -->
+<div class="popup">
+  <div class="popup-content">
+    <p>メールマガジンへのご登録が完了いたしました。<br>ご登録いただき誠にありがとうございます。</p>
+    <div id="popup-btn">閉じる</div>
+  </div>
+</div>
+<div class="popup-bg"></div>
+	<script>
+      $(".popup")
+        .addClass("popup-show")
+        .fadeIn();
+
+        setTimeout(() => {
+      $(".popup").fadeOut();
+      $(".popup-bg").fadeOut();
+          }
+              ,3000
+            )
+       
+       $("#popup-btn").on("click", function() {
+          $(".popup").fadeOut();
+          $(".popup-bg").fadeOut();
+        });
+    </script>
+  {% endif %}
+  {% if form.context == 'footer' %}
+    {% if form.errors %}
+      {{ form.errors | default_errors }}
+    {% endif %}
+  {% endif %}
+
+  <label for="Email-{{ block.id }}" class="hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+  <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+  <input type="hidden" name="contact[context]" value="footer">
+
+  <div class="c-footer__searchbox">
+    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email-{{ block.id }}" class="c-footer__inputarea" autocorrect="off" autocapitalize="off">
+    <button type="submit" class="c-footer__submit" name="commit">登録する</button>
+  </div>
+{% endform %}

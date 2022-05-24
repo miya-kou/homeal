@@ -1,0 +1,354 @@
+{% paginate blog.articles by 5 %}
+
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+   replace:'\/','/' |
+   replace:'%20',' ' |
+   replace:'\u0026','&'
+-%}
+
+{% if pageUrl contains '/blogs/magazine' %}
+	{%- assign isBlog = true -%}
+    {%- assign blogContentClass = 'blog-content-wrapper' -%}
+    {%- assign blogMainClass = 'blog-main-wrapper' -%}
+{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="blog">
+  <div class="page-width page-content {{ blogContentClass }}">
+    <div class="{{ blogMainClass }}">
+
+      {% if pageUrl contains '/blogs/magazine/tagged' %}
+          <div class="c-pc_only">
+              {% render 'breadcrumbs' %}
+              {%- assign hasBreadcrumbs = true -%}
+          </div>
+      {% endif %}
+
+      {% comment %}
+      {% render 'breadcrumbs' %}
+       
+      <header class="section-header">
+        <h1 class="section-header__title">
+          {{ blog.title }}
+
+          {% if section.settings.blog_show_tag_filter %}
+            {% if blog.tags.size > 0 %}
+              <select id="BlogTagFilter">
+                <option value="/blogs/{{ blog.handle }}">All</option>
+                {% for tag in blog.all_tags %}
+                  {% if tag contains "_" %}{%- assign tag_starts_with = tag | slice: 0 -%}{% if tag_starts_with == "_" %}{% if tag_count %}{%- assign tag_count = tag_count | minus: 1 | at_least: 0 -%}{% endif %}{% continue %}{% endif %}{% endif %}
+                  <option value="/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}selected{% endif %}>{{ tag }}</option>
+                {% endfor %}
+              </select>
+            {% endif %}
+          {% endif %}
+          {% if section.settings.blog_show_rss %}
+            <a href="{{ shop.url }}{{ blog.url }}.atom" class="rss-link">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-rss" viewBox="0 0 20 20"><path fill="#444" d="M5.903 16.586a2.489 2.489 0 1 1-4.977 0 2.489 2.489 0 0 1 4.977 0zM12.956 19.075H9.43c0-4.688-3.817-8.505-8.505-8.505V7.044c6.638 0 12.031 5.393 12.031 12.031z"/><path fill="#444" d="M15.445 19.075c0-8.028-6.493-14.52-14.52-14.52V.925c10.019 0 18.15 8.131 18.15 18.15h-3.63z"/></svg>
+              <span class="icon__fallback-text">RSS</span>
+            </a>
+          {% endif %}
+                
+        </h1>
+      </header>
+      {% endcomment %}
+
+
+      {% if isBlog %}
+        <div class="c-sp_only">
+            {% render 'new-search-bar', search_type: 'article' %}
+            {% render 'blog-category-menu' %}
+        </div>
+
+        {% if pageUrl contains '/tagged/life-with-homeal' %}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                    {{ 'icn_life.png' | asset_url | img_tag }}
+                </div>
+                <div class="item-title">
+                    homealのある暮らし🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">homealの幼児食を実際に使っているユーザーさんのリアルな感想や、homealとともにある暮らしの様子をお届けします。</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% elsif pageUrl contains '/blogs/magazine/tagged/the-people-of-homeal'%}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                    {{ 'icn_people.png' | asset_url | img_tag }}
+                </div>
+                <div class="item-title">
+                    homealのひとびと🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">homealの幼児食を作っているシェフやスタッフたちは、どんな想いを込めて作っているの？homealの中の人のコラムやインタビューをお届けします。</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% elsif pageUrl contains '/blogs/magazine/tagged/ask-a-homeal-expert'%}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                    {{ 'icn_professional.png' | asset_url | img_tag }}
+                </div>
+                <div class="item-title">
+                    homealの専門家にきく🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">幼児食を起点として、1歳から6歳頃までのお子さんの栄養、食育、成長に関すること、そして簡単レシピのコラムを専門家のみなさんがお届けします！</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% elsif pageUrl contains '/blogs/magazine/tagged/news-from-homeal'%}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                     {{ 'icn_topic.png' | asset_url | img_tag}}
+                </div>
+                <div class="item-title">
+                    homealからのおしらせ🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">homealからの最新ニュースや幼児食にまつわるイベント、プロモーションなどをおしらせします。</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% elsif pageUrl contains '/blogs/magazine/tagged/homeal-and-recipes'%}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                     {{ 'icn_recipe_l.png.png' | asset_url | img_tag}}
+                </div>
+                <div class="item-title">
+                    homealとレシピ🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">homealの幼児食を使った「栄養バランスが整うアレンジレシピ」や「残りものを活用したリメイクレシピ」をお届けします。管理栄養士の考案レシピです。</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% elsif pageUrl contains '/blogs/magazine/tagged/tell-me-homeal'%}
+            <div class="blog-tagged-header item-content">
+                <div class="item-icon">
+                    {{ 'icn_teach.png' | asset_url | img_tag }}
+                </div>
+                <div class="item-title">
+                    おしえてhomeal🥕
+                </div>
+            </div>
+            <p class="blog-tagged-subheader">みなさんから寄せられた、幼児食についてのリアルなご相談にhomealの管理栄養士がお答えしています。</p>
+            <hr class="dotted-line c-mt--30 c-mb--40" />
+        {% endif %}
+
+        <div class="blog-post-flex-container">
+            {% for article in blog.articles %}
+                {% assign article_date = article.published_at | date: "%Y, %m, %d" %}
+
+                <article class="c-blog-grid one-whole {% if forloop.first == true %} first {% else %} two-items {% endif %}">
+                  <div class="c-blog-grid__img-wrapper image-wrap">
+                    <a href="{{ article.url }}">
+                        <div
+                         class="c-blog-grid__img"
+                         data-bgset="{% render 'bgset', image: image %}"
+                         data-sizes="auto"
+                         style="background-image: url({{ article.image | img_url: '500x' }})">
+                        </div>
+                    </a>
+                  </div>
+                  <div class="c-blog-grid__txt">
+<!--                     {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                    	<div class="blog-tags">
+                        {% for tag in article.tags %}
+                            {% if tag != "Life with homeal" and tag != "The people of homeal" and tag != "Ask a homeal expert" and tag != "News from homeal" and tag != "Tell me homeal" and tag != "homeal and recipes" %}
+                                <div class="c-blog-grid__tag-wrapper">
+                                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                                        <span class="c-blog-grid__tag">{{ tag }}</span>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                       </div>
+                    {% endif %} -->
+
+                    <h2 class="c-blog-grid__ttl">
+                      <a href="{{ article.url }}">{{ article.title }}</a>
+                    </h2>
+                    <span class="c-blog-grid__date">{{ article_date }}</span>
+                  </div>
+                </article>
+
+            {% endfor %}
+        </div>
+
+        {% else %}
+
+        {%- assign is_even_post = false -%}
+          {% for article in blog.articles %}
+            {% assign featured_image_src = '' %}
+
+            {% if article.image %}
+              {% assign featured_image_src = article | img_url: '1024x1024' %}
+            {% endif %}
+            <article class="article article--layout" data-aos>
+              <div class="article__image-wrap{% if article.image == blank %} article__image-wrap--empty{% endif %}{% if is_even_post %} article__image-wrap--right{% endif %}">
+              {% unless article.image == blank %}
+                <div class="article__image image-wrap">
+                  <div
+                    class="article__image--image animate-me lazyload"
+                    data-bgset="{% render 'bgset', image: article.image %}"
+                    data-sizes="auto">
+                  </div>
+                  <noscript>
+                    <div class="article__image--image animate-me lazyloaded"
+                      style="background-image: url({{ article.image | img_url: '500x' }})"></div>
+                  </noscript>
+                </div>
+              {% endunless %}
+              </div>
+
+              <div class="article__content{% unless is_even_post %} article__content--right{% endunless %} ">
+                <div class="article__content-meta">
+                  <div class="article__date">
+                    {% assign first_item = true %}
+                    {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                      {% for tag in article.tags %}
+                        {% if tag contains "_" %}{%- assign tag_starts_with = tag | slice: 0 -%}{% if tag_starts_with == "_" %}{% if tag_count %}{%- assign tag_count = tag_count | minus: 1 | at_least: 0 -%}{% endif %}{% continue %}{% endif %}{% endif %}
+                        {% unless first_item %} &middot; {% endunless %}{% assign first_item = false %}
+                        <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                          {{ tag }}
+                        </a>
+                      {% endfor %}
+                    {% endif %}
+                    {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                      {% unless first_item %} &middot; {% endunless %}{% assign first_item = false %}
+                      <a href="{{ article.url }}#comments">
+                        {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                      </a>
+                    {% endif %}
+                    {% if section.settings.blog_show_date %}
+                      {% unless first_item %} &middot; {% endunless %}{% assign first_item = false %}
+                      {{ article.published_at | time_tag: format: 'month_day_year' }}
+                    {% endif %}
+                  </div>
+
+                  <h2 class="h3 article__h3">
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                  </h2>
+
+                  {% if section.settings.blog_show_author %}
+                    <div class="article__author">by {{ article.author }}</div>
+                  {% endif %}
+                </div>
+
+                <div class="rte rte--block">
+                  {% if article.excerpt.size > 0 %}
+                    {{ article.excerpt }}
+                  {% else %}
+                    {{ article.content | strip_html | truncatewords: 40 }}
+                  {% endif %}
+                </div>
+
+                <a href="{{ article.url }}" class="btn">
+                  {{ 'blogs.article.read_more' | t }}
+                </a>
+              </div>
+            </article>
+
+            {% comment %}Set the next post as an even one{% endcomment %}
+            {% if is_even_post %}
+              {%- assign is_even_post = false -%}
+            {% else %}
+              {%- assign is_even_post = true -%}
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
+
+        <div style="clear:both"></div>
+
+    </div>
+
+    {% if isBlog %}
+      <div class="blog-sidebar-wrapper {% if hasBreadcrumbs %}has_breadcrumbs{% endif %}">
+        <div class="c-pc_only">
+          {% render 'new-search-bar', search_type: 'article' %}
+          {% render 'blog-category-list' %}
+        </div>
+
+        <hr class="c-sp_only dotted-line c-mb--40" />
+        <hr class="c-pc_only dotted-line c-mb--40 c-mt--30" />
+
+        <div class="blog-recommended-list">
+          {% assign filter_by = 'recommend' %}
+
+          <h2 class="content_header">homeal編集部のおすすめ</h2>
+
+          <ul>
+            {% for article_handle in shop.metafields.global.editor_recommend_articles %}
+            	  {% assign article_location = blog.handle|append: '/'|append: article_handle %}
+                  {% assign article = articles[article_location] %}
+                  {% assign article_date = article.published_at | date: "%Y, %m, %d" %}
+                  <li>
+                    {% render 'blog-list', image: article.image, title: article.title, date: article_date, url: article.url %}
+                  </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+        <div class="blog-tags-list">
+          <h2 class="content_header">テーマで検索</h2>
+          <ul>
+            <li><a href="/blogs/magazine/tagged/easy-recipe">かんたんレシピ</a></li>
+            <li><a href="/blogs/magazine/tagged/allergy">アレルギー</a></li>
+            <li><a href="/blogs/magazine/tagged/Nutrition">栄養全般</a></li>
+            <li><a href="/blogs/magazine/tagged/likes-and-dislikes">偏食/好き嫌い</a></li>
+            <li><a href="/blogs/magazine/tagged/problem">お悩み</a></li>
+            <li><a href="/blogs/magazine/tagged/Physical-condition-or-illness">体調不良や病気</a></li>
+            <li><a href="/blogs/magazine/tagged/Playing-with-Children">子どもと遊ぶ</a></li>
+            <li><a href="/blogs/magazine/tagged/Refrigeration-know-how">冷凍ノウハウ</a></li>
+            <li><a href="/blogs/magazine/tagged/Nutrition-education">食育/発育</a></li>
+            <li><a href="/blogs/magazine/tagged/New-Products">新商品情報</a></li>
+            <li><a href="/blogs/magazine/tagged/Interviews">インタビュー</a></li>
+            <li><a href="/blogs/magazine/tagged/Notification">お知らせ</a></li>
+            <li><a href="/blogs/magazine/tagged/campaign">キャンペーン</a></li>
+            <li><a href="/blogs/magazine/tagged/Events">イベント</a></li>
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+
+  </div>
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "blog_show_tag_filter",
+        "label": "Show tag filter"
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_rss",
+        "label": "Show RSS link"
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_tags",
+        "label": "Show tags"
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_comments",
+        "label": "Show comment count",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author"
+      }
+    ]
+  }
+{% endschema %}

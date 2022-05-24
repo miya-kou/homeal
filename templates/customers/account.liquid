@@ -1,0 +1,122 @@
+{% paginate customer.orders by 20 %}
+
+<div class="page-width page-content customers">
+  {% comment %}
+  <header class="section-header">
+    <h1 class="section-header__title">{{ 'customer.account.title' | t }}</h1>
+    <br>
+  </header>
+  {% endcomment %}
+
+  <div class="p-mypage">
+    <div class="p-mypage__main">
+      
+      {% render 'socialplus-error-banner' %}
+      
+      <section class="p-mypage__section">
+        <h2 class="p-mypage__title">マイアカウント</h2>
+        <div class="p-mypage__btn" data-color="gray">{{ 'layout.customer.log_out'| t | customer_logout_link }}</div>
+      
+        {% render 'socialplus-association', providers: 'line' %}
+        <img src="{{ 'bnr_line_campaign.png' | file_url }}" class="p-mypage__banner dis">
+      
+      </section>
+      <section class="p-mypage__section">
+        <h2 class="p-mypage__title">{{ 'customer.orders.title' | t }}</h2>
+        <div class="p-mypage__btn"><a href="/tools/checkout/api/manage/subscription/app" class="text-link">定期便内容の確認</a></div>
+
+        {% if customer.orders.size != 0 %}
+          {% comment %}
+          <div>{{ 'customer.orders.order_number' | t }}</div>
+          <div>{{ 'customer.orders.date' | t }}</div>
+          <div>{{ 'customer.orders.payment_status' | t }}</div>
+          <div>{{ 'customer.orders.fulfillment_status' | t }}</div>
+          <div>{{ 'customer.orders.total' | t }}</div>
+          {% endcomment %}
+          <ul class="p-mypage__order_list">
+            {% for order in customer.orders %}
+              <li class="p-mypage__order_item">
+                <!--<div data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</div>-->
+                <!--<div data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</div>-->
+                <!--<div data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</div>-->
+                <div class="p-mypage__order_item_left">
+                  <div class="p-mypage__order_item_date" data-label="{{ 'customer.orders.date' | t }}">注文日　{{ order.created_at | time_tag: format: 'date' }}</div>
+
+                    {% for item in order.line_items %}                    
+                       <div class="p-mypage__order_item_product">・{{ item.title }}</div>
+                    {% endfor %}
+
+                </div>
+                <div class="p-mypage__order_item_right">
+                  <div class="p-mypage__order_item_price" data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="p-mypage__msg">{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+      </section>
+    </div>
+
+    <div class="p-mypage__side">
+      <dl class="p-mypage__detail">
+        <dt>{{ 'customer.account.details' | t }}</dt>
+        <dd>
+          <ul class="p-mypage__detail_list">
+            <li class="p-mypage__detail_item">
+              <a href="/tools/checkout/api/manage/subscription/app">定期便内容の確認<div class="p-mypage__detail_item_name">{{ customer.name }}さん</div></a>
+            </li>
+            <li class="p-mypage__detail_item">
+              <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  
+    {% comment %}
+    {{ customer.default_address | format_address }}
+    {% endcomment %}
+
+    {% if paginate.pages > 1 %}
+      {% render 'pagination', paginate: paginate %}
+    {% endif %}
+
+  </div>
+</div>
+{% endpaginate %}
+<script>
+  window.addEventListener("load", function(event) {
+    setTimeout(function(){
+      var notShip = document.querySelector('.socialplus-association-status-associated');
+      var shipBanner = document.querySelector('.p-mypage__banner');
+       if(notShip == null){
+         shipBanner.classList.remove('dis');   
+    }
+   }, 1000)
+  });
+</script>
+<script type="text/javascript">
+try{
+    tracker.user({
+        user_id: '{{customer.id}}',
+        email: '{{customer.email}}',
+        name: '{{customer.name}}',
+        first_name: '{{customer.first_name}}',
+        last_name: '{{customer.last_name}}',
+        subscription: '{{customer.accepts_marketing}}' ? Boolean('{{customer.accepts_marketing}}') : null,
+        has_account: '{{customer.has_account}}' ? Boolean('{{customer.has_account}}') : null,
+        phone: '{{customer.phone}}',
+        tax_exempt: '{{customer.tax_exempt}}' ? Boolean('{{customer.tax_exempt}}') : null,
+        orders_count: '{{customer.orders_count}}' ? Number('{{customer.orders_count}}') : null,
+        total_spent: '{{customer.total_spent}}' ? Number('{{customer.total_spent}}') : null
+    });
+} catch(e) {
+    if('tracker' in window) {
+        tracker.track('_error', {
+            message: e.message
+        });
+    }
+}
+</script>

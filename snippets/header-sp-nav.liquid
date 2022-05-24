@@ -1,0 +1,17 @@
+{% unless limit %}
+  {%- assign limit = main_menu.links.size -%}
+{% endunless %}
+{% unless offset %}
+  {%- assign offset = 0 -%}
+{% endunless %}
+
+<ul class="c-menu__link" {% unless disable_aria %}role="navigation" aria-label="Primary"{% endunless %}>
+
+  {% for link in main_menu.links limit: limit offset: offset %}
+    <li class="c-menu__link_item {% unless template == 'index' %}{% if link.active %} site-nav--active{% endif %}{% endunless %}">
+      <a href="{{ link.url }}">
+        {{ link.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

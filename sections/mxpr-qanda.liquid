@@ -1,0 +1,79 @@
+{{ 'mxpr-qanda.css' | asset_url | stylesheet_tag }}
+
+{% unless block %}
+  {% assign block = section %}
+{% endunless %}
+
+{% unless product %}
+  {% assign product = block.settings.product %}
+{% endunless %}
+
+{% assign faqs = product.metafields.prime_review.faqs %}
+
+{% if faqs.size > 0 %}
+
+  <div class="mxpr-qanda-block page-width" style="margin: {% if block.settings.margin_auto %}0 auto{% else %}{{ block.settings.margin_y }}px {{ block.settings.margin_x }}px{% endif %}; padding: {{ block.settings.padding_y }}px {{ block.settings.padding_x }}px; border: {{ block.settings.border_size }}px solid {{ block.settings.border_color }}; border-radius: {{ block.settings.border_radius }}px;">
+    <div class="mxpr-qanda-inner">
+      <div class="mxpr-qanda-header">
+        <div class="mxpr-qanda-title" style="font-size: {{ block.settings.title_size }}px">{{ block.settings.heading }}</div>
+      </div>
+      <div class="mxpr-qanda-body">
+        {% for faq in faqs %}
+          <div class="mxpr-qanda-body-item">
+            <div class="mxpr-qanda-vote">
+              <div class="mxpr-qanda-plus">
+                <button class="mxpr-qanda-button mxpr-qanda-button-{{ faq.id }} mxpr-qanda-button-plus" data-faq-id="{{ faq.id }}">{{ 'sections.qanda.vote' | t }}<br />+1</button>
+              </div>
+              <div id="mxpr-qanda-vote-count-{{ faq.id }}" class="mxpr-qanda-vote-count">{{ faq.helpful }}</div>
+              <div class="mxpr-qanda-vote-caption">{{ 'sections.qanda.vote' | t }}</div>
+              <div class="mxpr-qnada-minus">
+                <button class="mxpr-qanda-button mxpr-qanda-button-{{ faq.id }} mxpr-qanda-button-minus" data-faq-id="{{ faq.id }}">{{ 'sections.qanda.vote' | t }}<br />-1</button>
+              </div>
+            </div>
+            <div class="mxpr-qanda-content">
+              <div class="mxpr-qanda-content-qa">
+                <div class="mxpr-qanda-content-qa-item">
+                  <div id="mxpr-qanda-content-thankyou-{{ faq.id }}" class="mxpr-qanda-content-thankyou" style="display: none;">{{ 'sections.qanda.thankyou' | t }}</div>
+                  <dl class="mxpr-qanda-content-list">
+                    <dt class="mxpr-qanda-content-question-label">{{ 'sections.qanda.question' | t }}:</dt>
+                    <dd class="mxpr-qanda-content-question-body">{{ faq.question }}</dd>
+                    {% assign answer_count = 0 %}
+                    {% for answer in faq.answers %}
+                      {% assign answer_count = answer_count | plus: 1 %}
+                      <dt class="mxpr-qanda-content-answer-label mxpr-qanda-content-answer-{{ faq.id }} {% if answer_count > 1 %}mxpr-answer-hidden{% endif %}">{{ 'sections.qanda.answer' | t }}:</dt>
+                      <dd class="mxpr-qanda-content-answer-body mxpr-qanda-content-answer-{{ faq.id }} {% if answer_count > 1 %}mxpr-answer-hidden{% endif %}">
+                        <div class="mxpr-qanda-content-answer-body-text">
+                          {{ answer.body }}
+                        </div>
+                        {% if answer.name.size > 0 %}
+                          <div class="mxpr-qanda-content-answer-author-label">{{ 'sections.qanda.author' | t }}: </div>
+                          <div class="mxpr-qanda-content-answer-author-body">{{ answer.name }}&nbsp;</div>
+                        {% endif %}
+                        <div class="mxpr-qanda-content-answer-date-label">{{ 'sections.qanda.posted_at' | t }}: </div>
+                        <div class="mxpr-qanda-content-answer-date-body">{{ answer.createdAt | date: format: "date" }}</div>
+                      </dd>
+                    {% endfor %}
+                  </dl>
+                </div>
+              </div>
+              {% if answer_count > 1 %}
+                <div class="mxpr-qanda-content-action">
+                  <button class="mxpr-qanda-content-answer-show-other" data-faq-id="{{ faq.id }}">{{ 'sections.qanda.show_other' | t }}</button>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %}theme-check-disable ParserBlockingScriptTag{% endcomment %}
+  {{ 'mxpr-qanda.js' | asset_url | script_tag }}
+  {% comment %}theme-check-enable ParserBlockingScriptTag{% endcomment %}
+  
+{% endif %}
+
+{% schema %}
+{"name":"t:sections.qanda.name","templates":["product"],"settings":[{"type":"color","id":"border_color","label":"t:sections.qanda.border_color.label","default":"#dddddd"},{"type":"number","id":"border_size","label":"t:sections.qanda.border_size.label","default":0},{"type":"number","id":"border_radius","label":"t:sections.qanda.border_radius.label","default":5},{"type":"number","id":"margin_y","label":"t:sections.qanda.margin_y.label","default":0},{"type":"number","id":"margin_x","label":"t:sections.qanda.margin_x.label","default":0},{"type":"checkbox","id":"margin_auto","label":"t:sections.qanda.margin_auto.label","default":true},{"type":"number","id":"padding_y","label":"t:sections.qanda.padding_y.label","default":20},{"type":"number","id":"padding_x","label":"t:sections.qanda.padding_x.label","default":20},{"id":"heading","type":"text","label":"t:sections.qanda.heading.label","default":"Q&A"},{"type":"number","id":"title_size","label":"t:sections.qanda.title_size.label","default":24},{"id":"additional_style","type":"textarea","label":"t:sections.qanda.additional_style.label"}]}
+{% endschema %}

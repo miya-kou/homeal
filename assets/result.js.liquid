@@ -1,0 +1,789 @@
+function getCookie(){
+  let param = {};
+  let keys = ["q1", "q2", "q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20","q22", "diagnosis_date"];
+  let cookiesArray = document.cookie.split('; ');
+  for(var c of cookiesArray){ 
+    var cArray = c.split('='); 
+    if( keys.indexOf( cArray[0] ) >= 0 ){
+        param[cArray[0]] = decodeURIComponent(cArray[1]);
+    }
+  }
+  return param;
+}
+
+function updateCookie(param, diagnosisDate){
+  for(let i = 1; i <= 20; i++){
+    let key = 'q'+ i;
+    let value = key + '=' + encodeURIComponent(param[key]) + '; path=/;';
+    document.cookie = value;
+  }
+  document.cookie = 'q22=' + encodeURIComponent(param['q22']) + '; path=/;';
+  document.cookie = 'diagnosis_date=' + encodeURIComponent(diagnosisDate) + '; path=/;';
+//   console.log(document.cookie);
+}
+
+function getParams(params){
+  const regex = /[?&]([^=#]+)=([^&#]*)/g;
+  const params_obj = {};
+  let match;
+  while(match = regex.exec(params)){
+    params_obj[match[1]] = match[2];
+  }
+  return params_obj;
+}
+
+function updateClassElements(className, text){
+let elements = document.getElementsByClassName(className);
+  for ( let i=0; i < elements.length; i++ ) {
+      elements[i].textContent = text;
+}
+}
+
+function getAge(y, m, d){
+let birthday  = new Date(y, m-1, d);
+let today = new Date();
+let thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());  
+let age = today.getFullYear() - birthday.getFullYear();
+return (today < thisYearBirthday)?age-1:age;
+}
+
+function updateProfile(param, diagnosisDate){
+updateClassElements("name", param.q1);
+updateClassElements("p-result__top__search_info__gender", param.q2);
+//   let elements = document.getElementsByClassName("name");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = param.q1;
+//   }
+
+let birthdayList = decodeURIComponent(param.q22).split('/');
+let y = birthdayList[0];
+let m = birthdayList[1];
+let d = birthdayList[2];
+updateClassElements("age", getAge(y, m, d));
+updateClassElements("birthyear", y);
+updateClassElements("birthmonth", m);
+updateClassElements("birthday", d);
+
+let diagnosisDateList = diagnosisDate.split('/');
+updateClassElements("p-result__top__diagnostics_date", "最後に診断した日："+diagnosisDateList[0]+ "年"+ diagnosisDateList[1] + "月"+ diagnosisDateList[2]+ "日");
+  
+//   let elements = document.getElementsByClassName("age");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = getAge(y, m, d);
+//   }
+//   let elements = document.getElementsByClassName("birthyear");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = y;
+//   }
+//   let elements = document.getElementsByClassName("birthmonth");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = m;
+//   }
+//   let elements = document.getElementsByClassName("birthday");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = d;
+//   }
+
+if ( param.q3 == 'ありません'){
+    let elements = document.getElementsByClassName("p-result__top__search_info__alergiesbox");
+     for ( let i=0; i < elements.length; i++ ) {
+      elements[i].classList.remove("noempty");
+    }
+    elements = document.getElementsByClassName("p-result__top__search_info__alergiesbox__lists");
+    for ( let i=0; i < elements.length; i++ ) {
+      elements[i].innerHTML = '<li class="p-result__top__search_info__alergiesbox__list">特になし</li>';
+    }    
+}else{
+    let allergies = param.q3.split(', ');
+    let elements = document.getElementsByClassName("p-result__top__search_info__alergiesbox__lists");
+    for ( let i=0; i < elements.length; i++ ) {
+      elements[i].innerHTML = '';
+      for (let j=0; j < allergies.length; j++){
+        if ( allergies[j] == 'ありません'){
+          continue;
+        }
+          elements[i].innerHTML += '<li class="p-result__top__search_info__alergiesbox__list">' + allergies[j] + '</li>';
+      }
+    }
+}
+}
+
+function convertScore(ans, choice){
+let score = 0;
+switch ( ans ){
+    case choice[0]:
+        score = 5;
+        break;
+    case choice[1]:
+        score = 4;
+        break;
+    case choice[2]:
+        score = 3;
+        break;
+    case choice[3]:
+        score = 2;
+        break;
+    case choice[4]:
+        score = 1;
+        break;
+    }
+return score;
+}
+
+function updateScore(param){
+let nutritionScore = 0;
+let num = 11;
+let firstQuestion = 4;
+let lastQuestion = firstQuestion + num -1;
+for(let i = firstQuestion; i <= lastQuestion; i++){
+    let key = 'q' + i;
+    switch ( param[key] ){
+    case "毎日２回以上":
+        nutritionScore += 5;
+        break;
+    case "毎日１回":
+        nutritionScore += 4;
+        break;
+    case "週に４～６回":
+        nutritionScore += 3;
+        break;
+    case "週に１～３回":
+        nutritionScore += 2;
+        break;
+    case "週に１回未満":
+        nutritionScore += 1;
+        break;
+    case "アレルギーがある":
+        num -= 1;
+        break;
+    }
+}
+nutritionScore = Math.round(nutritionScore / num *10)/10;
+updateClassElements("nutrition__score", nutritionScore.toFixed(1) );
+// let elements = document.getElementsByClassName("nutrition__score");
+// for ( let i=0; i < elements.length; i++ ) {
+//     elements[i].textContent = nutritionScore;
+// }
+let title, text;
+if (nutritionScore >= 4 ){
+    title = '栄養のバランスを意識できています';
+    text = '食材を偏りなく取り入れることを意識した食事ができているようです。アレルギーや疾患の心配がない場合は旬の食材や新しい調理法も積極的に取り入れましょう。ご家庭では調理しにくいお魚やレバーを使ったメニューはhomealのセットがおすすめです。';
+}else if( nutritionScore >= 3.3 && nutritionScore < 4 ){
+    title = '時々食事の振り返りをしてみましょう';
+    text = '食材や栄養を意識した食事をしていますが、メニューや献立によって不足している栄養素もあるようです。無理のない範囲で時々食事を見直して、不足している栄養素は意識して摂るようにしましょう。';
+}else if( nutritionScore >= 2.7 && nutritionScore < 3.3 ){
+    title = '新しい食材も少しずつ取り入れましょう。';
+    text = '好き嫌いが多かったり献立を作る方が同じだと食事内容だけでなく摂取できる栄養素にも偏りが出ます。食べやすい食材や調理しやすいものからで良いので旬のものを中心に新しい食材を取り入れる食事を意識して行ってみましょう。';
+}else if( nutritionScore >= 2 && nutritionScore < 2.7 ){
+    title = '予定によって食事に偏りがありませんか？';
+    text = '外出や急な予定で食事のバランスが崩れることはよくあります。1日単位で必要な栄養素をすべて摂ることは難しくても、3日・1週間単位等で考えて不足している栄養は意識してとれるようにしましょう。';
+}else if( nutritionScore < 2 ){
+    title = '摂取食材に偏りがないか見直そう';
+    text = '意識していても身体に必要な食材すべて摂るは難しいですよね、調理済の食材や出来合いのものを上手に利用し、負担なく品数を増やしましょう。味噌汁の具材を多くしたり電子レンジで手軽に食べられる冷凍野菜もお勧めです。';
+}
+let elements = document.getElementsByClassName("nutrition__title");
+for ( let i=0; i < elements.length; i++ ) {
+    elements[i].innerHTML += title;
+}
+updateClassElements("nutrition__text", text);
+//   let elements = document.getElementsByClassName("nutrition__text");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = text;
+//   }
+
+let lifestyleScore = 0;
+lifestyleScore += convertScore(param.q15, ['週に１回未満', '週に１～３回', '週に４～６回', '毎日１回', '毎日２回以上']);
+lifestyleScore += convertScore(param.q16, ['午後９時前', '午後９時台', '午後１０時台', '午後１１時以降', '不規則・決まってない']);
+lifestyleScore += convertScore(param.q17, ['毎日', '週5～6回', '週３～４回', '週１～２回', '全くない'] );
+for(let i = 18; i <= 20; i++){
+    let key = 'q' + i;
+    lifestyleScore += convertScore(param[key], ['全くそうでない', 'ややそうでない', 'どちらともいえない', 'ややそうである', 'とてもそうである'] );
+}
+lifestyleScore = Math.round(lifestyleScore / 6 *10)/10;
+updateClassElements("lifestyle__score", lifestyleScore.toFixed(1));
+//   let elements = document.getElementsByClassName("lifestyle__score");
+//   for ( let i=0; i < elements.length; i++ ) {
+//       elements[i].textContent = lifestyleScore;
+//   }
+if (lifestyleScore >= 4 ){
+    title = '規則正しい習慣が意識できています';
+    text = '幼児期に意識したい生活習慣をしっかり心がけています。食事も運動も今のペースで続けてみましょう。不足している栄養素が心配なときや成長に必要なエネルギーがとれているかは時々食事の内容も振り返りチェックしてみましょう。';
+}else if( nutritionScore >= 3.3 && nutritionScore < 4 ){
+    title = '生活習慣を振り返る機会を作りましょう';
+    text = 'おおむね理想的な生活習慣は送れていますが生活面で少し気になる点もあるようです。一度に全部取り組むことは難しいので気になる習慣をひとつずつ改善できるように意識して毎日の生活を過ごしてみましょう。';
+}else if( nutritionScore >= 2.7 && nutritionScore < 3.3 ){
+    title = '規則正しい生活が送れていますか？';
+    text = '朝食を食べる・間食（お菓子）を控える・定期的に体を動かすなど基本的な生活習慣は行えていますか？お子様の生活習慣に合わせてまずは食事やおやつの時間を見直して徐々に規則正しい生活に切り替えましょう！';
+}else if( nutritionScore >= 2 && nutritionScore < 2.7 ){
+    title = '見直しが必要な生活習慣があるようです';
+    text = '食習慣が乱れることで生活習慣や健康面にも影響が出てきます。毎食きちんと食べられているかをチェックして食べられている場合は食事の内容やタイミングを見直すことで理想的な生活習慣を目指しましょう！';
+}else if( nutritionScore < 2 ){
+    title = '規則正しい生活を意識しよう';
+    text = '睡眠時間や食事の食べ方、運動習慣に見直しが必要なようです。一日のはじまりの朝食はしっかりとれていますか？同じ時間に起きて食事をとるだけで体の調子も改善されます。続けることを目標に行ってみましょう。';
+}
+elements = document.getElementsByClassName("lifestyle__title");
+for ( let i=0; i < elements.length; i++ ) {
+    elements[i].innerHTML += title;
+}
+updateClassElements("lifestyle__text", text);
+}
+
+function countDE(param, questions){
+//   引数(questions)に質問番号のリストを与え，それらのうちDまたはEと回答した個数を返す
+let count = 0;
+for(let i = 0; i < questions.length; i++){
+    let key = 'q' + questions[i];
+    if ( param[key] == '週に１～３回' || param[key] == '週に１回未満' ){
+    count += 1;
+    }else if (param[key] == '午後１１時以降' || param[key] == '不規則・決まってない' ){
+    count += 1;
+    }else if (param[key] == 'ややそうである' || param[key] == 'とてもそうである' ){
+    count += 1;
+    }
+}
+//   console.log(count, questions);
+return count
+}
+
+function getIsDuplicate(arr1, arr2) {
+return [...arr1, ...arr2].filter(item => arr1.includes(item) && arr2.includes(item)).length > 0
+}
+
+function getAllowedFood(allergies){
+let allowedFood = [];
+for (let key of product_handles) {
+//     console.log(product_meta[key].allergies);
+    if( ! getIsDuplicate(allergies, product_meta[key].allergies ) ){
+    allowedFood.push(key);
+    }
+} 
+return allowedFood;
+}
+
+// function getProduct(productHandle){
+//   var product_val;
+//   $.ajaxSetup({async: false});
+//   $.getJSON('/products/'+productHandle+'.js', function(product) {
+//     product_val = product;
+//   });
+//   $.ajaxSetup({async: true});
+//   return product_val;
+// }
+
+function updateDetailTags(dataType, handle){
+let elements = document.getElementsByClassName("p-menu_detail_"+dataType+ "_tags");
+let tags;
+if(dataType == 'balance'){
+  tags = product_meta[handle].main_nutrition_tag.concat(product_meta[handle].sub_nutrition_tag);
+}else if (dataType == 'lifestyle'){
+  tags = product_meta[handle].main_lifestyle_tag.concat(product_meta[handle].sub_lifestyle_tag);
+}else if (dataType == 'ingredients'){
+  tags = product_meta[handle].allergies;
+}
+for ( let i=0; i < elements.length; i++ ) {
+  for (let j=0; j < tags.length; j++){
+    elements[i].innerHTML += '<li class="p-menu_detail__tag" data-type="'+dataType+'">' + tags[j] + '</li>';
+  }
+}
+}
+
+function showOtherFood(handles, className){
+if(handles.length == 0){
+  let elements = document.getElementsByClassName(className + "_menu_header");
+  for ( let i=0; i < elements.length; i++ ) {
+    elements[i].style = 'display:none';
+  }
+  if (className == 'other'){
+    let elements = document.getElementsByClassName("p-result__recommend__togglebtn");
+    for ( let i=0; i < elements.length; i++ ) {
+      elements[i].style = 'display:none';
+    }
+  }
+}else{
+  let elements = document.getElementsByClassName(className + "_list");
+  for ( let i=0; i < elements.length; i++ ) {
+    for (let handle of handles){
+      $.getJSON('/products/'+handle+'.js', function(product) {
+        let title = product.title;
+  //       let title = getProduct(handle).title;
+//         console.log(product);
+        let text = '<li class="p-menu_list__item">';
+        text += '<a href="https://homeal.co.jp/collections/online-shop/products/'+ handle +'" class="p-menu_list__link">';
+//         TODO if文消す
+        if ( product.images[0] ){
+          text += '<figure class="p-menu_list__image"><img src="'+ product.images[0] +'" alt></figure>';
+        }else{
+          text += '<figure class="p-menu_list__image">'+'{{ 'img-dummy.png' | asset_url | img_tag }}'+'</figure>';
+        }
+        text += '<ul class="p-menu_list__tags">';
+        for( let tag of product_meta[handle].main_nutrition_tag ){
+          text += '<li class="p-menu_list__tag" data-type="balance">'+ tag +'</li>';
+        }
+        for( let tag of product_meta[handle].main_lifestyle_tag ){
+          text += '<li class="p-menu_list__tag" data-type="lifestyle">'+ tag +'</li>';
+        }
+        text += '</ul>';
+        text += '<h3 class="p-menu_list__name">'+ title +'</h3>';
+        text += '</a></li>';
+        elements[i].innerHTML += text;
+      });
+    }
+  }    
+}
+}
+
+function showMainFood(mainFood){
+  $.getJSON('/products/'+mainFood+'.js', function(product) {
+    updateClassElements("p-menu_detail__name", product.title);
+//     TODO if文消す
+    if ( product.images.length > 0 ){
+      let li_elements = document.getElementsByClassName("p-menu_detail__img");
+      let link_elements = document.getElementsByClassName("p-menu_detail__link");
+      let img_elements = document.getElementsByClassName("detail_img");
+      let thumbnail_li_elements = document.getElementsByClassName("p-menu_detail__thumbnail");
+      let thumbnail_img_elements = document.getElementsByClassName("thumbnail_img");
+      for ( let i=0; i < product.images.length; i++ ) {
+        link_elements[i].href = 'https://homeal.co.jp/collections/online-shop/products/'+ mainFood;
+        li_elements[i].style.display = '';
+        img_elements[i].src = product.images[i];
+//         figureのborder-radiusが効いていない？
+        img_elements[i].style.borderRadius = '1.875rem';
+        thumbnail_li_elements[i].style.display = '';
+        thumbnail_img_elements[i].src = product.images[i];
+      }
+    }
+    else{
+      let li_elements = document.getElementsByClassName("p-menu_detail__img");
+      let thumbnail_li_elements = document.getElementsByClassName("p-menu_detail__thumbnail");
+      for ( let i=0; i < li_elements.length; i++ ) {
+        li_elements[i].style.display = '';
+        thumbnail_li_elements[i].style.display = '';
+      }
+    }
+  });
+  // updateClassElements("p-menu_detail__name", getProduct(mainFood).title+' 1パック（子ども3食分）');
+  updateDetailTags("balance", mainFood);
+  updateDetailTags("lifestyle", mainFood);
+  updateDetailTags("ingredients", mainFood);
+}
+
+function showMainFood_old(mainFood){
+  $.getJSON('/products/'+mainFood+'.js', function(product) {
+    updateClassElements("p-menu_detail__name", product.title);
+//     TODO if文消す
+    if ( product.images[0] ){
+      let elements = document.getElementsByClassName("p-menu_detail__imgs");
+      for ( let i=0; i < elements.length; i++ ) {
+        for( let j = 0; j < product.images.length; j++ ){
+          if(j == 0){
+            elements[i].innerHTML = '<li class="p-menu_detail__img active"><figure><img src='+ product.images[j] +' alt></figure></li>';
+          }else{
+            elements[i].innerHTML += '<li class="p-menu_detail__img"><figure><img src='+ product.images[j] +' alt></figure></li>';
+          }
+        }
+      }
+      elements = document.getElementsByClassName("p-menu_detail__thumbnailbox");
+      for ( let i=0; i < elements.length; i++ ) {
+        for( let j = 0; j < product.images.length; j++ ){
+          if(j == 0){
+            elements[i].innerHTML = '<li class="p-menu_detail__thumbnail active"><figure><img src='+ product.images[j] +' alt></figure></li>';
+          }else{
+            elements[i].innerHTML += '<li class="p-menu_detail__thumbnail"><figure><img src='+ product.images[j] +' alt></figure></li>';
+          }
+        }
+      }
+
+    }
+  });
+  // updateClassElements("p-menu_detail__name", getProduct(mainFood).title+' 1パック（子ども3食分）');
+  updateDetailTags("balance", mainFood);
+  updateDetailTags("lifestyle", mainFood);
+  updateDetailTags("ingredients", mainFood);
+}
+
+
+
+
+
+function getSubFoodHandles(subFoodNum, allowedFood){
+//   サブ提案商品の番号通りに並べる．シートでは1からスタートなので0番目に空文字を．
+let handles = ['',
+  'beef-and-chickpea-hashed-beef', 
+  'boneless-cod-and-vegetables-with-chinese-sauce', 
+  'meatballs-with-liver-in-tomatoes', 
+  'pork-and-broccoli-in-additive-free-cream', 
+  'caponata-with-white-beans-and-grilled-eggplant', 
+  'tofu-hamburger-steak-with-edamame-and-hijiki', 
+  'not-spicy-keema-curry-with-lots-of-hidden-vegetables', 
+  'additive-fre-soft-mackerel', 
+  'pork-and-beans', 
+  'sauce-with-10-kinds-of-vegetables-and-mushrooms',
+  'pork-buns-with-no-food-additives', 
+  '6-fruit-assortment-set', 
+  'rice-flour-pumpkin-cake', 
+  'banana-and-soybean-flour-pound-cake', 
+  'baby-scallops-and-clams-chowder', 
+  'stouffato-with-coarse-ground-italian-pate-and-cabbage', 
+  'porcini-and-young-chicken-fricassee',
+  'mackerel-in-miso-sauce',
+  'mackerel-with-ginger-stew',
+  'sprinkle-with-gold-sesame-seeds-of-autumn-salmon',
+  'non-spicy-butter-masala-curry-with-chicken-balls',
+  'omar-shrimp-bisque-curry',
+  'grilled-salmon-chan-chan-yaki',
+  'sardine-soboro',
+  'moist-boiled-dadacha-beans-and-unohana',
+  'japanese-style-soup-of-chicken-and-6-kinds-of-vegetables-with-glutinous-barley',
+  'borscht-style-stew-of-beef-with-beets-and-7-vegetables',
+  'soy-milk-cream-stew-with-7-kinds-of-vegetables-and-pork',
+  'chinese-cabbage-and-minced-meat-with-japanese-sauce',
+  'sauteed-pork-and-deep-fried-tofu-with-japanese-bonito',
+  'fried-abedori-with-salted-malted-rice',
+  'chefs-special-hand-kneaded-hamburger-steak',
+  'apple-cinnamon-scones',
+  'honey-soy-milk-bread',
+  'japanese-wheat-bread',
+  'white-beef-stroganoff',
+  'japanese-style-meatloaf',
+  'bouillabaisse-style-soup',
+  'corn-stew',
+  'pumpkin-stew',
+              ]
+let subFoodHandles = [];
+// let otherFoodHandles = [];
+for(let num of subFoodNum){
+//     console.log(num, handles[num]);
+  if(allowedFood.indexOf(handles[num]) >= 0 ){
+    subFoodHandles.push(handles[num]);
+  }
+}
+return subFoodHandles;
+//   return Array.from(new Set(arr1.filter(e => (new Set(arr2).has(e)))));
+}
+
+function getOtherFoodHandles(allowedFood, mainFoodHandle, subFoodHandles){
+let otherFoodHandles = [];
+for(let handle of allowedFood){
+  if( handle == mainFoodHandle ){
+    continue;
+  }else if( subFoodHandles.indexOf(handle) >= 0 ){
+    continue;
+  }
+  otherFoodHandles.push(handle);
+}
+return otherFoodHandles;
+}
+
+// var allowedFood;
+// //   メイン提案商品のhandle
+// var mainFood;
+// var subFoodHandles;
+
+function recommendLogic(param){
+// console.log(product_meta);
+// console.log(product_handles);
+
+let allergies = param.q3.split(', ');
+let allowedFood = getAllowedFood(allergies);
+//   メイン提案商品のhandle
+let mainFood;
+//   サブ提案商品の候補の番号のリスト
+let candidateSubFood;
+let suitableDiet = '';
+let nutritionPoint = '';
+let adviceText = '';
+//   1つ目の条件は当該質問のDかEの個数による条件，2つ目はアレルギーを含んでいない商品のリストallowedFoodにメイン商品が含まれているか
+if ( countDE(param, [4, 5, 6, 7] ) >= 2 && allowedFood.indexOf('stouffato-with-coarse-ground-italian-pate-and-cabbage') >= 0 ){
+    suitableDiet = '身体の基礎をつくる';
+    nutritionPoint = '家で例えると全体を支える柱のような存在のたんぱく質は筋肉や内臓、皮膚だけでなく血中の細胞、遺伝子、ホルモン等すべての主成分となります。成長期の不足は発育障害等にも繋がるため必要量をしっかり摂ることが大切です。たんぱく質を構成する“アミノ酸”は体で合成できないものもあるため食事から摂ることを意識しましょう。';
+    adviceText = 'たんぱく質は肉や魚、豆や卵だけでなく様々な食品に含まれます。たんぱく質の質の良し悪しを決めるのがたんぱく質を構成する“アミノ酸”の種類と量なので植物性（豆類）と動物性（肉・魚など）を組み合わせたり、穀類（米や麺など）と豆類を合わせたりすることで栄養価がアップし、効率のよい摂取が期待できます。';
+    mainFood = 'stouffato-with-coarse-ground-italian-pate-and-cabbage';
+    candidateSubFood = [23,30,31,32,36,37];
+    console.log('BodyFundation 1');
+}else if( countDE(param, [4] ) >= 1 && allowedFood.indexOf('mackerel-in-miso-sauce') >= 0 ){
+    suitableDiet = '記憶力アップ';
+    nutritionPoint = '魚の栄養でとくに特徴的なのが青背の魚にふくまれる“DHA”という栄養素。脳の神経組織に含まれ、脳神経の発育に関わり、集中力や記憶力アップに効果的です。魚は他にもアレルギー症状の改善が期待できる“EPA”やカルシウム、免疫力を高めるビタミン類等を多く含む栄養素の宝庫なので毎日の食事に無理なく取り入れましょう。';
+    adviceText = '旬の魚は栄養価も高く、おいしさも格別。旬を知って美味しく調理することも大切ですが、出来合いのものでも旬の時期に漁獲・加工されたものはおいしさや栄養価を保っています。DHAなどの栄養素は脂肪に含まれるので酸化していると効率よく摂取できません。鮮魚も加工品も新鮮なうちに調理したものをとるよう心がけましょう。';
+    mainFood = 'mackerel-in-miso-sauce';
+    candidateSubFood = [19,24];
+    console.log('memory');
+}else if (countDE(param, [5] ) >= 1 && allowedFood.indexOf('meatballs-with-liver-in-tomatoes') >= 0 ){
+    suitableDiet = '鉄分補給';
+    nutritionPoint = '鉄は血液の成分（ヘモグロビン）として欠かせませんが、体の各器官に酸素を運ぶ重要な役割を担っています。そのため不足すると貧血だけでなく、体温を維持することが難しくなったり、記憶力・集中力、免疫力の低下などを招きます。鉄が多い食品として豚・鶏レバー、赤身肉、貝類、海藻などがあげられます。意識して取りましょう。';
+    adviceText = '肉や魚、動物性食品に含まれる鉄は、海藻や豆などの植物性食品に含まれる鉄に比べ体内への吸収が良いのが特徴です。植物性の食品から鉄を摂る場合、鉄の吸収を高めるビタミンCを一緒にとるため、果物や野菜を1品加えましょう。幼児期に特に不足しやすい栄養素“鉄”は数種類の食品からとれるようにするのがおすすめです。';
+    mainFood = 'meatballs-with-liver-in-tomatoes';
+    candidateSubFood = [1,6,27];
+    console.log('iron');
+}else if (countDE(param, [8] ) >= 1 && allowedFood.indexOf('baby-scallops-and-clams-chowder') >= 0 ){
+    suitableDiet = '骨や歯を強くする';
+    nutritionPoint = 'カルシウムは体の中に最も多く存在しているミネラルでそのほとんど（99％）が骨格を形成しています。体内では常に古い骨が壊されて新しい骨が作られているため不足すると骨量が減り骨折しやすくなります。乳製品や丸ごと食べられる小魚の他、大豆製品や青菜類、海藻などにも含まれていますので毎日必要な量をしっかりとりましょう。';
+    adviceText = 'カルシウムは様々な食材に含まれますが乳製品は体への吸収が良くおすすめです。牛乳、ヨーグルト、チーズなどを組み合わせて1日400g程度を目安にとりましょう。料理やおやつなどにも活用して他の食材とも一緒にとれる工夫をしてみましょう。不足しがちな代表的な栄養素です。幼児期からしっかりとれる習慣を身に着けましょう。';
+    mainFood = 'baby-scallops-and-clams-chowder';
+    candidateSubFood = [6,24];
+    console.log('bone');
+}else if (countDE(param, [9, 18] ) >= 2 && allowedFood.indexOf('boneless-cod-and-vegetables-with-chinese-sauce') >= 0 ){
+    suitableDiet = '免疫力アップ';
+    nutritionPoint = '毎日摂取する野菜の1/3～1/2量は色の濃い野菜（緑黄色野菜）を摂取するように心がけましょう。色の濃い野菜に豊富な栄養素はビタミンA、Cなどのビタミンだけでなく、カルシウムなども含まれます。ビタミンAが不足することで皮膚や粘膜が乾燥して弱くなったり、抵抗力や衰えて風邪や感染症にもかかりやすくなると言われます。';
+    adviceText = '緑黄食野菜にはピーマン、ニンジンなどの果菜・根菜や、ほうれん草、小松菜などの葉菜があります。葉菜は加熱を手早くしてビタミンCなどの栄養素を壊さないようにとることがポイントです。またニンジンなどに多いビタミンAは油と一緒にとることで吸収率がアップするのでおすすめです。旬の食材を意識してとりましょう。';
+    mainFood = 'boneless-cod-and-vegetables-with-chinese-sauce';
+    candidateSubFood = [16,23,27,30,38,39];
+    console.log('immunity');
+}else if (countDE(param, [7] ) >= 1 && allowedFood.indexOf('tofu-hamburger-steak-with-edamame-and-hijiki') >= 0 ){
+    suitableDiet = '集中力アップ';
+    nutritionPoint = '豆類は基本的なたんぱく質、炭水化物、脂質といった栄養素の他に、不足しがちなビタミンB群や鉄やカルシウムなどのミネラル、食物繊維も含みます。特にビタミンB1は糖質が体の中でエネルギーに代わるため重要な栄養素です。不足すると脳や神経が正常に働かず、疲れやすくなったり記憶力や集中力が低下に繋がります。';
+    adviceText = '水煮のものや、予め蒸してあるもの、ミックスビーンズや豆が原料の加工品（豆腐や油揚げ）などを上手に利用して栄養豊富な豆製品を日々の食事に取り入れるようにしましょう。豆の代表的な栄養素で糖質の代謝に関わるビタミンB1はネギ類（玉ねぎ、にんにく、ネギなど）と摂ることで体への吸収率がアップします。';
+    mainFood = 'tofu-hamburger-steak-with-edamame-and-hijiki';
+    candidateSubFood = [1,25,28,34];
+    console.log('concentration');
+}else if (countDE(param, [9, 10, 12] ) >= 2 && allowedFood.indexOf('not-spicy-keema-curry-with-lots-of-hidden-vegetables') >= 0 ){
+    suitableDiet = '体の調子を整える';
+    nutritionPoint = '緑黄食野菜はカロテンが豊富、淡色野菜はビタミンCが豊富で皮膚や粘膜を強くし免疫力をアップさせて風邪や感染症の予防をするために欠かない栄養素です。また、きのこや海藻は食物繊維が多く腸内環境を整えてくれたり生活習慣病の予防にも効果的です。メインの食材と合わせてしっかり摂りたい食品群です。';
+    adviceText = '野菜、海藻、果物類は合わせて1日300～350ｇは摂りたい食品類です。そのうち野菜は緑黄食野菜の使用を意識しましょう。苦手なものがあるときは細かく刻んだり、皮の気になる食材（トマトやなす）などは皮をむく、好きな味付けでまとめる、数個型抜きしたものを入れてみる等工夫をしても良いかもしれません。';
+    mainFood = 'not-spicy-keema-curry-with-lots-of-hidden-vegetables';
+    candidateSubFood = [21,26,27,29,37,39];
+    console.log('PhysicalCondition');
+}else if (countDE(param, [16] ) >= 1 && allowedFood.indexOf('grilled-salmon-chan-chan-yaki') >= 0 ){
+    suitableDiet = '疲労回復';
+    nutritionPoint = '糖質の代謝に関わるビタミンB1が不足すると、エネルギーがうまく利用できずに疲れもたまりやすくなります。豚肉などの食材から積極的に摂るようにしましょう。またカルシウムを多く含む牛乳は神経の興奮をおさめてリラックスするのに効果的です。質の良い睡眠と食生活で疲れの溜まりにくい体作りをしましょう！';
+    adviceText = '豚肉は食品の中でも特にビタミンB1を多く含んでいます。甘いものをたくさん摂ったり、インスタント食品を摂り過ぎたりすることでも不足するため疲れがたまりやすいときはビタミンB1がしっかりとれているか意識しましょう。ネギやニラ、玉葱などと一緒に摂ることで摂取効率が高まりますので組み合わせる食材を見直しても良いでしょう。';
+    mainFood = 'grilled-salmon-chan-chan-yaki';
+    candidateSubFood = [7,12,15,20,22,29];
+    console.log('fatigue');
+}else if (countDE(param, [18] ) >= 1 && allowedFood.indexOf('moist-boiled-dadacha-beans-and-unohana') >= 0 ){
+    suitableDiet = '腸を整える';
+    nutritionPoint = '生活習慣の乱れなどから下痢や便秘になることもありますが食事は整腸作用のある乳製品をとること、腸に優しい水溶性の食物繊維をとることがポイントです。消化がよく栄養価の高い白身魚や豆腐などを使ったメニューもよいでしょう。日常生活では規則正しい生活と合わせて水分の補給も意識することが大切です。';
+    adviceText = '便秘の場合は朝食をしっかりとって、主食は全粒粉のパンや玄米ご飯、メインは植物性たんぱくが豊富な大豆や納豆、肉や魚は野菜と一緒にとることがおすすめです。下痢の場合は栄養不足にならないよう注意し、消化のよい白身魚や植物性たんぱくをとり、細かく切ったり、やわらかく茹でたりするなど調理に工夫をすることも大切です。';
+    mainFood = 'moist-boiled-dadacha-beans-and-unohana';
+    candidateSubFood = [5,12,17,26,28,36];
+    console.log('intestines');
+}else if (countDE(param, [9] ) >= 1 && allowedFood.indexOf('caponata-with-white-beans-and-grilled-eggplant') >= 0 ){
+    suitableDiet = '皮膚を強くする';
+    nutritionPoint = '肌の代謝を整えるにはビタミンB群が大切です。同時に緑黄食野菜にも多く含まれる粘膜を強くするビタミンAも意識してとるとよいでしょう。とくにレバーはビタミンB群もAも両方もつ栄養豊富な食材です。油っこいものや甘いもの等はなるべく避けて新鮮な野菜や果物に含まれるビタミンCを積極的にとることも有効です。';
+    adviceText = 'レバーに多く含まれるビタミンB2は『発育のビタミン』とも呼ばれ成長期には欠かせない栄養素です。牛乳や魚介類の他、納豆、きのこ、緑黄色野菜に含まれ、不足すると発育障害などにつながることもあります。一方、調理での損失は比較的少ないため、普段から色々な食材をバランスよく食べることでしっかり補うことが出来ます。';
+    mainFood = 'caponata-with-white-beans-and-grilled-eggplant';
+    candidateSubFood = [2,3];
+    console.log('skin');
+}else if (countDE(param, [19] ) >= 1 && allowedFood.indexOf('sprinkle-with-gold-sesame-seeds-of-autumn-salmon') >= 0 ){
+    suitableDiet = 'ストレス撃退';
+    nutritionPoint = 'カルシウムが不足すると神経を興奮させてイライラの原因となることが知られています。またストレスで消費される栄養素としてたんぱく質、ビタミンC、ビタミンB群などがあります。体の疲労もストレス・イライラの原因となるため充分に睡眠をとると同時にビタミンやカルシウムが豊富な食材を普段から食事に取り入れてみましょう。';
+    adviceText = 'ストレスやイライラにはビタミンB群やカルシウムが有効ですが乳製品や大豆、魚介類はどちらの栄養素も含みます。新鮮な柑橘類やブロッコリーやパプリカに豊富なビタミンCはストレスと戦うホルモンの合成を助けます。ビタミンCは熱に弱いことも特徴のため、鮮度の良いうちに、手早く加熱してとると良いでしょう。';
+    mainFood = 'sprinkle-with-gold-sesame-seeds-of-autumn-salmon';
+    candidateSubFood = [12,15];
+    console.log('stress');
+}else if (countDE(param, [20] ) >= 1 && allowedFood.indexOf('beef-and-chickpea-hashed-beef') >= 0 ){
+    suitableDiet = '噛む力アップ';
+    nutritionPoint = 'よく噛むことであごの発達が脳を刺激し、味わうことで味覚も豊かになります。また口の筋肉を動かすことによって言葉も出やすくなり、分泌された唾液で虫歯予防にも繋がります。しっかり噛んで食べることは幼児期に身に着けたい大切な習慣のひとつです。噛む回数を増やすことができる食材や調理法のコツを取り入れましょう。';
+    adviceText = '食材を少し大きめに切ってみたり、複数の口当たりが違う食材を一緒に使うことでよく味わおうとしてかむ回数も自然に増えていきます。キノコなども歯ごたえをアップさせる食材を使用するのも良いでしょう。また茹でたり煮たりするだけでなく、カリカリに揚げたり焼いたりするなど調理法を変えることも噛み応えアップにつながります。';
+    mainFood = 'beef-and-chickpea-hashed-beef';
+    candidateSubFood = [25,26,35];
+    console.log('Chewing Power');
+}else if (countDE(param, [13] ) >= 1 && allowedFood.indexOf('non-spicy-butter-masala-curry-with-chicken-balls') >= 0 ){
+    suitableDiet = '痩せ防止';
+    nutritionPoint = '食欲がないからといって食前に甘いものをとると食欲が逆に低下し、エネルギー不足となります。1日の摂取カロリーのうち50～60％程度はご飯やパンなどの主食からとれるよう心がけましょう。丈夫な強いからだを作るため炭水化物をしっかりとることと良質なたんぱく質をとることの両方を意識することが大切です。';
+    adviceText = '米やパン、麺などに含まれる炭水化物は不足すると疲労や筋肉の減少にもつながります。炭水化物の中の糖質は脳の唯一のエネルギー源で、吸収されやすいため集中力を保ちたいときやスポーツをするときに特にしっかりとりたい栄養素です。豚肉や豆類、玄米などに多く含まれるビタミンB1と一緒にとると代謝が促進されます。';
+    mainFood = 'non-spicy-butter-masala-curry-with-chicken-balls';
+    candidateSubFood = [7,22,34,35];
+    console.log('Preventing thinning');
+}else if (countDE(param, [11] ) >= 1 && allowedFood.indexOf('6-fruit-assortment-set') >= 0 ){
+    suitableDiet = '風邪予防';
+    nutritionPoint = 'ビタミンCが豊富なものの代表格は果物や野菜です。いも類のビタミンCはでんぷんに覆われているため加熱で壊れにくいのが特徴です。不足すると免疫力が低下し、風邪や感染症などにかかりやすくなるので免疫力を強化し、抵抗力を高めるために欠かせません。その他、ストレスと戦うホルモンの合成にも関っています。';
+    adviceText = 'ビタミンCは免疫強化、ストレス撃退に欠かせない栄養素ですが熱や空気、加熱に弱いため調理過程で大部分が失われてしまうこともあります。鮮度がよいものを食べる直前にカットする、加熱はさっと短時間で行うことなどを心がけましょう。また旬の果物や野菜は含まれるビタミンCも多いので生鮮品は旬を意識して利用しましょう。';
+    mainFood = '6-fruit-assortment-set';
+    candidateSubFood = [2,16,23];
+    console.log('Cold prevention');
+}else {
+    if( allowedFood.indexOf('porcini-and-young-chicken-fricassee') < 0 ){
+      alert('今回の診断結果では、おすすめメニューにお子さんがお持ちのアレルゲンが含まれている可能性があります。商品ごとのアレルゲンをご確認の上、商品を選択してください。');
+    }
+    suitableDiet = '身体の基礎をつくる';
+    nutritionPoint = '幼児期は体重1kgあたりに換算すると大人より多くのエネルギーとたんぱく質を必要としています。脳の重量も数倍の速度で大きくなるため成長を支えるには日々の食事からとる栄養が欠かせません。まずは市販品も上手に利用しながら主菜、副菜、主食と３品そろえることから始め、不足しがちな栄養素は特に意識してとるようにしましょう。';
+    adviceText = '幼児期の食事で特に不足しやすいのが骨や歯の成長に必要なカルシウムと血液中のヘモグロビンの成分として欠かせない鉄。偏食や好き嫌いがある場合は好きな食材で補ったり加工品や調理済みのものも利用して意識してとるようにしましょう。カルシウムは良質なたんぱく質と鉄はビタミンCと一緒にとることで体への吸収もよくなります。';
+    mainFood = 'porcini-and-young-chicken-fricassee';
+    candidateSubFood = [6,23,30,31,32,36];
+    console.log('BodyFundation 2');
+}
+  updateClassElements("p-result__top__status_point_box__header", suitableDiet);
+  updateClassElements("p-result__top__status_point_box__text", nutritionPoint);
+  updateClassElements("p-result__top__advice_container__text", adviceText);  
+// console.log(suitableDiet);
+  
+showMainFood(mainFood);
+let subFoodHandles = getSubFoodHandles(candidateSubFood, allowedFood);
+let otherFoodHandles = getOtherFoodHandles(allowedFood, mainFood, subFoodHandles);
+showOtherFood(subFoodHandles, 'sub_recommend');
+showOtherFood(otherFoodHandles, 'other');
+//   console.log(otherFoodHandles);
+//   console.log(allowedFood);
+//   console.log(subFoodHandles);
+//   console.log(mainFood);
+}
+
+function checkParam(obj){
+for(let i = 1; i <= 20; i++){
+  let key = 'q'+i;
+  if( ! obj[key] ){
+    return false;
+  }
+}
+if( ! obj['q22'] ){
+    return false;
+  }
+return true;
+//   return !Object.keys(obj).length;
+}
+
+  function updateMetafields(metafields) {
+//     console.log(metafields);
+    let target_url = 'https://4toj8hhh46.execute-api.ap-northeast-1.amazonaws.com/prod/v1';
+
+    var id = $('#shopify_id').val()
+    var hash = $('#shopify_hash').val()
+  
+    if (!id) throw new Error('id is required')
+    if (!hash) throw new Error('hash is required')
+  
+//     console.log(metafields);
+    $.ajax({
+      type: 'PUT',
+      url: target_url + '/customers/' + id,
+      headers: {
+        'x-shopify-id': id,
+        'x-shopify-hash': hash,
+      },
+      contentType: 'application/json',
+      data: JSON.stringify(metafields),
+    })
+      .done(function (data) {
+//         console.log({ success: true, data: data })
+      })
+      .fail(function (data) {
+//         console.log({ success: false, data: data })
+      })
+  
+    return false
+  }
+
+function editForm(param){
+      let element = document.getElementsByClassName('name p-result__top__search_info__name')[0];
+    element.style.display = 'inline-block';
+    element.innerHTML = '<input id="form-name" type="text" name="name" size="20" maxlength="20" value="' + element.textContent + '">';
+    
+//     element = document.getElementsByClassName('input age')[0];
+//     element.innerHTML = '<input type="number" name="age" min="0" max="99" value=' + element.textContent + '>';
+    
+    let today = new Date();
+    today = today.getFullYear() + '-' + ("0"+(today.getMonth() + 1)).slice(-2) + '-' + ("0"+today.getDate()).slice(-2);
+    let year = document.getElementsByClassName('input birthyear')[0].textContent;
+    let month = document.getElementsByClassName('input birthmonth')[0].textContent;
+    let day = document.getElementsByClassName('input birthday')[0].textContent;
+    let birthday = year +'-'+ month +'-' + day;
+    element = document.getElementsByClassName('p-result__top__search_info__birthinfo')[0];
+    element.innerHTML = '<span class="label1">誕生日</span ><input type="date" name="birthday" id="form-birthday" min="1900-01-01" max="' + today +'" value=' + birthday + '>';
+    
+    element = document.getElementsByClassName('p-result__top__search_info__gender')[0];
+    let gender = element.textContent;
+    element.style.display = 'inline-block';
+    if( gender == '男の子' ){
+    	element.innerHTML = '<span class="label1">性別</span ><select id="form-gender"><option value="男の子" selected>男の子</option><option value="女の子">女の子</option></select>';
+    }else if( gender == '女の子' ){
+    	element.innerHTML = '<span class="label1">性別</span ><select id="form-gender"><option value="男の子">男の子</option><option value="女の子" selected>女の子</option></select>';
+    }
+    
+    element = document.getElementsByClassName('p-result__top__search_info__alergiesbox__lists')[0];
+    element.style.display = 'none';
+//     element.innerHTML +='<select class="js-example-basic-multiple" name="allergies" multiple="multiple"><option value="AL">Alabama</option><option value="WY">Wyoming</option></select>';
+    element = document.getElementsByClassName('allergies-select-box')[0];
+    element.style.display = '';
+    if( param.q3 != 'ありません' ){
+      $jQuerySelect2('#form-allergies').val(param.q3.split(', ')).trigger("change");
+    }
+}
+
+function saveForm(){
+  let newMetafields = {};
+  newMetafields['name'] = $('#form-name').val();
+  newMetafields['gender'] = $('#form-gender').val();
+  newMetafields['birthday'] = $('#form-birthday').val().replace(/-/g, '/');
+  let allergies = $('#form-allergies').val();
+  if( allergies.length ){
+  	newMetafields['allergies'] = allergies.join(', ');
+  }else{
+    newMetafields['allergies'] = 'ありません';
+  }
+  
+  document.cookie = 'q1=' + encodeURIComponent(newMetafields['name']) + '; path=/;';
+  document.cookie = 'q2=' + encodeURIComponent(newMetafields['gender']) + '; path=/;';
+  document.cookie = 'q3=' + encodeURIComponent(newMetafields['allergies']) + '; path=/;';
+  document.cookie = 'q22=' + encodeURIComponent(newMetafields['birthday']) + '; path=/;';
+  
+  updateMetafields(newMetafields);
+}
+
+function alertIE(){
+  let userAgent = window.navigator.userAgent; 
+//   console.log(userAgent);
+//   IE8〜11に表示
+  if(userAgent.indexOf('Trident') != -1 || userAgent.indexOf('MSIE') != -1){ 
+    alert('お使いのブラウザは閲覧推奨環境ではありません。\nウェブサイトが正しく表示されない、動作しない等の現象が起こる場合がありますので予めご了承ください。\nchromeまたはEdgeブラウザのご利用をおすすめいたします。');
+  }
+}
+
+var param = getParams( decodeURI(location.href) );
+
+
+$(function() {
+  $(document).ready( function(){
+      alertIE()
+      let today = new Date();
+      let diagnosisDate = today.getFullYear() +'/'+ (today.getMonth()+1) +'/'+ today.getDate();        
+
+  //     console.log(document.cookie);
+  //     優先度：パラメタ，metafields,cookie
+      if ( ! checkParam(param) ){
+        if (checkParam(customer_meta) && param.data != 'cookie' ){
+           console.log('use customer_meta');
+           param = customer_meta;
+           diagnosisDate = param.diagnosis_date;
+        }
+        else{
+          let cookies = getCookie();
+          console.log('use cookie');
+          param = cookies;
+          diagnosisDate = param.diagnosis_date;
+        }
+      }
+  //     console.log(diagnosisDate);
+  //     console.log(param);
+      updateProfile(param, diagnosisDate);
+      updateScore(param);
+      recommendLogic(param);
+      updateCookie(param, diagnosisDate);
+  });
+  
+  $('.p-result__top__search_info__birthinfo').change(function() {
+//     console.log($(this).children('input')[0].value);
+      let birthdayList = $(this).children('input')[0].value.split('-');
+      let y = birthdayList[0];
+      let m = birthdayList[1];
+      let d = birthdayList[2];
+      updateClassElements("age", getAge(y, m, d));
+  });
+  
+  
+  $('.p-result__top__change_btn').on('click', function() {
+    if ($(this)[0].value == 'edit') {
+      editForm(param);
+      $(this)[0].textContent = '変更内容の保存';
+      $(this)[0].value = 'save';
+    }
+    else if ( $(this)[0].value == 'save' ) {
+      saveForm();
+//       document.location.reload()
+      setTimeout(() => {
+      	location.href = 'https://homeal.co.jp/pages/result?data=cookie';
+      },1000)
+//       $(this)[0].value = 'edit';
+    }
+  })
+  
+});

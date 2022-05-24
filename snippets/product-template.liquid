@@ -1,0 +1,388 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{%- assign product_zoom_size = '1800x1800' -%}
+{%- assign product_image_size = '620x' -%}
+{% case image_container_width %}
+  {% when 'small' %}
+    {%- assign product_image_width = 'medium-up--two-fifths' -%}
+    {%- assign product_description_width = 'medium-up--three-fifths' -%}
+    {%- assign product_image_size = '480x' -%}
+  {% when 'medium' %}
+    {%- assign product_image_width = 'medium-up--one-half' -%}
+    {%- assign product_description_width = 'medium-up--one-half' -%}
+    {%- assign product_image_size = '620x' -%}
+  {% when 'large' %}
+    {%- assign product_image_width = 'medium-up--three-fifths' -%}
+    {%- assign product_description_width = 'medium-up--two-fifths' -%}
+    {%- assign product_image_size = '740x' -%}
+{% endcase %}
+
+{% unless thumbnail_position %}
+  {%- assign thumbnail_position = 'beside' -%}
+{% endunless %}
+
+{% unless description_style %}
+  {%- assign description_style = 'full' -%}
+{% endunless %}
+
+{% assign product_metafields = all_products[product.handle].metafields.global.info %}
+
+<div id="ProductSection-{{ section_id }}"
+  class="product-section"
+  data-section-id="{{ section_id }}"
+  data-section-type="product-template"
+  {% if settings.product_zoom_enable %}
+    data-image-zoom="true"
+  {% endif %}
+  {% if settings.inventory_enable %}
+    data-inventory="true"
+  {% endif %}
+  {% if settings.inventory_transfers_enable %}
+    data-incoming-inventory="true"
+  {% endif %}
+  {% unless isModal %}
+    data-enable-history-state="true"
+  {% endunless %}>
+
+  {% render 'product-template-variables', product: product, current_variant: current_variant %}
+
+  <div class="c-page__container">
+    <div class="c-container">
+
+      {% if settings.show_breadcrumbs and isModal != true %}
+        {% render 'breadcrumbs' %}
+      {% endif %}
+
+      <div class="grid p-product">
+        <div class="grid__item {{ product_image_width }} p-product__img">
+          {% render 'product-images',
+            section_id: section_id,
+            product: product,
+            isModal: isModal,
+            product_zoom_size: product_zoom_size,
+            product_image_size: product_image_size,
+            thumbnail_position: thumbnail_position,
+            thumbnail_arrows: thumbnail_arrows,
+            video_looping: video_looping,
+            video_style: video_style
+          %}
+        </div>
+
+        <div class="grid__item {{ product_description_width }} p-product__info">
+
+          <div class="product-single__meta">
+            {% if settings.vendor_enable %}
+              <div class="product-single__vendor">
+                {%- assign vendor_handle = product.vendor | handleize  -%}
+                {%- if collections[vendor_handle] != empty -%}
+                  <a href="{{ routes.collections_url }}/{{ collections[vendor_handle].handle }}">
+                    {{ collections[vendor_handle].title }}
+                  </a>
+                {%- else -%}
+                  {{ product.vendor | link_to_vendor }}
+                {%- endif -%}
+              </div>
+            {% endif %}
+
+            {% if isModal %}
+              <p class="h2 product-single__title">
+                {{ product.title }}
+              </p>
+            <div>
+              {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product %}
+            </div>
+            {% else %}
+              <h1 class="h2 product-single__title">
+                {{ product.title }}
+                {% if product.handle == 'product-6-set' %}
+<!--                   定期便 -->
+                  {{ current_variant.title }}
+                {% endif %}
+              </h1>
+              <div>
+                 {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product %}
+              </div>
+            {% endif %}
+
+            {% if settings.enable_product_reviews and settings.reviews_layout == 'full' %}
+              {% if isModal %}
+                {%- assign review_link = product.url | within: collection | append: '#Reviews-' | append: product.id -%}
+              {% else %}
+                {%- assign review_link = '#Reviews-' | append: product.id -%}
+              {% endif %}
+              <a href="{{ review_link }}" class="product-single__review-link">
+                <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+              </a>
+            {% endif %}
+
+            {% if settings.sku_enable %}
+              <p id="Sku-{{ section_id }}" class="product-single__sku">
+                {% if current_variant.sku %}
+                  {{ current_variant.sku }}
+                {% endif %}
+              </p>
+            {% endif %}
+
+
+            <span id="ProductPrice-{{ section_id }}"
+              class="product__price{% if current_variant.compare_at_price > current_variant.price %} sale-price{% endif %}">
+              {{ current_variant.price | money }}</span>
+            <span class="product__price-detail">
+              <span class="product__price-tax">(税込)</span>
+                {% if current_variant.id == 35826764546216 or current_variant.id == 35826764578984 %}
+                  <span class="product__price-per_meal"></span>
+                  {% elsif current_variant.id == 35826764611752 %}
+                 <span class="product__price-per_meal"></span>
+                  {% endif %}
+              </span>
+            
+            {%- assign hide_sale_price = true -%}
+            {% if product.compare_at_price_max > product.price %}
+              {% if current_variant.compare_at_price %}
+                {%- assign hide_sale_price = false -%}
+              {% endif %}
+              <span
+                id="PriceA11y-{{ section_id }}"
+                class="visually-hidden"
+                aria-hidden="{{ hide_sale_price }}">
+                  {{ 'products.general.regular_price' | t }}
+              </span>
+              <span class="product__price-wrap-{{ section_id }}{% if hide_sale_price %} hide{% endif %}">
+                <span style="font-size:14px;color:rgba(0,0,0,0.6);">通常価格</span>
+                <span id="ComparePrice-{{ section_id }}" class="product__price product__price--compare">
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </span>
+              </span>
+              <span id="ComparePriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            {% else %}
+              <span id="PriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            {% endif %}
+
+            <div class="product__unit-price product__unit-price-wrapper--{{ section_id }}{% unless current_variant.unit_price_measurement %} hide{% endunless %}">
+              {%- capture unit_price_base_unit -%}
+                <span class="product__unit-base--{{ section_id }}">
+                  {%- if current_variant.unit_price_measurement -%}
+                    {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                      {{ current_variant.unit_price_measurement.reference_value }}
+                    {%- endif -%}
+                    {{ current_variant.unit_price_measurement.reference_unit }}
+                  {%- endif -%}
+                </span>
+              {%- endcapture -%}
+
+              <span class="product__unit-price--{{ section_id }}">{{ current_variant.unit_price | money }}</span>/{{ unit_price_base_unit }}
+            </div>
+
+            {% comment %}{%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+              <div class="product__policies rte">
+                <small>
+                  {%- if shop.taxes_included -%}
+                    {{ 'products.product.include_taxes' | t }}
+                  {%- endif -%}
+                  {%- if shop.shipping_policy.body != blank -%}
+                    {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- endif -%}
+                </small>
+              </div>
+            {%- endif -%}{% endcomment %}
+
+            {%- if settings.inventory_enable or settings.inventory_transfers_enable -%}
+              {%- assign variants_with_inventory_tracking = product.variants | where: 'inventory_management', 'shopify' -%}
+
+              <script>
+                // Store inventory quantities in JS because they're no longer
+                // available directly in JS when a variant changes.
+                // Have an object that holds all potential products so it works
+                // with quick view or with multiple featured products.
+                window.inventories = window.inventories || {};
+                window.inventories['{{section_id}}'] = {};
+                 {% for variant in variants_with_inventory_tracking %}
+                  window.inventories['{{section_id}}'][{{variant.id}}] = {
+                    'quantity': {{ variant.inventory_quantity | default: 0 }},
+                    'incoming': {{ variant.incoming | default: false | json }},
+                    'next_incoming_date': {{ variant.next_incoming_date | date: format: 'date' | json }}
+                  };
+                 {% endfor %}
+              </script>
+
+              {% comment %}
+                If loaded in quick view, it might be from a JS-loaded function
+                that loads recommended products. If that's the case, the above
+                JS will not set the variant inventory. Add it to an accessible
+                data div to read later instead.
+              {% endcomment %}
+              {%- if isModal -%}
+                <div
+                  data-section-id="{{ section_id }}"
+                  class="hide js-product-inventory-data"
+                  aria-hidden="true"
+                  >
+                  {%- for variant in variants_with_inventory_tracking -%}
+                    <div
+                      class="js-variant-inventory-data"
+                      data-id="{{ variant.id }}"
+                      data-quantity="{{ variant.inventory_quantity | default: 0 }}"
+                      data-incoming="{{ variant.incoming | default: false | json }}"
+                      data-date="{{ variant.next_incoming_date | date: format: 'date' | json }}"
+                    >
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+
+              {%- assign inventory_visible = false -%}
+              {% if settings.inventory_enable and current_variant.inventory_management == 'shopify' %}
+                {%- if current_variant.inventory_quantity <= settings.inventory_threshold and current_variant.inventory_quantity >= 0 -%}
+                  {%- assign inventory_visible = true -%}
+                {%- endif -%}
+              {% endif %}
+              {% if current_variant.inventory_quantity == 0 or current_variant.inventory_policy == 'continue' %}
+                {%- assign inventory_visible = false -%}
+              {% endif %}
+              <div
+                id="ProductInventory-{{ section_id }}"
+                class="product__inventory {% unless inventory_visible %}hide{% endunless %}"
+                >
+                {% if current_variant.available %}
+                  {{ 'products.product.stock_label' | t: count: current_variant.inventory_quantity }}
+                {% endif %}
+              </div>
+
+              {%- if settings.inventory_transfers_enable -%}
+                <div
+                  id="ProductIncomingInventory-{{ section_id }}"
+                  class="product__inventory{% if inventory_visible %} hide{% endif %}">
+                  {%- if current_variant.incoming and inventory_visible == false -%}
+                    {%- if current_variant.next_incoming_date -%}
+                      {% assign date = current_variant.next_incoming_date | date: format: 'date' %}
+                      {%- if current_variant.available -%}
+                        {{ 'products.product.will_not_ship_until' | t: date: date }}
+                      {%- else -%}
+                        {{ 'products.product.will_be_in_stock_after' | t: date: date }}
+                      {%- endif -%}
+                    {%- else -%}
+                      {{ 'products.product.waiting_for_stock' | t }}
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {% endif %}
+            
+            {% if product.handle == 'product-6-set' %}
+            <p><div class="c-price_off">
+            	{% if current_variant.id == 35826764546216 or current_variant.id == 35826764578984 %}
+            	単品購入より5%OFF
+            	{% elsif current_variant.id == 35826764611752 %}
+                単品購入より6%OFF
+<!--             	<span>初回</span>50%OFF -->
+            	{% endif %}
+            </div>
+            <div class="c-price_off">
+              メニューは全商品から毎回変更可能
+              </div>
+            </p>
+            {% endif %}
+
+            <hr class="hr--medium">
+
+            {% if social %}
+              {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            {% endif %}
+
+            {% unless isModal %}
+              {% comment %}
+                Shopify's product form attaches a number of tracking
+                scripts that cause slower load times and false statistics.
+                Quick view modals request these on-demand.
+              {% endcomment %}
+              {% render 'product-form',
+                section_id: section_id,
+                product: product,
+                current_variant: current_variant
+              %}
+            {% else %}
+              <div
+                id="ProductFormHolder-{{ section_id }}"
+                data-url="{{ product.url }}"
+                data-template="{{ product.template_suffix }}"></div>
+            {% endunless %}
+
+            {% unless description_style == 'full' %}
+              <div class="product-single__description rte">
+                {{ product.description }}
+              </div>
+
+              {% render 'product-additional-content', product: product, section_id: section_id %}
+            {% endunless %}
+
+<!--      tag表示        -->
+            {% unless  product_metafields == blank %}            
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="balance">栄養バランス</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_balance_tags">
+                  {% for tag in product_metafields.main_nutrition_tag %}
+                   <li class="p-menu_detail__tag" data-type="balance">{{ tag}}</li>
+                  {% endfor %}
+                  {% for tag in product_metafields.sub_nutrition_tag %}
+                   <li class="p-menu_detail__tag" data-type="balance">{{ tag}}</li>
+                  {% endfor %}
+                </ul>
+              </dd>
+            </dl>
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="lifestyle">生活習慣</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_lifestyle_tags">
+                  {% for tag in product_metafields.main_lifestyle_tag %}
+                   <li class="p-menu_detail__tag" data-type="lifestyle">{{ tag}}</li>
+                  {% endfor %}
+                  {% for tag in product_metafields.sub_lifestyle_tag %}
+                   <li class="p-menu_detail__tag" data-type="lifestyle">{{ tag}}</li>
+                  {% endfor %}
+                </ul>
+              </dd>
+            </dl>
+            <dl class="p-menu_detail__info">
+              <dt class="p-menu_detail__smallheader" data-type="ingredients">アレルゲン</dt>
+              <dd>
+                <ul class="p-menu_detail__tags p-menu_detail_ingredients_tags">
+                  {% for allergy in product_metafields.allergies %}
+                   <li class="p-menu_detail__tag" data-type="ingredients">{{ allergy}}</li>
+                  {% endfor %}
+                </ul>
+              </dd>
+            </dl>
+            {% endunless  %}
+<!--      tag表示終わり        -->
+          
+          </div>
+        </div>
+      </div>
+
+      {% if description_style == 'full' %}
+        <div class="product-single__description-full rte">
+          {{ product.description }}
+        </div>
+
+        {% render 'product-additional-content', product: product, section_id: section_id %}
+      {% endif %}
+
+  </div>
+
+  </div>
+<div style="max-width: 940px; margin: auto;">
+  {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+</div>
+</div>
+
+<script>
+	var product_title = "{{ product.title }}";
+</script>
+
+{% if product.handle == 'product-6-set' %}
+<!-- 	<script src="{{ 'update_choice.js' | asset_url }}" defer="defer"></script> -->
+    <script src="{{ 'product-6-set.js' | asset_url }}" defer="defer"></script>
+{% endif %}

@@ -1,0 +1,37 @@
+<div class="c-header__iconbox">
+  <div class="c-header__icon--kids"><a href="/pages/result" class="c-header__iconbox_link">{{ 'icn_kids.png' | asset_url | img_tag }}<span class="c-header__iconbox_text">診断結果</span></a></div>
+  
+  {% if shop.customer_accounts_enabled %}
+  	<div class="c-header__icon--mypage">
+      <a href="{{ routes.account_url }}" class="c-header__iconbox_link">
+        {{ 'icn_mypage.png' | asset_url | img_tag}}
+        <span class="c-header__iconbox_text">
+          {% if customer %}
+            {{ 'layout.customer.account' | t }}
+          {% else %}
+            {{ 'layout.customer.log_in' | t }}
+          {% endif %}
+        </span>
+      </a>
+    </div>
+  {% endif %}
+
+  {% if settings.search_enable %}
+    <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-search-header js-no-transition">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+      <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
+    </a>
+  {% endif %}
+
+  <div class="c-header__icon--cart">
+    <a href="{{ routes.cart_url }}" class="c-header__iconbox_link js-drawer-open-cart js-no-transition" aria-controls="CartDrawer" data-icon="{{ settings.cart_icon }}">
+      {%- if settings.cart_icon == 'bag' -%}
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag" viewBox="0 0 64 64"><g fill="none" stroke="#000" stroke-width="2"><path d="M25 26c0-15.79 3.57-20 8-20s8 4.21 8 20"/><path d="M14.74 18h36.51l3.59 36.73h-43.7z"/></g></svg>
+      {%- else -%}
+        {{ 'icn_cart.png' | asset_url | img_tag}}<span class="c-header__iconbox_text">カート</span>
+      {%- endif -%}
+      <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+      <span class="cart-link__bubble{% if cart.item_count > 0 %} cart-link__bubble--visible{% endif %}"></span>
+    </a>
+  </div>
+</div>

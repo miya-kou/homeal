@@ -1,0 +1,10 @@
+<form action="{{ routes.search_url }}" method="get" class="input-group new-search-bar" role="search">
+  <input type="hidden" name="type" value="{{ search_type }}">
+  <input type="search" name="q" value="{{ search.terms | escape | replace: '*', '' }}" placeholder="記事を検索する" class="new-search-bar__text-field" aria-label="記事を検索する">
+  <span class="new-search-bar__icon">
+    <label>
+    <input type="submit" style="display: none;" />
+    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+    </label>
+  </span>
+</form>

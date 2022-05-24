@@ -1,0 +1,144 @@
+{% comment %}↓前半のコンテンツがここに入る{% endcomment %}
+{{ page.content | split: '=====' | first }}
+
+<div class="page-width page-content socialplus-lp_margin-top"> 
+  <div class="p-account">
+
+  <img class="socialplus-lp_image-width" src="https://cdn.shopify.com/s/files/1/0412/4347/6136/files/homeal_03.jpg" alt="LINE ID連携のメリット" />
+
+  </div>
+</div>
+
+<div class="page-width page-content socialplus-lp_margin-top"> 
+  <div class="p-account">
+
+    <h1 class="p-account__title">はじめてのお客さま</h1>
+
+    <div class="form-vertical" id="socialplus-login">
+{% render 'socialplus-error-banner' %}
+{% comment %}
+{% render 'socialplus-login-button', kind: 'signup', provider: 'line' %}
+{% endcomment %}
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+  function main() {
+    liff.init({ liffId: '1656084305-Vprn7vAX' }).then(() => {
+      const loginButtonScript = document.createElement('script');
+      loginButtonScript.setAttribute('src', 'https://shop.socialplus.jp/storefront/bundle.js');
+      loginButtonScript.setAttribute('class', 'socialplus-login-button');
+      loginButtonScript.setAttribute('data-locale', Shopify.locale);
+      loginButtonScript.setAttribute('data-root-url', Shopify.routes.root);
+      loginButtonScript.setAttribute('data-kind', 'signup');
+      loginButtonScript.setAttribute('data-provider', 'line');
+      loginButtonScript.setAttribute('data-callback-url', '');
+      loginButtonScript.setAttribute('data-highlight-last-login', 'true');
+      const target = document.getElementById('socialplus-login');
+      target.appendChild(loginButtonScript);
+    })
+  }
+  main();
+</script>
+    </div>
+  </div>
+</div>
+
+<div class="page-width page-content socialplus-lp_margin-top">
+  <div class="p-account">
+
+    <h1 class="p-account__title">会員登録済のお客さま</h1>
+
+    <div class="note note--success hide" id="ResetSuccess">
+      {{ 'customer.recover_password.success' | t }}
+    </div>
+
+    <div id="CustomerLoginForm" class="form-vertical　p-account__form">
+      {% form 'customer_login' %}
+
+      {{ form.errors | default_errors }}
+
+      <div class="p-account__list">
+        <dl>
+         <div class="p-account__note">ログインしてマイページからLINE連携してください</div>
+          <dt>
+            <label for="CustomerEmail">メールアドレスを入力</label>
+          </dt>
+          <dd>
+            <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" autocorrect="off" autocapitalize="off" autofocus>
+          </dd>
+        </dl>
+
+        {% if form.password_needed %}
+        <dl>
+          <dt>
+            <label for="CustomerPassword">パスワードを入力</label>
+          </dt>
+          <dd>
+            <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}">
+            <div class="p-account__link_forgot">パスワードを忘れた方は<a href="#recover" id="RecoverPassword" class="js-no-transition">こちら</a></div>          
+          </dd>
+        </dl>
+        {% endif %}
+      </div>
+
+      <p>
+        <input type="submit" class="btn btn--full btn--no-animate p-account__btn" value="ログイン">
+      </p>
+
+
+      {% endform %}
+    </div>
+
+    <div id="RecoverPasswordForm" class="hide">
+
+      <h2 class="p-account__text">{{ 'customer.recover_password.title' | t }}</h2>
+      <p class="p-account__subtext">{{ 'customer.recover_password.subtext' | t }}</p>
+
+
+      <div class="form-vertical">
+        {% form 'recover_customer_password' %}
+
+        {{ form.errors | default_errors }}
+
+        {% if form.posted_successfully? %}
+        <span class="hide reset-password-success"></span>
+        {% endif %}
+
+        <div class="p-account__list">
+          <dl>
+            <dt>
+              <label for="RecoverEmail">メールアドレスを入力</label>
+            </dt>
+            <dd>
+              <input type="email" value="" name="email" id="RecoverEmail" class="input-full" autocorrect="off" autocapitalize="off">
+            </dd>
+          </dl>
+        </div>
+
+        <p>
+          <input type="submit" class="btn p-account__btn" value="{{ 'customer.recover_password.submit' | t }}">
+        </p>
+        <button type="button" id="HideRecoverPasswordLink" class="p-account__link_cancel js-recover_password_cancel">{{ 'customer.recover_password.cancel' | t }}</button>
+        {% endform %}
+      </div>
+
+    </div>
+
+    {% if shop.checkout.guest_login %}
+    <hr class="hr--clear">
+
+    <h1>{{ 'customer.login.guest_title' | t }}</h1>
+    <hr class="hr--small">
+
+    {% form 'guest_login' %}
+    <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+    {% endform %}
+    {% endif %}
+
+  </div>
+  <div class="p-account__note">幼児食診断から定期便を購入された方は、購入時のメールアドレスで会員アカウントを作成することで、今後の定期購入内容（BOX内商品の変更/配送頻度の変更/スキップ等）を自由に変更することができます。</div>
+</div>
+</div>
+</div>
+
+{% comment %}↓後半のコンテンツがここに入る{% endcomment %}
+{{ page.content | split: '=====' | last }}

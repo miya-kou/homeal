@@ -1,0 +1,45 @@
+<div class="page-width page-content">
+  <div class="p-account">
+
+    <h1 class="p-account__title">{{ 'customer.register.title' | t }}</h1>
+
+    {% render 'socialplus-error-banner' %}
+    {% render 'socialplus-login-button', kind: 'signup', provider: 'line' %}
+    
+    <div class="form-vertical">
+      {% form 'create_customer' %}
+
+      {{ form.errors | default_errors }}
+      
+      <div class="p-account__list">
+        <div class="p-account__list_half">
+          <dl>
+            <dt><label for="LastName">{{ 'customer.register.last_name' | t }}</label></dt>
+            <dd><input type="text" name="customer[last_name]" id="LastName" class="input-full" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words"></dd>
+          </dl>
+          <dl>
+            <dt><label for="FirstName">{{ 'customer.register.first_name' | t }}</label></dt>
+            <dd><input type="text" name="customer[first_name]" id="FirstName" class="input-full" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus></dd>
+          </dl>
+        </div>
+
+        <dl>
+          <dt><label for="Email">メールアドレス</label></dt>
+          <dd><input type="email" name="customer[email]" id="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off"></dd>
+        購入済の方は、購入時と同じメールアドレスを登録してください（Gmailやyahoo等のフリーメール推奨｜携帯キャリアメールには届かないケースがあります）
+        </dl>
+
+        <dl>
+          <dt><label for="CreatePassword">{{ 'customer.register.password' | t }}</label></dt>
+          <dd><input type="password" name="customer[password]" id="CreatePassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}"></dd>
+          お好きなパスワードを新規登録してください
+        </dl>
+      </div>
+
+      <input type="submit" value="アカウントを作成" class="btn btn--full btn--no-animate p-account__btn">
+
+      {% endform %}
+    </div>
+
+  </div>
+</div>

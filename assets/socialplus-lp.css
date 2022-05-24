@@ -1,0 +1,50 @@
+.socialplus-lp_image-width {
+    max-width: 456px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+.socialplus-lp_margin-top {
+    margin-top: -48px;
+}
+
+@media screen and (min-width: 590px) {
+    .socialplus-lp_margin-top {
+        margin-top: -80px;
+    }
+}
+.socialplus-form-submit-button {
+    width: 100%;
+    min-width: 90px;
+    max-width: 100%;
+    padding: 13px 35px!important;
+    line-height: 1.42!important;
+    background: #ffcd00!important;
+    border: none!important;
+    border-radius: 30px;
+    color: #000!important;
+    font-size: 1rem;
+    font-family: var(--typeHeaderPrimary),var(--typeHeaderFallback);
+    font-weight: var(--typeHeaderWeight);
+    letter-spacing: var(--typeHeaderSpacing);
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.socialplus-form-submit-button:hover {
+    padding: 13px 35px!important;
+    background-color: #e5b800!important;
+    color: #000!important;
+}
+
+@media screen and (max-width: 768px) {
+    .socialplus-form-submit-button {
+        padding: 11px 30px !important;
+        margin-bottom: 80px!important;
+        font-size: 0.875rem;
+    }
+    .socialplus-form-submit-button:hover {
+        padding: 11px 30px !important;
+    }
+}

@@ -1,0 +1,2 @@
+{{ 'cart-attributes-os1.scss.css' | asset_url | stylesheet_tag }}
+<div id="cart-delivery-datetime_section" data-os="1.0" data-timezones="{% for  delivery_timezone in shop.metafields.cart_delivery_app['delivery_timezones_key'] %}'{{delivery_timezone}}',{%endfor%}"></div>

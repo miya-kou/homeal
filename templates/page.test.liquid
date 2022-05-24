@@ -1,0 +1,13 @@
+{{ products['test'].metafields.global.testkey }}
+
+{{ products['test'].metafields.global.testkey }}
+
+<h1>aa{{ products }}aaa</h1>
+
+{{ all_products['test'].metafields.global.testkey }}
+
+<script>
+  const  test = "{{all_products['test'].metafields.global.testkey}}"
+</script>
+
+{{ 'test.js' | asset_url | script_tag }}　

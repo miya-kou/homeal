@@ -1,0 +1,382 @@
+.mxpr-summary__header {
+  display: flex;
+  justify-content: space-between;
+}
+.mxpr-summary__headline {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.mxpr-summary__form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 12px auto 15px;
+  max-width: 600px;
+}
+
+.mxpr-summary__form .field {
+  margin-top: 16px;
+}
+
+.mxpr-review .mxpr-review__list {
+  list-style: none;
+  padding-inline: 0;
+  margin: 0;
+}
+
+.mxpr-review .mxpr-review__list-item {
+  padding: 16px 0 0 0;
+  border-top: 1px solid #dbdbdb;
+}
+
+.mxpr-review .mxpr-review__list-item-meta-headline {
+  margin: 8px 0;
+}
+
+#mxpr-form-submit-button{
+  margin-top: 16px;
+}
+
+.mxpr-summary__write-review {
+  border: 1px solid #f7a03e;
+  padding: 0px 15px;
+  color: #f19225;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 1em;
+  vertical-align: text-bottom;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mxpr-summary__write-review:hover {
+  text-decoration: underline;
+  background-color: #f7a03e;
+  color: white;
+}
+
+.mxpr-summary__info {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mxpr-summary__count {
+  margin: 2px 0;
+  font-size: 0.8em;
+  color: #666;
+}
+
+.mxpr-summary__ratings {
+  flex-basis: 200px;
+  flex-grow: 2;
+}
+
+.mxpr-summary__ratings ul {
+  border-left: 1px solid #ececec;
+  list-style-type: none;
+  margin: 0 20px;
+  padding: 0 15px;
+}
+
+.mxpr-summary__ratings ul li {
+  margin-bottom: 3px;
+}
+
+.mxpr-summary__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mxpr-summary__item .star-ratings-css {
+  font-size: 16px;
+  width: 80px;
+}
+
+.mxpr-summary__bar {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 14px;
+  margin: 0 2px 0 8px;
+  vertical-align: middle;
+  box-shadow: inset 0 0 1px #666;
+}
+
+.mxpr-summary__bar-content {
+  height: 100%;
+  font-size: 9px;
+  line-height: 16px;
+  background: #f7a03e;
+  box-shadow: inset 0 0 1px #888;
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+}
+
+.mxpr-summary__item-percentage {
+  font-size: 12px;
+  width: 48px;
+  text-align: right;
+  color: #999;
+}
+
+.mxpr-summary__item-reviewcount {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #999;
+}
+.mxpr-summary__form input {
+  border-radius: 5px;
+}
+
+.mxpr-summary__order {
+  align-self: flex-end;
+}
+
+.mxpr-summary__order select {
+  position: relative;
+  -webkit-appearance: button;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  height: 2.2em;
+  margin: 2px;
+  padding: 0.3em 0.6em;
+  background: white;
+  border: 1px solid #aaaaaa;
+  border-radius: 0.3em;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  text-shadow: 0 1px 0 white;
+  -webkit-transition: box-shadow 200ms, border-color 200ms;
+  -moz-transition: box-shadow 200ms, border-color 200ms;
+  transition: box-shadow 200ms, border-color 200ms;
+  white-space: nowrap;
+}
+.mxpr-summary__order select option {
+  text-shadow: none;
+}
+
+.mxpr-review__list-item-account {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.mxpr-review__list-item-icon {
+  position: relative;
+  float: left;
+  width: 2.2em;
+  height: 2.2em;
+  line-height: 2.2em;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #bbbbbb;
+}
+
+.mxpr-review__list-item-meta {
+  display: flex;
+  align-items: center;
+}
+
+.mxpr-review__list-item-meta-title {
+  margin-left: 10px;
+}
+
+.mxpr-review__list-item-createdat {
+  font-size: 0.8em;
+  color: #979494;
+  margin: 5px 0;
+}
+
+.mxpr-review__list-item-body {
+  font-size: 1em;
+  line-height: 1.3em;
+}
+
+.mxpr-review__list-item-votes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mxpr-review__list-item-votes-message {
+  font-size: 0.8em;
+  color: #838383;
+}
+
+.mxpr-review__list-item-votes-action {
+  margin: 0 5px 0 10px;
+}
+
+.mxpr-review__list-item-votes-button {
+  font-size: 0.8em;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 2;
+  border: 1px solid #ddd;
+  border-radius: 0.25em;
+  color: #666;
+  background-color: white;
+}
+
+.mxpr-review__list-item-votes-button:hover {
+  color: white;
+  background-color: #4275ff;
+  text-decoration: underline;
+}
+
+.mxpr-helpful-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f7a03e;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.mxpr-form-message{
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f7a03e;
+  text-align: center;
+  border-radius: 6px;
+  display: none;
+}
+
+#mxpr-review__load-more-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 0.9em;
+  line-height: 2;
+  border: 1px solid #ddd;
+  border-radius: 0.25em;
+  color: #666;
+  background-color: white;
+}
+#mxpr-review__load-more-button:hover {
+  color: #fff;
+  background-color: #00976e;
+}
+
+.mxpr-form-notice {
+  color: #999;
+  font-size: 0.8em;
+}
+
+.mxpr-review__list-item-reply-hidden {
+  display: none;
+}
+
+.mxpr-review__list-item-reply ul {
+  list-style: none;
+  font-size: 0.8em;
+  border-left: 5px solid #ccc;
+  line-height: 1.3em;
+  padding: 0 20px 10px;
+}
+
+.mxpr-review__list-item-reply-name {
+  font-weight: bold;
+  line-height: 1.8em;
+}
+
+.mxpr-review__list-item-reply-name-hidden {
+  display: none;
+}
+
+.mxpr-review__has-not-next {
+  display: none;
+}
+
+.mxpr-loader,
+.mxpr-loader:before,
+.mxpr-loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.mxpr-loader {
+  color: #9c9c9c;
+  font-size: 10px;
+  margin: 0 auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.mxpr-loader:before,
+.mxpr-loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.mxpr-loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.mxpr-loader:after {
+  left: 3.5em;
+}
+
+.mxpr-review__list-item-top-review-hidden{
+  display: none;
+}
+
+.mxpr-review__list-item-top-review {
+  margin: 0 10px;
+  color: white;
+  background-color: cadetblue;
+  padding: 0 10px;
+  font-size: 0.7em;
+  border-radius: 10px;
+}
+
+.mxpr-form-alert-message{
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
+.mxpr-summary__form{
+  display: none;
+}
+
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}

@@ -1,0 +1,56 @@
+/*
+* Modify  This file as needed to ensure the Bold RO widget looks nice.
+*
+* Within this file are general stylings that are designed to "fix" various aspects of the Recurring Orders app.
+*
+* These style rules may need to be modified or removed depending on the Shopify theme in use.
+*
+* Place the below include statment before the end </head> tag in the theme.liquid file.
+* {{ 'bold-ro.css' | asset_url | stylesheet_tag }}
+*/
+ 
+/* Ensures that the RO widget takes up the entire width of it's parent container */
+.ro_widget {
+  width:100%;
+}
+ 
+/* Aligns the "subscription" and "one time purchase" labels withe their radio buttons */
+.bold-ro__one-time-radio-btn, .bold-ro__subscribe-radio-btn {
+  min-height:0px !important;
+}
+ 
+/* Mimics the "Add to cart" button stylings in use for the current Shopify theme.
+ * These styles will need to be modified from theme to theme
+*/
+ 
+.button {
+  background-color: transparent;
+  color: #4d9f40;
+  border: 1px solid #4d9f40;
+  padding: 22px 20px;
+  line-height: 0;
+  width: 100%;
+  font-weight: 400;
+  font-size: 17.999px;
+  font-stretch:100%;
+  text-decoration: none;
+  text-transform:uppercase;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+ 
+}
+ 
+.button:hover {
+  background-color: rgba(31,128,15,0.3);
+}
+ 
+/* Prevents the recurring cart div from looking "too long" */
+.product_rp_cart_div {
+  max-width:30%;
+  margin-left:70%;
+}
+
+[name="checkout"] * {
+ pointer-events: none !important; 
+}

@@ -1,0 +1,283 @@
+{{ 'mxpr-style.css' | asset_url | stylesheet_tag }}
+{{ 'mxpr-star-rating.css' | asset_url | stylesheet_tag }}
+
+{% unless block %}
+  {% assign block = section %}
+{% endunless %}
+
+{% unless product %}
+  {% assign product = block.settings.product %}
+{% endunless %}
+
+{% assign summary = product.metafields.prime_review.summary %}
+{% assign avg_rating = summary.stars | plus: 0 %}
+{% assign review_count = summary.total_count | plus: 0 %}
+{% assign reviews = product.metafields.prime_review.reviews %}
+{% assign list_count = block.settings.list_count %}
+{% if list_count > 10 %}{% assign list_count = 10 %}{% endif %}
+
+{% if block.settings.additional_style %}
+  <style>
+    {{ block.settings.additional_style }}
+  </style>
+{% endif %}
+
+{%- if block.settings.heading.size > 0 -%}{% assign heading = block.settings.heading %}{%- else -%}{% assign heading = 'sections.product_reviews.heading' | t %}{%- endif -%}
+{%- if block.settings.load_more_text.size > 0 -%}{% assign load_more_text = block.settings.load_more_text %}{%- else -%}{% assign load_more_text = 'sections.product_reviews.load_more_text' | t %}{%- endif -%}
+{%- if block.settings.no_reviews_action_text.size > 0 -%}{% assign no_reviews_action_text = block.settings.no_reviews_action_text %}{%- else -%}{% assign no_reviews_action_text = 'sections.product_reviews.no_reviews_action_text' | t %}{%- endif -%}
+{%- if block.settings.existing_reviews_action_text.size > 0 -%}{% assign existing_reviews_action_text = block.settings.existing_reviews_action_text %}{%- else -%}{% assign existing_reviews_action_text = 'sections.product_reviews.existing_reviews_action_text' | t %}{%- endif -%}
+{%- if block.settings.best_review_label.size > 0 -%}{% assign best_review_label = block.settings.best_review_label %}{%- else -%}{% assign best_review_label = 'sections.product_reviews.best_review_label' | t %}{%- endif -%}
+
+
+
+<div class="mxpr-block page-width" 
+style="margin: {% if block.settings.margin_auto %}0 auto{% else %}{{ block.settings.margin_y }}px {{ block.settings.margin_x }}px{% endif %}; padding: {{ block.settings.padding_y }}px {{ block.settings.padding_x }}px; border: {{ block.settings.border_size }}px solid {{ block.settings.border_color }}; border-radius: {{ block.settings.border_radius }}px;" 
+      data-product-id="{{ product.id }}" data-customer-id="{{ customer.id }}" data-limit="{{ block.settings.list_count }}">
+  <div class="mxpr-summary">
+    <div class="mxpr-summary__header">
+      <div class="mxpr-summary__headline" style="font-size: {{ block.settings.title_size }}px">{{ heading }}</div>
+      <button type="button" class="mxpr-summary__write-review" data-alert='{{ "sections.product_reviews.alert" | t }}'>
+        {% if review_count > 0 %}{{ existing_reviews_action_text }}{% else %}{{ no_reviews_action_text }}{% endif %}
+      </button>
+    </div>
+    <form id="mxpr-product-reviews-form" class="mxpr-summary__form form-vertical">
+      <div class="field">
+        <input name="name" id="mxpr-form__name" type="text" placeholder="{{ 'sections.product_reviews.field_name' | t }}" class="field__input">
+        <label for="mxpr-form__name" class="field__label">{{ 'sections.product_reviews.field_name' | t }}</label>
+      </div>
+      <span id="mxpr-form__name-alert" class="mxpr-form-alert-message">{{ 'sections.product_reviews.field_name_alert' | t }}</span>
+      <div class="field">
+        <select name="rating" id="mxpr-form__rating" class="select__select">
+          <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+          <option value="4">⭐️⭐️⭐️⭐️</option>
+          <option value="3">⭐️⭐️⭐️</option>
+          <option value="2">⭐️⭐️</option>
+          <option value="1">⭐️</option>
+        </select>
+      </div>
+      <div class="field">
+        <input name="title" id="mxpr-form__title" type="text" placeholder="{{ 'sections.product_reviews.field_title' | t }}" class="field__input">
+        <label for="mxpr-form__title" class="field__label">{{ 'sections.product_reviews.field_title' | t }}</label>
+      </div>
+      <span id="mxpr-form__title-alert" class="mxpr-form-alert-message">{{ 'sections.product_reviews.field_title_alert' | t }}</span>
+      <div class="field">
+        <textarea name="body" id="mxpr-form__body" placeholder="{{ 'sections.product_reviews.field_body' | t }}" class="field__input text-area"></textarea>
+        <label for="mxpr-form__body" class="field__label">{{ 'sections.product_reviews.field_body' | t }}</label>
+      </div>
+      <span id="mxpr-form__body-alert" class="mxpr-form-alert-message">{{ 'sections.product_reviews.field_body_alert' | t }}</span>
+      <span id="mxpr-form__body-alert-short" class="mxpr-form-alert-message">{{ 'sections.product_reviews.field_body_alert_short' | t }}</span>
+      <span id="mxpr-form__body-alert-long" class="mxpr-form-alert-message">{{ 'sections.product_reviews.field_body_alert_long' | t }}</span>
+      <button id="mxpr-form-submit-button" type="submit" class="button button--secondary btn" data-sending="{{ 'sections.product_reviews.sending' | t }}">{{ 'sections.product_reviews.field_submit' | t }}</button>
+      <div class="mxpr-form-notice">{{ 'sections.product_reviews.notice' | t }}</div>
+    </form>
+    <div id="mxpr-form-message-thankyou" class="mxpr-form-message">{{ 'sections.product_reviews.form_thankyou' | t }}</div>
+    <div id="mxpr-form-message-error" class="mxpr-form-message">{{ 'sections.product_reviews.form_error' | t }}</div>
+    <div class="mxpr-summary__info">
+      <div class="mxpr-summary__star">
+        {% render "mxpr-star-rating", rating: avg_rating, fill: block.settings.stars_fill_color, size: block.settings.star_size %}
+        <div class="mxpr-summary__count">
+          {{ review_count }}{{ 'sections.product_reviews.summary_count' | t }}
+        </div>
+      </div>
+      {% if review_count > 0 %}
+        <div class="mxpr-summary__ratings">
+          {% if block.settings.show_detail %}
+            <ul>
+              <li>
+                <div class="mxpr-summary__item">
+                  <div class="star-ratings-css">
+                    <!-- widthはfont-size*5になるように -->
+                    <div class="star-ratings-css-top" style="width: 100%; color: {{ block.settings.stars_fill_color }};">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-css-bottom">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__bar">
+                      <div class="mxpr-summary__bar-content" style='width: {{ summary.detail["5"].percentage }}%;'>&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__item-percentage">{%- if summary.detail["5"].percentage -%}{{ summary.detail["5"].percentage }}{%- else -%}0.0{%- endif -%}%</div>
+                    <div class="mxpr-summary__item-reviewcount">({%- if summary.detail["5"].count -%}{{ summary.detail["5"].count }}{%- else -%}0{%- endif -%})</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="mxpr-summary__item">
+                  <div class="star-ratings-css">
+                    <!-- widthはfont-size*5になるように -->
+                    <div class="star-ratings-css-top" style="width: 80%; color: {{ block.settings.stars_fill_color }};">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-css-bottom">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__bar">
+                      <div class="mxpr-summary__bar-content" style='width: {{ summary.detail["4"].percentage }}%;'>&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__item-percentage">{%- if summary.detail["4"].percentage -%}{{ summary.detail["4"].percentage }}{%- else -%}0.0{%- endif -%}%</div>
+                    <div class="mxpr-summary__item-reviewcount">({%- if summary.detail["4"].count -%}{{ summary.detail["4"].count }}{%- else -%}0{%- endif -%})</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="mxpr-summary__item">
+                  <div class="star-ratings-css">
+                    <!-- widthはfont-size*5になるように -->
+                    <div class="star-ratings-css-top" style="width: 60%; color: {{ block.settings.stars_fill_color }};">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-css-bottom">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__bar">
+                      <div class="mxpr-summary__bar-content" style='width: {{ summary.detail["3"].percentage }}%;'>&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__item-percentage">{%- if summary.detail["3"].percentage -%}{{ summary.detail["3"].percentage }}{%- else -%}0.0{%- endif -%}%</div>
+                    <div class="mxpr-summary__item-reviewcount">({%- if summary.detail["3"].count -%}{{ summary.detail["3"].count }}{%- else -%}0{%- endif -%})</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="mxpr-summary__item">
+                  <div class="star-ratings-css">
+                    <!-- widthはfont-size*5になるように -->
+                    <div class="star-ratings-css-top" style="width: 40%; color: {{ block.settings.stars_fill_color }};">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-css-bottom">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__bar">
+                      <div class="mxpr-summary__bar-content" style='width: {{ summary.detail["2"].percentage }}%;'>&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__item-percentage">{%- if summary.detail["2"].percentage -%}{{ summary.detail["2"].percentage }}{%- else -%}0.0{%- endif -%}%</div>
+                    <div class="mxpr-summary__item-reviewcount">({%- if summary.detail["2"].count -%}{{ summary.detail["2"].count }}{%- else -%}0{%- endif -%})</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="mxpr-summary__item">
+                  <div class="star-ratings-css">
+                    <!-- widthはfont-size*5になるように -->
+                    <div class="star-ratings-css-top" style="width: 20%; color: {{ block.settings.stars_fill_color }};">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div class="star-ratings-css-bottom">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__bar">
+                      <div class="mxpr-summary__bar-content" style='width: {{ summary.detail["1"].percentage }}%;'>&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="mxpr-summary__item">
+                    <div class="mxpr-summary__item-percentage">{%- if summary.detail["1"].percentage -%}{{ summary.detail["1"].percentage }}{%- else -%}0.0{%- endif -%}%</div>
+                    <div class="mxpr-summary__item-reviewcount">({%- if summary.detail["1"].count -%}{{ summary.detail["1"].count }}{%- else -%}0{%- endif -%})</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          {% endif %}
+        </div>
+        <div class="mxpr-summary__order">
+          <select id="mxpr-summary__order-select">
+            <option value="">{{ 'sections.product_reviews.new_desc' | t }}</option>
+            <option value="createdAt-asc">{{ 'sections.product_reviews.id_asc' | t }}</option>
+            <option value="rating-desc">{{ 'sections.product_reviews.rating_desc' | t }}</option>
+            <option value="rating-asc">{{ 'sections.product_reviews.rating_asc' | t }}</option>
+            <option value="helpful-desc">{{ 'sections.product_reviews.helpful_desc' | t }}</option>
+          </select>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% if reviews != blank %}
+    <div class="mxpr-review">
+      <ul class="mxpr-review__list">
+        {% for review in reviews %}
+          <li class="mxpr-review__list-item">
+            <div class="mxpr-review__list-item-account">
+              <div class="mxpr-review__list-item-icon">{{ review.name | slice: 0, 1 }}</div>
+              <div class="mxpr-review__list-item-name">{{ review.name }}</div>
+            </div>
+            <div class="mxpr-review__list-item-meta">
+              {% assign rating = review.rating | plus: 0 %}
+              {% render "mxpr-star-rating", rating: rating, fill: block.settings.stars_fill_color, size: 16 %}
+              <div class="mxpr-review__list-item-meta-title">{{ review.title }}</div>  
+              {% if review.priority > 0 %}
+                {% assign priority_class = "" %}
+              {% else %}
+                {% assign priority_class = "mxpr-review__list-item-top-review-hidden" %}
+              {% endif %}
+                <div class="mxpr-review__list-item-top-review {{ priority_class }}">{{ best_review_label }}</div>
+            </div>
+            <div class="mxpr-review__list-item-createdat">{{ review.created_at | date: format: "date_at_time" }}</div>
+            <div class="mxpr-review__list-item-body">
+              <p>
+                {{ review.body }}
+              </p>
+            </div>
+            {% if review.reply.body %}
+              {% assign item_reply_class = "" %}
+            {% else %}
+              {% assign item_reply_class = "mxpr-review__list-item-reply-hidden" %}
+            {% endif %}
+            <div class="mxpr-review__list-item-reply {{ item_reply_class }}">
+              <ul>
+                {% if review.reply.name %}
+                  {% assign item_reply_name_class = "" %}
+                {% else %}
+                  {% assign item_reply_name_class = "mxpr-review__list-item-reply-name-hidden" %}
+                {% endif %}
+                <li class="mxpr-review__list-item-reply-name {{ item_reply_name_class }}">› {{ review.reply.name }}</li>
+                <li class="mxpr-review__list-item-reply-body">{{ review.reply.body }}</li>
+              </ul>
+            </div>
+            <div class="mxpr-review__list-item-votes">
+              <div class="mxpr-review__list-item-votes-message"><span id="mxpr-helpful-count-{{ review.id }}">{{ review.helpful | plus: 0 }}</span>{{ 'sections.product_reviews.helpful' | t }}</div>
+              <div class="mxpr-review__list-item-votes-action"><button class="mxpr-review__list-item-votes-button" data-review-id="{{ review.id }}" data-customer-id="{{ customer.id }}" data-alert="{{ 'sections.product_reviews.alert' | t }}" data-sending="{{ 'sections.product_reviews.sending' | t }}" data-thankyou="{{ 'sections.product_reviews.thankyou' | t }}">{{ 'sections.product_reviews.vote' | t }}</button></div>
+            </div>
+          </li>
+          {% if forloop.index == list_count %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if review_count > list_count %}
+        {% assign load_more_class = "" %}
+      {% else %}
+        {% assign load_more_class = "mxpr-review__has-not-next" %}
+      {% endif %}
+      <div id="mxpr-review__load-more" class="{{ load_more_class }}">
+        <button id="mxpr-review__load-more-button" data-page="1">{{ load_more_text }}</button>
+        <div id="mxpr-loader" class="mxpr-loader" style="display: none;"></div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% comment %}theme-check-disable ParserBlockingScriptTag{% endcomment %}
+{{ 'mxpr-product-reviews-form.js' | asset_url | script_tag }}
+{{ 'mxpr-product-reviews-helpful.js' | asset_url | script_tag }}
+{% comment %}theme-check-enable ParserBlockingScriptTag{% endcomment %}
+
+{% schema %}
+{"name":"t:sections.product_reviews.name","templates":["product"],"settings":[{"type":"number","id":"list_count","label":"t:sections.product_reviews.list_count.label","default":5},{"type":"text","id":"load_more_text","info":"t:sections.product_reviews.load_more_text.info","label":"t:sections.product_reviews.load_more_text.label"},{"type":"color","id":"stars_fill_color","label":"t:sections.product_reviews.stars_fill_color.label","default":"#FFD900"},{"type":"number","id":"star_size","label":"t:sections.product_reviews.star_size.label","default":24},{"type":"color","id":"border_color","label":"t:sections.product_reviews.border_color.label","default":"#dddddd"},{"type":"number","id":"border_size","label":"t:sections.product_reviews.border_size.label","default":0},{"type":"number","id":"border_radius","label":"t:sections.product_reviews.border_radius.label","default":5},{"type":"number","id":"margin_y","label":"t:sections.product_reviews.margin_y.label","default":0},{"type":"number","id":"margin_x","label":"t:sections.product_reviews.margin_x.label","default":0},{"type":"checkbox","id":"margin_auto","label":"t:sections.product_reviews.margin_auto.label","default":true},{"type":"number","id":"padding_y","label":"t:sections.product_reviews.padding_y.label","default":20},{"type":"number","id":"padding_x","label":"t:sections.product_reviews.padding_x.label","default":20},{"id":"heading","type":"text","info":"t:sections.product_reviews.heading.info","label":"t:sections.product_reviews.heading.label"},{"type":"number","id":"title_size","label":"t:sections.product_reviews.title_size.label","default":24},{"id":"no_reviews_action_text","type":"text","info":"t:sections.product_reviews.no_reviews_action_text.info","label":"t:sections.product_reviews.no_reviews_action_text.label"},{"id":"existing_reviews_action_text","type":"text","info":"t:sections.product_reviews.existing_reviews_action_text.info","label":"t:sections.product_reviews.existing_reviews_action_text.label"},{"id":"best_review_label","type":"text","info":"t:sections.product_reviews.best_review_label.info","label":"t:sections.product_reviews.best_review_label.label"},{"id":"show_detail","type":"checkbox","label":"t:sections.product_reviews.show_detail.label","default":true},{"id":"additional_style","type":"textarea","label":"t:sections.product_reviews.additional_style.label"}]}
+{% endschema %}

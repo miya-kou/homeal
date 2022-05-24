@@ -1,0 +1,1101 @@
+{%- comment -%}All this functions currently using on the Theme.liquid{%- endcomment -%}
+<div class="products-filter">
+    {%- comment -%}Under here is the searching word function by product types {%- endcomment -%}
+    <div class="search-words">
+        <form action="{{ routes.search_url }}" method="get" class="input-group new-search-bar" role="search">
+            <input type="hidden" name="type" value="{{ search_type}}">
+            <input type="search" name="q" value="{{ search.terms | escape | replace: '*', '' }}" placeholder="商品・原材料・栄養素などを検索" class="new-search-bar__text-field" aria-label="商品を検索">
+            <span class="new-search-bar__icon">
+            <label>
+            <input type="submit" style="display: none;" />
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+            </label>
+            </span>
+        </form>
+    </div>
+    {%- comment -%}Under here is the filter function by tags{%- endcomment -%}
+    <div class="filter-tags">
+        <div id="tooltip" >
+            <div id="arrow" data-popper-arrow></div>
+            <div class="popover-content">
+                <div class="FiltersContainer">
+                    <form id="myForm">
+                    <div class="FiltersContainerHeader">
+                        <div class="FiltersContainerHeader-ProductsTypes">
+                            <h3 class="ProductsTypesDisplayText">推奨月齢</h3>
+                            <div class="simple-radio" id="sr1">
+                                <label class="col">
+                                  <input type="radio" name="ageRange" value="notags" checked="checked">
+                                  <div class="check"><span class="no">&nbsp;</span><span class="yes">&#10003;</span></div>全商品
+                                </label>
+                                <label class="col">
+                                  <input type="radio" name="ageRange" value="age-one">
+                                  <div class="check"><span class="no">&nbsp;</span><span class="yes">&#10003;</span></div>1歳0ヶ月～
+                                </label>
+                                <label class="col">
+                                  <input type="radio" name="ageRange" value="age-one_half">
+                                  <div class="check"><span class="no">&nbsp;</span><span class="yes">&#10003;</span></div>1歳6ヶ月～
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="FiltersPCContainerContent">
+                        <div class="FiltersPCContainerContent-CheckPoints">
+                            <h3 class="CheckPointsDisplayText">次のアレルゲンを除く</h3>
+                            <div class="covercheckbox">
+                                <label class="container">小麦
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-wheat_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">卵
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-egg_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">乳
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-milk_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">えび
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-shrimp_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">かに
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-crab_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">そば
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-soba_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">落花生
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-peanuts_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">アーモンド
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-almond_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">あわび
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-abalone_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">やまいも
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-yam_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">さけ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-salmon_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">さば
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-mackerel_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">大豆
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-soy_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">鶏肉
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-chicken_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">いか
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-squid_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">いくら
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-salmon_caviar_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">オレンジ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-orange_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">カシューナッツ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-cashew_nuts_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">キウイフルーツ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-kiwi_fruit_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">牛肉
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-beef_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">くるみ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-walnut_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">ごま
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-sesame_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">りんご
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-apple_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">バナナ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-banana_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">豚肉
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-pork_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">まつたけ
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-matsutake_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">もも
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-peach_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container">ゼラチン
+                                    <input class="inputbox" type="checkbox" name="tags[]" value="allergies-gelatin_free">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="FiltersContainerFooter">
+                        <div class="FiltersContainerFooter-Buttons">
+                            <button type="button" class="ClearAll" id="clearall" >
+                                <span>
+                                    <span>条件をすべてクリア</span>
+                                </span>
+                            </button>
+                            <button class="SearchFor" type="submit">
+                                <span>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+                                    <span>検索する</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button id="myButton"  class="container-button">
+            <div class="button-popover">
+              <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+              <path d="M10.5,25V18.5H4a4,4,0,0,1,0-8h6.5V4a4,4,0,0,1,8,0v6.5H25a4,4,0,0,1,0,8H18.5V25a4,4,0,0,1-8,0Z"/>
+                          </svg>
+             <p>絞り込み</p>
+            </div>
+        </button>
+    </div>
+</div>
+<!-- import popover libary -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<!-- Products filter-tags script -->
+<!-- Radio button script -->
+<script>
+    // simple radio - sets up shop
+  
+  $('.simple-radio label').each(function(index) {
+    if ($('input', this).prop('checked')) {
+      $(this).addClass('checked');
+    }
+  });
+  
+  // simple radio - listen for click
+  $('.simple-radio label').click(function() {
+  console.log($('.simple-radio label'));
+    $('.simple-radio input').removeAttr('checked');
+    $('input', this).attr('checked', 'checked');
+    $('input', this).prop({
+      checked: true
+    });
+    $('.simple-radio label').removeAttr('class');
+    $(this).addClass('checked');
+  
+  });
+</script>
+<!-- Clear button script -->
+<script>
+    $('#clearall').click( function(e){
+        var searchUrl = "https://homeal.co.jp/collections/online-shop/";
+        window.location.replace( "https://homeal.co.jp/collections/online-shop/")
+    });
+</script>
+<!-- Submit button script -->
+<script>
+    $('#myForm').submit( function(e) {
+        e.preventDefault()
+        var ageRange = "";
+        var selectedTagJoin = "";
+        var searchURL = "";
+        var selectedTag = new Array();
+        var url = "https://homeal.co.jp/collections/online-shop/"
+        ageRange = $("#myForm input[type='radio'][name='ageRange']:checked").val();
+        $("#myForm input[name='tags[]']:checked").each(function ()
+        {
+            selectedTag.push(this.value);
+        });
+        if (selectedTag.length>0){
+            selectedTagJoin = selectedTag.join("+")
+        }
+        if (ageRange !== "notags" && selectedTagJoin !== "")
+        {
+            searchURL = `${url}${ageRange}+${selectedTagJoin}`
+        }
+        else if(ageRange !== "notags" && selectedTagJoin == ""){
+            searchURL = `${url}${ageRange}`
+        }
+        else{
+            searchURL = `${url}${selectedTagJoin}`
+        }
+        window.location.replace(searchURL)
+    });
+</script>
+<!-- Popovers Fuctions script -->
+<!-- Tippy -->
+<!-- <script>
+    const template = document.getElementById('template');
+    // With the above scripts loaded, you can call `tippy()` with a CSS
+    // selector and a `content` prop:
+    tippy('#myButton', {
+        target: '.myForm',
+        interactive: true,
+        content: template.innerHTML,
+        allowHTML: true,
+        allowJS: true,
+        arrowType: 'round',
+        placement: 'bottom-end',
+        trigger: 'click',
+        hideOnClick: true,
+        maxWidth: 'none',
+        offset: [10, 15],
+        theme:'light',
+        onClickOutside(instance, event) { instance.hide(); },
+    });
+</script> -->
+<!-- popper -->
+<script>
+    // ============
+    // Start: Popper
+
+    // References
+    // https://popper.js.org/docs/v2/tutorial/#functionality
+
+    const button = document.querySelector('#myButton');
+    const tooltip = document.querySelector('#tooltip');
+
+    // Pass the button, the tooltip, and some options, and Popper will do the
+    // magic positioning for you:
+    const popperInstance = Popper.createPopper(button, tooltip, {
+    placement: 'bottom-start',
+    modifiers: [
+        {
+        name: 'offset',
+        options: {
+            offset: [0, 8],
+        },
+        },
+    ],
+    });
+
+    function show() {
+        tooltip.setAttribute('data-show', '');
+
+        // We need to tell Popper to update the tooltip position
+        // after we show the tooltip, otherwise it will be incorrect
+        popperInstance.update();
+
+        //add overlay background
+        $('.transition-body').addClass('overlay-bg');
+        //change Z-index of header after tooltips open
+        $('.c-header').css("z-index", "1");
+        //change opacity of popover button after tooltips open
+        $('.container-button').css("opacity", "100%");
+    }
+
+    function hide() {
+        tooltip.removeAttribute('data-show');
+
+        //remove overlay background
+        $('.transition-body').removeClass('overlay-bg');
+        //change Z-index of header after tooltips hidden
+        $('.c-header').css("z-index", "100");
+        //change opacity of popover button after tooltips hidden
+        $('.container-button').css("opacity", "70%");
+    }
+
+    button.addEventListener('click', event => {
+        JSON.parse(tooltip.getAttribute('data-show')) ? hide() : show(); event.stopPropagation();
+    })
+
+    // check if clickedd outside => hide content
+    const handleClosure = event => !tooltip.contains(event.target) && hide();
+    window.addEventListener('click', handleClosure)
+
+    // End: Popper
+    // ============
+</script>
+
+<!-- Products filter-tags style -->
+<style>
+    .products-filter{
+        display: table;
+        width: 100%;
+    }
+    .search-words{
+        width: 85%;
+        display: table-cell;
+    }
+    .filter-tags{
+        width: 15%;
+        display: table-cell;
+        text-align: center;
+    }
+    .button-popover {
+        display: flex;
+        align-items: center;
+        padding: 9px 15px;
+        background: #f5f5f5;
+        border-radius: 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        position: relative;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .button-popover svg {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        fill: #000000 ;
+        position: relative;
+        right: 0px;
+    }
+    button#myButton {
+        position: relative;
+        top: 2px;
+        margin-top: 0px;
+        padding-top: 0px;
+        left: 20px;
+        z-index: 99;
+        opacity: 70%;
+    }
+    .button-popover p {
+        left: 5px;
+        position: relative;
+        font-family: Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 20px;
+        color: rgba(0,0,0,.87);
+        letter-spacing: 0;
+    }
+    @media screen and (max-width: 768px){
+        .button-popover {
+        display: flex;
+        align-items: center;
+        padding: 14px 15px;
+        background: #f5f5f5;
+        border-radius: 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        position: relative;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .button-popover p {
+        display: none;
+    }
+    }
+    /* search-bar style */
+    .new-search-bar .new-search-bar__text-field{
+        opacity: 70%;
+    }
+    .new-search-bar .new-search-bar__text-field:focus{
+        opacity: 100%;
+    }
+    /* poper style */
+    /* ============ */
+    /* Popper */
+    .overlay-bg:after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 2;
+        overflow: none;
+    }
+
+    #filter-btn__popper {
+        background-color: #ffffff;
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+        float: right;
+        margin-right: 200px;
+    }
+
+    #arrow,
+    #arrow::before {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: inherit;
+        top: -3px;
+        border-radius: 3px;
+    }
+
+    #arrow {
+        visibility: hidden;
+    }
+
+    #arrow::before {
+        visibility: visible;
+        content: '';
+        transform: rotate(45deg);
+    }
+
+    #tooltip {
+        display: none;
+        background: #ffffff;
+        box-shadow: 0 0 20px 4px rgb(154 161 177 / 15%), 0 4px 80px -8px rgb(36 40 47 / 25%), 0 4px 4px -2px rgb(91 94 105 / 15%);
+        border-radius: 10px;
+        z-index: 99;
+        width: 96%;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    @media screen and (min-width: 320px){
+        #tooltip {transform: translateX(6px) translateY(222px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 6px !important;}
+    }
+    @media screen and (min-width: 360px){#tooltip {transform: translateX(7px) translateY(240px) translate3d(0,0,0)!important;}}
+    @media screen and (min-width: 480px){
+        #tooltip {transform: translateX(10px) translateY(260px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 10px !important;}
+    }
+    @media screen and (min-width: 600px){
+        #tooltip {transform: translateX(14px) translateY(280px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 12px !important;}
+    }
+    @media screen and (min-width: 768px){
+        #tooltip {transform: translateX(16px) translateY(280px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 10px !important;}
+    }
+    @media screen and (min-width: 800px){#tooltip {transform: translateX(18px) translateY(290px) translate3d(0,0,0)!important;}}
+    @media screen and (min-width: 900px){
+        #tooltip {transform: translateX(20px) translateY(315px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 0px !important;}
+    }
+    @media screen and (min-width: 1024px){
+        #tooltip {transform: translateX(20px) translateY(315px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 10px !important;}
+}
+    @media screen and (min-width: 1152px){
+        #tooltip {transform: translateX(20px) translateY(315px) translate3d(0,0,0)!important;}
+        #arrow, #arrow::before {left: 10px !important;}
+    }
+    @media screen and (min-width: 1500px){#arrow, #arrow::before {left: 20px !important;}}
+    /* #tooltip[data-popper-placement^='top'] > #arrow {
+        bottom: -4px;
+    }
+
+    #tooltip[data-popper-placement^='bottom'] > #arrow {
+        top: -4px;
+    }
+
+    #tooltip[data-popper-placement^='left'] > #arrow {
+        right: -4px;
+    }
+
+    #tooltip[data-popper-placement^='right'] > #arrow {
+        left: -4px;
+    } */
+
+    /* https://popper.js.org/docs/v2/tutorial/#functionality */
+    #tooltip[data-show] {
+        display: block;
+    }
+
+    /* Content insdie Popovers style */
+    @media screen and (min-width: 320px){
+        .FiltersContainerHeader, .FiltersContainerFooter, .FiltersPCContainerContent{
+            width: 100%;
+            height: calc(100% - 12.6rem);
+            padding: 1rem;
+        }
+        .FiltersPCContainerContent, .FiltersContainerFooter {
+            padding-top: 0;
+        }
+        .FiltersContainerHeader-ProductsTypes, .FiltersPCContainerContent-CheckPoints, .FiltersContainerFooter-Buttons {
+            text-align: center;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+            grid-gap: 0px;
+        }
+        h3.ProductsTypesDisplayText, h3.CheckPointsDisplayText {
+            text-align: start;
+            padding-bottom: 5px;
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            color: black;
+        }
+        h3.ProductsTypesDisplayText::before, h3.CheckPointsDisplayText::before {
+            content: "";
+            display: block;
+            width: .4375rem;
+            height: 1.5rem;
+            margin-right: .75rem;
+            border-radius: .3125rem;
+            background-color: #ffcd00;
+        }
+        .ClearAll {
+            align-items: center;
+            padding: 4px 25px;
+            background: #e5e5e5;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+        }
+        .ClearAll span {
+            font-size: 16px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+        button.SearchFor {
+            align-items: center;
+            padding: 3px 25px;
+            background: #ffcd00;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+            margin: 10px 0px;
+        }
+        .SearchFor span {
+            font-size: 16px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+        .SearchFor svg.icon.icon-search {
+            float: left;
+            top: 4px;
+            position: relative;
+        }
+    }
+    @media screen and (min-width: 600px){
+        .SearchFor svg.icon.icon-search {
+            float: left;
+            top: 7px;
+            position: relative;
+        }
+    }
+    @media screen and (min-width: 768px){
+        .SearchFor svg.icon.icon-search {
+            float: left;
+            top: 4px;
+            position: relative;
+        }
+    }
+    @media screen and (min-width: 1024px){
+        .FiltersContainerHeader, .FiltersContainerFooter, .FiltersPCContainerContent{
+            width: 100%;
+            height: calc(100% - 12.6rem);
+            padding: 1rem;
+        }
+        .FiltersContainerFooter {
+            padding: 10px 15vw;
+        }
+        .FiltersContainerHeader-ProductsTypes, .FiltersPCContainerContent-CheckPoints, .FiltersContainerFooter-Buttons {
+            text-align: center;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            grid-gap: 10px;
+        }
+        .FiltersContainerFooter-Buttons {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+        h3.ProductsTypesDisplayText, h3.CheckPointsDisplayText {
+            text-align: start;
+            padding-bottom: 0px;
+            display: flex;
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+        }
+        .ClearAll {
+            align-items: center;
+            padding: 4px 25px;
+            background: #e5e5e5;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+        }
+        .ClearAll span {
+            font-size: 18px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+        button.SearchFor {
+            align-items: center;
+            padding: 3px 25px;
+            background: #ffcd00;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+            margin: 0px 10px;
+        }
+        .SearchFor span {
+            font-size: 18px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+        .SearchFor svg.icon.icon-search {
+            float: left;
+            top: 6px;
+            position: relative;
+        }
+    }
+    @media screen and (min-width: 1200px){
+        .FiltersContainerHeader, .FiltersContainerFooter, .FiltersPCContainerContent{
+            width: 100%;
+            height: calc(100% - 12.6rem);
+            padding: 1rem;
+        }
+        .FiltersContainerFooter {
+            padding: 10px 15vw;
+        }
+        .FiltersContainerHeader-ProductsTypes, .FiltersPCContainerContent-CheckPoints, .FiltersContainerFooter-Buttons {
+            text-align: center;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 18px;
+            grid-gap: 0px;
+        }
+        .FiltersContainerFooter-Buttons {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+        h3.ProductsTypesDisplayText, h3.CheckPointsDisplayText {
+            text-align: start;
+            padding-bottom: 10px;
+            display: flex;
+            font-size: 24px;
+            font-weight: 600;
+            color: black;
+        }
+        .ClearAll {
+            align-items: center;
+            padding: 6px 25px;
+            background: #e5e5e5;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+        }
+        .ClearAll span {
+            font-size: 18px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+        button.SearchFor {
+            align-items: center;
+            padding: 6px 25px;
+            background: #ffcd00;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            width: 100%;
+            margin: 0px 10px;
+        }
+        .SearchFor span {
+            font-size: 18px;
+            font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        }
+    }
+
+    /* radio content style  */
+    *{
+        font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        font-size: 18px;
+    }
+
+    .simple-radio ul {
+        counter-reset: section;
+    }
+
+    .simple-radio label {
+        display: block;
+        line-height: 1.2em;
+        width: 100%;
+        color: #636363;
+        border: 1px solid #ccc;
+        counter-increment: section;
+        cursor: pointer;
+        margin: .5em .5em .5em 0;
+        text-align : center;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        background: #e5e5e5;
+        letter-spacing: 0px;
+    }
+
+    .simple-radio label:before {
+        content: none " ";
+        border:1px solid #ccc;
+        margin-left: -20px!important;
+        font-size: 14px;
+        text-align: center;
+        color: #999;
+        border-radius: 30%;
+        margin-right: 10px;
+        padding: 0 1px 0 4px;
+    }
+
+    .simple-radio label:hover:before, .simple-radio label.checked:before {
+        color: #fff;
+    }
+
+    .simple-radio .check {
+        text-align: center;
+        float: left;
+        width: auto;
+        line-height: 1em;
+        font-size: 10px;
+        font-weight: 700;
+        color: #ffcd00;
+    }
+
+    .simple-radio input,
+    .simple-radio label .check .yes,
+    .simple-radio label.checked .check .no {
+        display: none;
+    }
+
+    .simple-radio label:hover,
+    .simple-radio label.checked {
+        background-color: #ffe;
+        color: black;
+        border: 1px solid #ffcd00;
+    }
+
+    .simple-radio label .check .no,
+    .simple-radio label.checked .check .yes {
+        display: inline;
+    }
+
+    @media screen and (min-width: 320px){
+    .simple-radio label {
+        display: block;
+        line-height: 1.2em;
+        width: 100%;
+        color: #636363;
+        border: 1px solid #ccc;
+        counter-increment: section;
+        cursor: pointer;
+        margin: .8em .8em .8em 0;
+        padding: .6em .6em .6em 1em;
+        text-align: center;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        background: #e5e5e5;
+        font-size: 14px;
+    }
+    .simple-radio label:hover, .simple-radio label.checked {
+        background-color: #ffe;
+        color: black;
+        border: 1px solid #ffcd00;
+
+    }
+    }
+    @media screen and (min-width: 1024px){
+    div#sr1 {
+        display: flex;
+        grid-column-gap: 10px;
+        width: auto;
+    }
+    .simple-radio label {
+        display: block;
+        line-height: 1.2em;
+        width: 100%;
+        color: #636363;
+        border: 1px solid #ccc;
+        counter-increment: section;
+        cursor: pointer;
+        margin: .6em .6em .6em 0;
+        padding: .4em .4em .4em 1em;
+        text-align: center;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        background: #e5e5e5;
+        font-size: 16px;
+    }
+    .simple-radio label:hover, .simple-radio label.checked {
+        background-color: #ffe;
+        color: black;
+        border: 1px solid #ffcd00;
+
+    }
+    }
+    @media screen and (min-width: 1200px){
+    .simple-radio label {
+        display: block;
+        line-height: 1.2em;
+        width: 100%;
+        color: #636363;
+        border: 1px solid #ccc;
+        counter-increment: section;
+        cursor: pointer;
+        margin: .6em .6em .6em 0;
+        padding: .6em .6em .6em 1em;
+        text-align: center;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        background: #e5e5e5;
+        font-size: 18px;
+    }
+    .simple-radio label:hover, .simple-radio label.checked {
+        background-color: #ffe;
+        color: black;
+        border: 1px solid #ffcd00;
+
+    }
+    }
+
+    /* Checkbox style  */
+    .covercheckbox .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        letter-spacing: 0px;
+    }
+
+    /* Hide the browser's default checkbox */
+    .covercheckbox .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .covercheckbox .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 3px;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .covercheckbox .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .covercheckbox .container input:checked ~ .checkmark {
+        background-color: #ffcd00;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .covercheckbox .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .covercheckbox .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .covercheckbox .container .checkmark:after {
+        left: 8px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .covercheckbox {
+        list-style: none;
+        columns: 2;
+        column-gap: 0px;
+        text-align: start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    @media screen and (min-width: 320px){
+    .covercheckbox .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        letter-spacing: 0px;
+    }
+    .covercheckbox .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 10px;
+        height: 15px;
+        width: 15px;
+        background-color: #eee;
+        border-radius: 3px;
+    }
+    .covercheckbox .container .checkmark:after {
+        left: 5px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    }
+    @media screen and (min-width: 1024px){
+    .covercheckbox .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        letter-spacing: 0px;
+    }
+    .covercheckbox .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 10px;
+        height: 15px;
+        width: 15px;
+        background-color: #eee;
+        border-radius: 3px;
+    }
+    .covercheckbox .container .checkmark:after {
+        left: 5px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .covercheckbox {
+        list-style: none;
+        columns: 3;
+        column-gap: 0px;
+        text-align: start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    }@media screen and (min-width: 1200px){
+    .covercheckbox .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-family: Roboto,"Noto Sans JP",Hiragino Sans,"ヒラギノ角ゴ ProN W3",Hiragino Kaku Gothic ProN,"メイリオ",Meiryo,sans-serif;
+        letter-spacing: 0px;
+    }
+    .covercheckbox .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0px;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 3px;
+    }
+    .covercheckbox .container .checkmark:after {
+        left: 8px;
+        top: 4px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .covercheckbox {
+        list-style: none;
+        columns: 3;
+        column-gap: 0px;
+        text-align: start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    }
+
+</style>

@@ -1,0 +1,17 @@
+<div class="c-blog-list">
+  <div class="c-blog-list__img-wrapper image-wrap">
+	<div
+     class="c-blog-list__img"
+     data-bgset="{% render 'bgset', image: image %}"
+     data-sizes="auto"
+     style="background-image: url({{ image | img_url: '65x' }})">
+    </div>
+  </div>
+  <div class="c-blog-list__txt">
+    <h2 class="c-blog-list__ttl">
+      <a href="{{ url }}">{{ title }}</a>
+    </h2>
+    <span class="c-blog-list__date">{{ date }}</span>
+  </div>
+</div>
+<div style="clear: both;"></div>
