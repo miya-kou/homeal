@@ -123,24 +123,12 @@
               </p>
             {% endif %}
 
-
-            <span id="ProductPrice-{{ section_id }}"
-              class="product__price{% if current_variant.compare_at_price > current_variant.price %} sale-price{% endif %}">
-              {{ current_variant.price | money }}</span>
-            <span class="product__price-detail">
-              <span class="product__price-tax">(税込)</span>
-                {% if current_variant.id == 35826764546216 or current_variant.id == 35826764578984 %}
-                  <span class="product__price-per_meal"></span>
-                  {% elsif current_variant.id == 35826764611752 %}
-                 <span class="product__price-per_meal"></span>
-                  {% endif %}
-              </span>
-            
             {%- assign hide_sale_price = true -%}
             {% if product.compare_at_price_max > product.price %}
               {% if current_variant.compare_at_price %}
                 {%- assign hide_sale_price = false -%}
               {% endif %}
+            <div>
               <span
                 id="PriceA11y-{{ section_id }}"
                 class="visually-hidden"
@@ -148,17 +136,42 @@
                   {{ 'products.general.regular_price' | t }}
               </span>
               <span class="product__price-wrap-{{ section_id }}{% if hide_sale_price %} hide{% endif %}">
-                <span style="font-size:14px;color:rgba(0,0,0,0.6);">通常価格</span>
-                <span id="ComparePrice-{{ section_id }}" class="product__price product__price--compare">
-                  {% if current_variant.compare_at_price > current_variant.price %}
-                    {{ current_variant.compare_at_price | money }}
-                  {% endif %}
+                <span class="product__price--compare">
+                  <span class="js-sales_previous_price_without_tax">{{ current_variant.compare_at_price |divided_by: 1.08  | money }}</span>
+                  <span>
+                  (税込
+                  <span id="ComparePrice-{{ section_id }}" >
+                    {% if current_variant.compare_at_price > current_variant.price %}
+                      {{ current_variant.compare_at_price | money }}
+                    {% endif %}
+                  </span>
+                  )
+                  </span>
                 </span>
               </span>
               <span id="ComparePriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            </div>
             {% else %}
               <span id="PriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
             {% endif %}
+            
+            <div>
+              <span class="product__price js-sales_discounted_price_without_tax">{{ current_variant.price|divided_by: 1.08 | money }}</span>
+              <span>(税込
+              	<span id="ProductPrice-{{ section_id }}"
+                	class="{% if current_variant.compare_at_price > current_variant.price %} sale-price{% endif %}">
+                	{{ current_variant.price | money }}</span>
+                )
+              </span>
+              <span class="product__price-detail">
+                  {% if current_variant.id == 35826764546216 or current_variant.id == 35826764578984 %}
+                    <span class="product__price-per_meal"></span>
+                    {% elsif current_variant.id == 35826764611752 %}
+                   <span class="product__price-per_meal"></span>
+                    {% endif %}
+                </span>
+              </div>
+
 
             <div class="product__unit-price product__unit-price-wrapper--{{ section_id }}{% unless current_variant.unit_price_measurement %} hide{% endunless %}">
               {%- capture unit_price_base_unit -%}
