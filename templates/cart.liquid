@@ -91,71 +91,6 @@
               </div>
 
                   <div class="p-cart__item_price">
-                    <div class="p-cart__item_price-child_one">
-                    <span class="p-cart__item_price-child-ch 1">
-                      {% if item.original_line_price != item.final_line_price %}
-                        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-                        <small class="cart__price cart__price--strikethrough"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" style="display:none !important;"></span>{{ item.original_line_price| divided_by : 1.08  | money }}</small>
-                        <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-                        <span class="cart__price cart__discount"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_3" style="display:none !important;"></span>{{ item.original_line_price | divided_by : 1.08  | money }}</span>
-                      {% else %}
-                        <span class="cart__price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_2" style="display:none !important;"></span>{{ item.original_line_price | divided_by : 1.08  | money }}</span>
-                      {% endif %}
-
-                      {%- if item.line_level_discount_allocations != blank -%}
-                        {%- for discount_allocation in item.line_level_discount_allocations -%}
-                          <small class="cart__discount">{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount| divided_by : 1.08  | money }})</small>
-                        {%- endfor -%}
-                      {%- endif -%}
-
-                      {%- if item.unit_price_measurement -%}
-                        {%- capture unit_price_base_unit -%}
-                          <span class="unit-price-base--{{ section_id }}">
-                            {%- if item.unit_price_measurement -%}
-                              {%- if item.unit_price_measurement.reference_value != 1 -%}
-                                {{ item.unit_price_measurement.reference_value }}
-                              {%- endif -%}
-                              {{ item.unit_price_measurement.reference_unit }}
-                            {%- endif -%}
-                          </span>
-                        {%- endcapture -%}
-
-                        <div class="product__unit-price">{{ item.unit_price| divided_by : 1.08  | money }}/{{ unit_price_base_unit }}</div>
-                      {%- endif -%}
-                        </span>
-
-                    <span class="p-cart__item_price-child-ch 2">
-                      {% if item.original_line_price != item.final_line_price %}
-                        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-                        <small class="cart__price cart__price--strikethrough"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total"  style="display:none !important;"></span>(税込{{ item.original_line_price| money }})</small>
-                        <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-                        <span class="cart__price cart__discount"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_3"  style="display:none !important;"></span>(税込{{ item.final_line_price| money }})</span>
-                      {% else %}
-                        <span class="cart__price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_2"  style="display:none !important;"></span>(税込{{ item.original_line_price| money }})</span>
-                      {% endif %}
-
-                      {%- if item.line_level_discount_allocations != blank -%}
-                        {%- for discount_allocation in item.line_level_discount_allocations -%}
-                          <small class="cart__discount">{{ discount_allocation.discount_application.title }} (税込{{ discount_allocation.amount | money }})</small>
-                        {%- endfor -%}
-                      {%- endif -%}
-
-                      {%- if item.unit_price_measurement -%}
-                        {%- capture unit_price_base_unit -%}
-                          <span class="unit-price-base--{{ section_id }}">
-                            {%- if item.unit_price_measurement -%}
-                              {%- if item.unit_price_measurement.reference_value != 1 -%}
-                                {{ item.unit_price_measurement.reference_value }}
-                              {%- endif -%}
-                              {{ item.unit_price_measurement.reference_unit }}
-                            {%- endif -%}
-                          </span>
-                        {%- endcapture -%}
-
-                        <div class="product__unit-price">(税込{{ item.unit_price| divided_by : 1.08  | money }}/{{ unit_price_base_unit }})</div>
-                      {%- endif -%}
-                        </span>
-                    </div>
                     <div class="p-cart__item_price-child_two">
                       <span class="p-cart__item_price-child-ch 3">
                         {% if item.original_line_price != item.final_line_price %}
@@ -164,7 +99,7 @@
                           <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
                           <span class="cart__price cart__discount"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_3"  style="display:none !important;"></span>{{ item.final_line_price | divided_by : 1.08 | money }}</span>
                         {% else %}
-                          <span class="cart__price"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_2"  style="display:none !important;"></span>{{ item.original_line_price | divided_by : 1.08 | money }}</span>
+                          <span class="cart__price_ch"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total_2"  style="display:none !important;"></span>{{ item.original_line_price | divided_by : 1.08 | money }}</span>
                         {% endif %}
   
                         {%- if item.line_level_discount_allocations != blank -%}
@@ -260,7 +195,11 @@
               {% endif %}
               <div class="p-cart__footer_subtotal">
                 <span class="cart__subtotal p-cart__footer_subtotal_title">{{ 'cart.general.subtotal' | t }} :</span>
-                <span class="cart__subtotal p-cart__footer_subtotal_price">(税込<span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{ cart.total_price | money }}</span>)
+                <span class="cart__subtotal p-cart__footer_subtotal_price">
+                  <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;">
+                  </span>
+                  {{ cart.total_price | money }}<span class="sum_tax_price">(税込)</span>
+                </span>
               </div>
 
               {% if cart.total_discounts > 0 %}

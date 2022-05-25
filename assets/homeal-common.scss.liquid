@@ -2348,6 +2348,7 @@ input.error, textarea.error {
     padding-left: 150px;
   }
   .cart__price {
+    font-weight: bold;
     span {
       font-size: rem-calc(26px);
       font-weight: bold!important;
@@ -2357,14 +2358,15 @@ input.error, textarea.error {
     }
   }
 }
+.cart__price_ch{
+  font-size: 22px;
+  font-weight: bold;
+}
 .p-cart__item_price-child{
   display: flex;
 }
 .p-cart__item_price-child_one{
   text-decoration: line-through;
-  display: flex;
-}
-.p-cart__item_price-child_two{
   display: flex;
 }
 .p-cart__footer {
@@ -2465,6 +2467,15 @@ input[type=number]::-webkit-inner-spin-button {
     @include sp {
       font-size: rem-calc(13px);
 	}
+  .grid-product__price_child_one{
+    text-decoration: line-through;
+  }
+  .grid-product__price_child_two .sale-price{
+    font-size: 18px;
+  }
+  .grid-product__price_child_two .sale-price_small{
+    font-size: 12px;
+  }
     span {
       font-weight: bold;
     }
